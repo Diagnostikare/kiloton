@@ -7,10 +7,18 @@
   text-decoration: none;
   color: white;
   border-radius: 40px;
+  cursor: pointer;
 }
 
 .primary {
   font-weight: 600;
   color: var(--complementary-color);
   background-color: var(--primary-color);
+  transition: box-shadow 0.2s ease-in;
+
+  &:hover {
+    color: var(--complementary-color);
+    box-shadow: 0 10px 16px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.1);
+  }
 }

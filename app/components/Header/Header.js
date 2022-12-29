@@ -6,10 +6,10 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.headerContainer}`}>
-        <a href="#" className={styles.logo}>
+        <a href="#heroImage" className={styles.logo}>
           <Image
             className={styles.logo}
-            raw
+            raw="true"
             alt="Kilotón"
             width={344}
             height={128}

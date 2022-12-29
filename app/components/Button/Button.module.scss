@@ -6,6 +6,11 @@
   text-align: center;
   text-decoration: none;
   color: white;
-  background-color: var(--primary-color);
   border-radius: 40px;
+}
+
+.primary {
+  font-weight: 600;
+  color: var(--complementary-color);
+  background-color: var(--primary-color);
 }

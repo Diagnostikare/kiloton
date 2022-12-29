@@ -1,6 +1,7 @@
 :root {
-  --primary-color: #0070f3;
+  --primary-color: #f2cc21;
   --secondary-color: #ff6600;
+  --complementary-color: #1d1c1b;
 }
 
 * {
@@ -8,10 +9,19 @@
 }
 
 @media (prefers-color-scheme: dark) {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
   html {
     color-scheme: dark;
   }
+
   body {
+    font-size: 1rem;
+    font-size: 16px;
     color: white;
     background: white;
   }

@@ -2,12 +2,24 @@
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 9;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: var(--complementary-color);
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 .logo {
+  width: 100%;
+  max-width: 172px;
+  height: auto;
 }
 
 .list {
@@ -16,9 +28,18 @@
   align-items: center;
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 0 auto;
 
   li {
     padding: 0 15px;
+  }
+}
+
+.item {
+  text-decoration: none;
+  color: white;
+
+  &:hover {
+    color: var(--primary-color);
   }
 }

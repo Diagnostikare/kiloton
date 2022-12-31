@@ -6,7 +6,7 @@ export default function FormSection({ children, ...props }) {
     <section className={styles.section} {...props}>
       <div className="container">
         <div className="row">
-          <div className="col-12 col-sm-10 col-lg-4">
+          <div className="col-12 col-sm-10 col-lg-4 my-auto">
             <h2 className={`title bold ${styles.title}`}>
               ¡Participa y gana salud!
             </h2>

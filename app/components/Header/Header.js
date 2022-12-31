@@ -13,7 +13,7 @@ export default function Header() {
             alt="Kilotón"
             width={344}
             height={128}
-            src="/assets/images/brand/logo-default.png"
+            src="/assets/brand/logo-default.png"
           />
         </a>
 

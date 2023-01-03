@@ -1,7 +1,7 @@
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import styles from "./FormSection.module.scss";
 
-export default function FormSection({ children, ...props }) {
+export const FormSection = ({ children, ...props }) => {
   return (
     <section className={styles.section} {...props}>
       <div className="container">

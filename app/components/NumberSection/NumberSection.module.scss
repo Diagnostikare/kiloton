@@ -10,3 +10,36 @@
 .content {
   color: var(--complementary-color);
 }
+
+.circle{
+  border-radius: 100%;
+  width: 83px;
+  height: 83px;
+  display: flex;
+  background-color: #F2CC21;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.textContainer{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  line-height: .8rem;
+
+}
+
+.spanNumber{
+  display: flex;
+  font-size: 48px;
+  line-height: 1.2rem;
+}
+
+.spanTitle{
+  font-weight: bold;
+}
+
+.spanSubtitle{
+
+}

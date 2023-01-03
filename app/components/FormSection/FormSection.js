@@ -15,7 +15,7 @@ export default function FormSection({ children, ...props }) {
               salud y recibes recompensas por hacerlo.
             </p>
           </div>
-          <div className="col-12 col-sm-10 col-lg-8">
+          <div className="col-12 col-sm-10 col-lg-8 d-flex justify-content-end">
             <RegistrationForm />
           </div>
         </div>

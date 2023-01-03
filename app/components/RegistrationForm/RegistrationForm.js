@@ -1,44 +1,175 @@
 "use client";
+import React, { useState, useEffect } from "react";
 import styles from "./RegistrationForm.module.scss";
 import MaterialField from "../form/MaterialField/MaterialField";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Button from "../Button/Button";
+import UseFetch from "../../api/UseFetch";
+import IconRadio from "../form/IconRadio/IconRadio";
 
 export default function RegistrationForm({ children, ...props }) {
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [fetchData, setFetchData] = useState(null);
+  const [succeess, setSuccess] = useState(false);
+
+  // const initialValues = {
+  //   reason: "",
+  //   employee_id: "",
+  //   employee_area: "",
+  //   first_name: "",
+  //   last_name: "",
+  //   email: "",
+  //   date_of_birth: "",
+  //   height: "",
+  //   weight: "",
+  //   company_name: "grupo-salinas",
+  // };
+
   const initialValues = {
-    reason: "",
-    employee_id: "",
-    employee_area: "",
-    first_name: "",
-    last_name: "",
-    email: "",
-    date_of_birth: "",
-    height: "",
-    weight: "",
+    employee_id: "chris123gs",
+    first_name: "alan_nombre",
+    last_name: "Alan_apellido",
+    email: "alan@diagnostikare.com",
+    date_of_birth: "19820427",
+    height: "1.66",
+    weight: "66",
     company_name: "grupo-salinas",
   };
 
+  const reasonOptions = [
+    {
+      label: "perder peso",
+      value: "1",
+      defaultIcon: "/assets/icons/landing/form/option-1-icon-default.svg",
+      selectedIcon: "/assets/icons/landing/form/option-1-icon-selected.svg",
+      color: "#30E8F4",
+    },
+    {
+      label: "bajar talla",
+      value: "2",
+      defaultIcon: "/assets/icons/landing/form/option-2-icon-default.svg",
+      selectedIcon: "/assets/icons/landing/form/option-2-icon-selected.svg",
+      color: "#A968EA",
+    },
+    {
+      label: "más energía",
+      value: "3",
+      defaultIcon: "/assets/icons/landing/form/option-3-icon-default.svg",
+      selectedIcon: "/assets/icons/landing/form/option-3-icon-selected.svg",
+      color: "#FF9744",
+    },
+    {
+      label: "hábitos saludables",
+      value: "4",
+      defaultIcon: "/assets/icons/landing/form/option-4-icon-default.svg",
+      selectedIcon: "/assets/icons/landing/form/option-4-icon-selected.svg",
+      color: "#C8FB66",
+    },
+  ];
+
+  const _renderReasonOptions = (options) =>
+    options.map((option, index) => (
+      <IconRadio
+        key={index}
+        name="reason"
+        label={option.label}
+        value={option.value}
+        defaultIcon={option.defaultIcon}
+        selectedIcon={option.selectedIcon}
+        color={option.color}
+      />
+    ));
+
+  const handleSubmit = async (values, actions) => {
+    setLoading(true);
+    const JSONdata = JSON.stringify({
+      user: {
+        ...values,
+        date_of_birth: values.date_of_birth.replaceAll("-", ""),
+      },
+    });
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSONdata,
+    };
+
+    setLoading(true);
+
+    const data = await UseFetch("registrations", options);
+
+    // If response returns error 401, redirect to login
+    if (data.status === 401) {
+      setFetchData(null);
+      return;
+    }
+
+    // If response is not ok, show error
+    if (data.status !== 200) {
+      setFetchData(null);
+      setError(true);
+      setLoading(false);
+      return;
+    }
+
+    // if response is ok, update lead data
+    setFetchData(data.data);
+    setError(false);
+    setLoading(false);
+    actions.setSubmitting(false);
+    setSuccess(true);
+  };
+
+  if (succeess) {
+    return (
+      <div className={styles.form}>
+        <div className={styles.message}>
+          <h3 className={styles.messageTitle}>¡Tu registro está listo!</h3>
+          <div className="my-auto">
+            <p>
+              Recibirás en tu correo electrónico:{" "}
+              <b>{fetchData && fetchData.email}</b> toda la información sobre
+              los siguientes pasos para ser parte del kilotón 2013
+            </p>
+            <strong className={`${styles.accent} bold`}>¡Mucho éxito!</strong>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.form}>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {(formik) => (
-          <Form onReset={formik.handleReset} onSubmit={formik.handleSubmit}>
+          <Form
+            onReset={formik.handleReset}
+            onSubmit={formik.handleSubmit}
+            className="w-100"
+          >
             <div className="row">
-              <div className="col-12">
-                <span>Razón por la que quieres participar</span>
+              <div className="col-12 d-flex justify-content-center">
+                <strong className="mb-4">
+                  Razón por la que quieres participar
+                </strong>
               </div>
               <div className="col-12">
-                <Field type="text" name="reason" placeholder="Razón" />
+                <div className="mb-4">
+                  <div
+                    className="d-flex justify-content-between"
+                    role="group"
+                    aria-labelledby="my-radio-group"
+                  >
+                    {_renderReasonOptions(reasonOptions)}
+                  </div>
+                </div>
               </div>
             </div>
+            <hr className="mb-5" />
             <div className="row">
               <div className="col-12 col-md-6">
                 <MaterialField
@@ -149,3 +280,5 @@ export default function RegistrationForm({ children, ...props }) {
     </div>
   );
 }
+
+// POST data fetch with next js 13

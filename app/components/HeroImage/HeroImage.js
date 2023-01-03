@@ -18,11 +18,11 @@ export default function HeroImage(props) {
         <div className="row">
           <div className="col-12 col-sm-10 col-lg-6">
             <h1 className={`title bold ${styles.title}`}>
-              Creemos en el poder de un estilo de vida <span>saludable</span>
+              Con el nuevo kilotón, todos ganan.
+              <span className={styles.uderline}>¡Inscríbete!</span>
             </h1>
             <p className={styles.content}>
-              Nuestra misión es brindarles a las personas las herramientas que
-              necesitan para hacer de una alimentación saludable un hábito
+              Participas todo el año, acumulas puntos y ganas premios increíbles
             </p>
             <Button variant="primary">Quiero participar</Button>
           </div>

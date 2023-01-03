@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: black;
+  background-color: var(--complementary-color);
 }
 
 .image {
@@ -18,7 +18,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center right;
+  opacity: 0.4;
 }
 
 .heroContent {
@@ -33,4 +34,27 @@
 
 .content {
   line-height: 1.8;
+}
+
+.uderline {
+  position: relative;
+  display: inline-block;
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 5px;
+    background-color: var(--primary-color);
+  }
+}
+
+// Desktop
+@media (min-width: 768px) {
+  .image {
+    opacity: 1;
+    object-position: center top;
+  }
 }

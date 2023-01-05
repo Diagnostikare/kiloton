@@ -1,0 +1,36 @@
+.circle{
+  border-radius: 100%;
+  width: 83px;
+  height: 83px;
+  display: flex;
+  background-color: #F2CC21;
+  justify-content: center;
+  align-items: center;
+}
+
+.circleContainer{
+  display: flex;
+  width: 40%;
+}
+
+
+.textContainer{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 60%;
+
+}
+
+.spanNumber{
+  display: flex;
+  font-size: 48px;
+}
+
+.spanTitle{
+  font-weight: bold;
+}
+
+.spanSubtitle{
+
+}

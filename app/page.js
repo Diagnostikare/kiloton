@@ -1,5 +1,5 @@
 import HeroImage from "./components/HeroImage/HeroImage";
-import {NumberSection,FormSection} from "./";
+import {NumberSection,FormSection,LinkSection,GridSection,AwardsSection} from "./";
 import SuccessStoriesSection from "./components/SuccessStoriesSection/SuccessStoriesSection";
 
 export default function Page() {
@@ -12,7 +12,10 @@ export default function Page() {
       <HeroImage />
       <FormSection />
       <NumberSection/>
+      <LinkSection/>
+      <GridSection/>
       <SuccessStoriesSection />
+      <AwardsSection/>
     </>
   );
 }

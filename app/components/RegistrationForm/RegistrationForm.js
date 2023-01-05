@@ -27,7 +27,7 @@ export default function RegistrationForm({ children, ...props }) {
   // };
 
   const initialValues = {
-    employee_id: "chris123gs",
+    employee_id: "chris123",
     first_name: "alan_nombre",
     last_name: "Alan_apellido",
     email: "alan@diagnostikare.com",

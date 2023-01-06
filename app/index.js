@@ -1,3 +1,5 @@
+
+// Archivo de barril para secciones
 export * from './components/NumberSection/NumberSection';
 export * from './components/FormSection/FormSection';
 export * from './components/LinkSection/LinkSection'

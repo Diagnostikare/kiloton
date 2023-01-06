@@ -27,14 +27,15 @@ export default function RegistrationForm({ children, ...props }) {
   // };
 
   const initialValues = {
-    employee_id: "chris123",
-    first_name: "alan_nombre",
-    last_name: "Alan_apellido",
-    email: "alan@diagnostikare.com",
-    date_of_birth: "19820427",
-    height: "1.66",
-    weight: "66",
+    employee_id: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    date_of_birth: "",
+    height: "",
+    weight: "",
     company_name: "grupo-salinas",
+    kiloton_reason:""
   };
 
   const reasonOptions = [
@@ -84,7 +85,7 @@ export default function RegistrationForm({ children, ...props }) {
   const handleSubmit = async (values, actions) => {
     setLoading(true);
     const JSONdata = JSON.stringify({
-      user: {
+      lead: {
         ...values,
         date_of_birth: values.date_of_birth.replaceAll("-", ""),
       },
@@ -97,10 +98,11 @@ export default function RegistrationForm({ children, ...props }) {
       },
       body: JSONdata,
     };
-
+    
     setLoading(true);
 
     const data = await UseFetch("registrations", options);
+    console.log(data,"DESPUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEES DESDE AWAIT")
 
     // If response returns error 401, redirect to login
     if (data.status === 401) {
@@ -113,6 +115,7 @@ export default function RegistrationForm({ children, ...props }) {
       setFetchData(null);
       setError(true);
       setLoading(false);
+      console.log(data,"DATA DESDE AWAIT")
       return;
     }
 
@@ -122,6 +125,8 @@ export default function RegistrationForm({ children, ...props }) {
     setLoading(false);
     actions.setSubmitting(false);
     setSuccess(true);
+    console.log(data,"TODO OK")
+
   };
 
   if (succeess) {
@@ -174,11 +179,14 @@ export default function RegistrationForm({ children, ...props }) {
               <div className="col-12 col-md-6">
                 <MaterialField
                   className={`mb-4`}
-                  name="id"
+                  name="employee_id"
                   type="text"
                   label="Número de socio"
                   placeholder="Escribe tu número de socio de Salud GS"
                   tooltip="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                  onChange={(e) => {
+                    formik.handleChange(e);
+                  }}
                 />
               </div>
               <div className="col-12 col-md-6">

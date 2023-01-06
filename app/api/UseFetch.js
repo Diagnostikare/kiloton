@@ -10,10 +10,15 @@ export default async function UseFetch(slug, options) {
   let resHeaders = {};
   let status;
 
+  console.log(options,"OPTIONS")
   const response = await fetch(API_BASE_URL + slug, headers)
     .then((res) => {
+      console.log(res,"ANTEEEEEEEEEEEEEEEEEEEEEEEEES")
+      console.log(res.status,"STATUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUS")
+      console.log(res.body,"STATUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUS")
+
       if (!res.ok) {
-        // throw Error("No fue posible obtener la información.");
+        // throw Error(res.status.Error,"No fue posible obtener la información.");
       }
 
       // Save headers
@@ -23,19 +28,21 @@ export default async function UseFetch(slug, options) {
         uid: res.headers.get("uid"),
       };
       status = res.status;
+      console.log(status, "STATUS")
       return res.json();
     })
     .then(
       // If response is ok, return the data
       (data) => {
         // If reponse has contrilled errors, throw error
+        console.log(data, "respuesta OK")
         if (data.errors || data.alert || data.status === "error") {
           console.log("CONTROLLED ERROR", data, status);
           return { status: status === 401 ? status : 400, data };
         }
 
         // If response is ok, return the data
-        return { status, data: data.data };
+        return { status, data: data.message };
       },
       // If response is not ok, return the error
       (rejectionReason) => {

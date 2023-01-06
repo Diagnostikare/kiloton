@@ -6,8 +6,14 @@
   min-height: 580px;
   display: flex;
   flex-direction: row;
-  align-items: center;
   background-color: var(--complementary-color);
+  padding: 2rem;
+}
+
+.rowContainer{
+  display: flex;
+  justify-content:space-between;
+  height: 100%;
 }
 
 .image {
@@ -18,6 +24,45 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   object-position: center right;
+}
+
+.imageStar{
+  display: flex;
+  object-fit: contain;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.imageContainer{
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+
+.termsContainer{
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  align-items: end;
+  display: flex;
+  justify-content: center;
+}
+
+.terms{
+  color: white;
+}
+
+.title{
+  color: white;
+}
+
+.bodyContainer{
+  position: relative;
+  z-index: 2;
+  text-align: center;
 }

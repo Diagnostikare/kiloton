@@ -15,7 +15,7 @@ const GridItemComponent = ({ data, ...props }) => {
 
   return (
     <div className={`${styles.gridContainer} col-6 d-flex flex-column p-4`}>
-      <h2 className=''>{title}</h2>
+      <h2 className={styles.title}>{title}</h2>
       {subtitle && (
         <p className='mt-4'>{subtitle}</p>
       )}

@@ -8,7 +8,7 @@ import { Navigation } from "swiper";
 export default function QuoteCarousel({ children, ...props }) {
   const swiperRef = useRef();
   const [isMobile, setIsMobile] = useState(false);
-  let windowWidth = window.innerWidth;
+  let windowWidth;
 
   const _renderAuthorPicture = (image) => (
     <div className={styles.quotePicture}>

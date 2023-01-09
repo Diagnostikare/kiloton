@@ -1,0 +1,14 @@
+%pseudo-content {
+  content: "\2022";
+  color: #F2CC21;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  font-size: x-large;
+}
+
+
+.title{
+  color: var(--complementary-color);
+}

@@ -1,0 +1,26 @@
+%pseudo-content{
+  content: "\2022";
+  color: #F2CC21;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  font-size: x-large;
+}
+
+.listClass{
+  list-style: none;
+  margin-top: .8rem;
+  &::before{
+    @extend %pseudo-content
+  }
+}
+
+
+
+
+
+.listChild{
+  list-style-type: decimal;
+  margin-top: .6rem;
+}

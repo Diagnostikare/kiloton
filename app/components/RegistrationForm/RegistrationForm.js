@@ -6,13 +6,14 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import Button from "../Button/Button";
 import UseFetch from "../../api/UseFetch";
 import IconRadio from "../form/IconRadio/IconRadio";
+import UseFetchGetUser from "../../api/useFetchGetUser";
 
 export default function RegistrationForm({ children, ...props }) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [fetchData, setFetchData] = useState(null);
   const [succeess, setSuccess] = useState(false);
-
+  const [statusDisabled, setstatusDisabled] = useState(false);
   // const initialValues = {
   //   reason: "",
   //   employee_id: "",
@@ -34,8 +35,8 @@ export default function RegistrationForm({ children, ...props }) {
     date_of_birth: "",
     height: "",
     weight: "",
-    company_name: "grupo-salinas",
-    kiloton_reason:""
+    company_name: "",
+    kiloton_reason: ""
   };
 
   const reasonOptions = [
@@ -73,14 +74,64 @@ export default function RegistrationForm({ children, ...props }) {
     options.map((option, index) => (
       <IconRadio
         key={index}
-        name="reason"
+        name="kiloton_reason"
         label={option.label}
         value={option.value}
         defaultIcon={option.defaultIcon}
         selectedIcon={option.selectedIcon}
         color={option.color}
-      />
+        />
     ));
+
+  const handleChangeID = (values, actions ,initialValues) => {
+    console.log(values.employee_id, "handleChangeID valueeeeeeeeees")
+    console.log(actions, "actions en handleChangeID")
+    if (values.employee_id.length > 4) {
+      handleSubmitCheckEmployeeId(values, actions,initialValues);
+    }
+  };
+
+  const handleSubmitCheckEmployeeId = async (values, actions ,initialValues) => {
+    setLoading(true);
+    console.log(values, "valoreeeeeeeeeeeees denttro de check")
+    const optionsUsers = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const userData = await UseFetchGetUser(optionsUsers, values.employee_id);
+  
+    const {data} = userData
+ 
+    if (userData.status === 302 || userData.status === 201 || userData.status === 200) {
+      actions.setValues({
+        ...values,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        email: data.email,
+        // date_of_birth: data.date_of_birth,
+        // height: data.height,
+        // weight: data.weight,
+      });
+
+      setstatusDisabled(true)
+    } 
+    else {
+      actions.setValues({
+        ...initialValues,
+        employee_id: values.employee_id,
+        kiloton_reason : values.kiloton_reason
+      });
+      setstatusDisabled(false)
+
+
+    }
+
+  }
+
+  // REvisa el status que se negativo o respuesta incorrecta para manejra el estado en ionitial values
+
 
   const handleSubmit = async (values, actions) => {
     setLoading(true);
@@ -98,11 +149,13 @@ export default function RegistrationForm({ children, ...props }) {
       },
       body: JSONdata,
     };
-    
+
     setLoading(true);
 
     const data = await UseFetch("registrations", options);
-    console.log(data,"DESPUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEES DESDE AWAIT")
+    console.log(data.data, "DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    console.log(data, "DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
 
     // If response returns error 401, redirect to login
     if (data.status === 401) {
@@ -111,11 +164,11 @@ export default function RegistrationForm({ children, ...props }) {
     }
 
     // If response is not ok, show error
-    if (data.status !== 200) {
+    if (data.status !== 200 && data.status !== 201) {
       setFetchData(null);
       setError(true);
       setLoading(false);
-      console.log(data,"DATA DESDE AWAIT")
+      console.log(data, "DATA DESDE AWAIT")
       return;
     }
 
@@ -125,8 +178,8 @@ export default function RegistrationForm({ children, ...props }) {
     setLoading(false);
     actions.setSubmitting(false);
     setSuccess(true);
-    console.log(data,"TODO OK")
-
+    console.log(data, "TODO OK")
+    console.log(fetchData,"FETCHDATAAAAA")
   };
 
   if (succeess) {
@@ -137,7 +190,7 @@ export default function RegistrationForm({ children, ...props }) {
           <div className="my-auto">
             <p>
               Recibirás en tu correo electrónico:{" "}
-              <b>{fetchData && fetchData.email}</b> toda la información sobre
+              <b>{fetchData && fetchData.data.email}</b> toda la información sobre
               los siguientes pasos para ser parte del kilotón 2013
             </p>
             <strong className={`${styles.accent} bold`}>¡Mucho éxito!</strong>
@@ -178,12 +231,13 @@ export default function RegistrationForm({ children, ...props }) {
             <div className="row">
               <div className="col-12 col-md-6">
                 <MaterialField
-                  className={`mb-4`}
+                  className={`mb-4 ${styles.inputText}`}
                   name="employee_id"
                   type="text"
                   label="Número de socio"
                   placeholder="Escribe tu número de socio de Salud GS"
                   tooltip="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                  onKeyUp={(e) => {handleChangeID(formik.values, formik ,initialValues)}}
                   onChange={(e) => {
                     formik.handleChange(e);
                   }}
@@ -191,7 +245,7 @@ export default function RegistrationForm({ children, ...props }) {
               </div>
               <div className="col-12 col-md-6">
                 <MaterialField
-                  className={`mb-4`}
+                  className={`mb-4 ${styles.inputText}`}
                   name="employee_area"
                   type="text"
                   as="select"
@@ -204,45 +258,50 @@ export default function RegistrationForm({ children, ...props }) {
                   <option default>Elige una opción</option>
                   <option value="0">Opción 1</option>
                   <option value="1">Opción 2</option>
-                  <option value="1">Opción 3</option>
-                  <option value="1">Opción 4</option>
+                  <option value="2">Opción 3</option>
+                  <option value="3">Opción 4</option>
                 </MaterialField>
               </div>
             </div>
             <div className="row">
               <div className="col-12 col-md-6">
                 <MaterialField
-                  className={`mb-4`}
+                  className={`mb-4 ${styles.inputText}`}
                   name="first_name"
                   type="text"
                   label="Nombre"
                   placeholder="Escribe tu nombre completo"
+                  disabled={statusDisabled}
                 />
               </div>
               <div className="col-12 col-md-6">
                 <MaterialField
-                  className={`mb-4`}
+                  className={`mb-4 ${styles.inputText}`}
                   name="last_name"
                   type="text"
-                  label="Nombre"
+                  label="Apellido"
                   placeholder="Escribe tu apellido completo"
+                  disabled={statusDisabled}
+
                 />
               </div>
             </div>
             <div className="row">
               <div className="col-12 col-md-6">
                 <MaterialField
-                  className={`mb-4`}
+                  className={`mb-4 ${styles.inputText}`}
                   name="email"
                   type="email"
                   label="Correo electrónico"
                   placeholder="Escribe tu correo electrónico"
+                  disabled={statusDisabled}
+
                 />
               </div>
               <div className="col-12 col-md-6">
                 {/* Obligatorio y formato date de ruby año 19880927 YYYYMMDD*/}
                 <MaterialField
-                  className={`mb-4`}
+                  className={`mb-4 ${styles.inputText}`}
                   name="date_of_birth"
                   type="date"
                   label="Fecha de nacimiento"
@@ -254,7 +313,7 @@ export default function RegistrationForm({ children, ...props }) {
             <div className="row mb-5">
               <div className="col-12 col-md-6">
                 <MaterialField
-                  className={`mb-4`}
+                  className={`mb-4 ${styles.inputText}`}
                   name="height"
                   type="text"
                   label="Altura"
@@ -263,7 +322,7 @@ export default function RegistrationForm({ children, ...props }) {
               </div>
               <div className="col-12 col-md-6">
                 <MaterialField
-                  className={`mb-4`}
+                  className={`mb-4 ${styles.inputText}`}
                   name="weight"
                   type="text"
                   label="Peso"

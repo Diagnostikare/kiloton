@@ -1,21 +1,14 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default async function UseFetch(slug, options) {
-  const headers = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    ...options,
-  };
+
   let resHeaders = {};
   let status;
 
-  console.log(options,"OPTIONS")
-  const response = await fetch(API_BASE_URL + slug, headers)
+
+  const response = await fetch(API_BASE_URL + slug, options)
     .then((res) => {
-      console.log(res,"ANTEEEEEEEEEEEEEEEEEEEEEEEEES")
-      console.log(res.status,"STATUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUS")
-      console.log(res.body,"STATUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUS")
+
 
       if (!res.ok) {
         // throw Error(res.status.Error,"No fue posible obtener la información.");
@@ -40,9 +33,10 @@ export default async function UseFetch(slug, options) {
           console.log("CONTROLLED ERROR", data, status);
           return { status: status === 401 ? status : 400, data };
         }
-
+        
         // If response is ok, return the data
-        return { status, data: data.message };
+        console.log(data, "UseFetch")
+        return { status, data: data.lead };
       },
       // If response is not ok, return the error
       (rejectionReason) => {
@@ -65,5 +59,7 @@ export default async function UseFetch(slug, options) {
       return { status, error: "Error" };
     });
 
+
   return { ...response, headers: resHeaders };
+
 }

@@ -4,7 +4,6 @@ import styles from './GridItemComponent.module.scss'
 
 
 const GridItemComponent = ({ data, ...props }) => {
-  console.log(data.items, "desde items")
   const { title,subtitle } = data
 
   const _renderListItems = (data) => data.map((item, i) => {
@@ -14,7 +13,7 @@ const GridItemComponent = ({ data, ...props }) => {
   })
 
   return (
-    <div className={`${styles.gridContainer} col-6 d-flex flex-column p-4`}>
+    <div className={`${styles.gridContainer} col-10 col-md-6 d-flex flex-column p-4`}>
       <h2 className={styles.title}>{title}</h2>
       {subtitle && (
         <p className='mt-4'>{subtitle}</p>

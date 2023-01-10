@@ -15,6 +15,20 @@
   font-weight: bold;
 }
 
+.linkText{
+  text-decoration: none;
+  color:#F2CC21;
+   &:hover{
+    color: #F2CC21;
+   }
+}
+
+.body{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .buttonLink{
   display: flex;
   width: 35%;
@@ -26,4 +40,26 @@
   border: solid 2px #F2CC21;
   color: #F2CC21;
   background: #000000;
+}
+
+
+
+// mobile
+@media (max-width:576px) {
+
+  .buttonLink{
+    width: 100%;
+  }
+
+  .body{
+    flex-direction: column;
+    
+  }
+
+  .titleLink{
+    font-size: 30px;
+    text-align: center;
+  }
+
+  
 }

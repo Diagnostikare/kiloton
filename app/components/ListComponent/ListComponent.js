@@ -3,7 +3,6 @@ import styles from './ListComponent.module.scss'
 
 const ListComponent = ({data}) => {
 
-  console.log(data,"DATA DESDE LIST")
 
   const _renderListChild = (data) => data.map((item,i) => {
     return (

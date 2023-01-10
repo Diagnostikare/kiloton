@@ -12,3 +12,16 @@
 .title{
   color: var(--complementary-color);
 }
+
+.gridContainer{
+  color: var(--complementary-color);
+}
+
+
+
+
+@media (max-width:576px) {
+  .gridContainer{
+    padding-left: 0 !important;
+  }
+}

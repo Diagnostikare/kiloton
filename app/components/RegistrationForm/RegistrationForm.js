@@ -84,8 +84,6 @@ export default function RegistrationForm({ children, ...props }) {
     ));
 
   const handleChangeID = (values, actions ,initialValues) => {
-    console.log(values.employee_id, "handleChangeID valueeeeeeeeees")
-    console.log(actions, "actions en handleChangeID")
     if (values.employee_id.length > 4) {
       handleSubmitCheckEmployeeId(values, actions,initialValues);
     }
@@ -93,7 +91,6 @@ export default function RegistrationForm({ children, ...props }) {
 
   const handleSubmitCheckEmployeeId = async (values, actions ,initialValues) => {
     setLoading(true);
-    console.log(values, "valoreeeeeeeeeeeees denttro de check")
     const optionsUsers = {
       method: "GET",
       headers: {
@@ -153,8 +150,7 @@ export default function RegistrationForm({ children, ...props }) {
     setLoading(true);
 
     const data = await UseFetch("registrations", options);
-    console.log(data.data, "DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-    console.log(data, "DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+   
 
 
     // If response returns error 401, redirect to login
@@ -168,7 +164,6 @@ export default function RegistrationForm({ children, ...props }) {
       setFetchData(null);
       setError(true);
       setLoading(false);
-      console.log(data, "DATA DESDE AWAIT")
       return;
     }
 
@@ -178,8 +173,6 @@ export default function RegistrationForm({ children, ...props }) {
     setLoading(false);
     actions.setSubmitting(false);
     setSuccess(true);
-    console.log(data, "TODO OK")
-    console.log(fetchData,"FETCHDATAAAAA")
   };
 
   if (succeess) {

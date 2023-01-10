@@ -3,7 +3,7 @@ import styles from './ItemNumberComponent.module.scss'
 
 const ItemNumberComponent = ({data,...props}) => {
   return (
-    <div className='col-3 d-flex'>
+    <div className={`${styles.mainContainer} col-12 col-md-4 col-lg-3`}>
       <div className={`${styles.circleContainer}`}>
       <div className={`${styles.circle}`}>
         <span className={`title bold ${styles.spanNumber}`}>
@@ -12,8 +12,13 @@ const ItemNumberComponent = ({data,...props}) => {
       </div>
       </div>
       <div className={`${styles.textContainer}`}>
-        <p className=""><strong>{data.title}</strong></p>
-        <p>{data.subtitle}</p>
+        <div className='d-flex gap-0'>
+        <p className={`${styles.spanTitle}`}><strong>{data.title}</strong></p>
+        </div>
+
+        <div className='d-flex gap-0'>
+          <p className={`${styles.spanSubtitle}`}>{data.subtitle}</p>
+        </div>
       </div>
     </div>
   

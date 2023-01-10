@@ -26,7 +26,7 @@ export const AwardsSection = ({ children, ...props }) => {
                 className={styles.imageStar}
                 raw="true"
                 alt="estrellas"
-                width={78}
+                width={47}
                 height={45}
                 src="/assets/images/landing/award/star.svg"
               />

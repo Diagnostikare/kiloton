@@ -2,17 +2,15 @@
 .sectionContainer {
   position: relative;
   display: flex;
-  height: calc(100vh - 100px); // 100vh - header height
-  min-height: 580px;
-  display: flex;
   flex-direction: row;
   background-color: var(--complementary-color);
   padding: 2rem;
+  height: calc(100vh - 100px)
 }
 
 .rowContainer{
   display: flex;
-  justify-content:space-between;
+  // justify-content:space-between;
   height: 100%;
 }
 
@@ -24,8 +22,8 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: fill;
-  object-position: center right;
+  object-fit: cover;
+  object-position: center bottom;
 }
 
 .imageStar{
@@ -65,4 +63,51 @@
   position: relative;
   z-index: 2;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width:1400px) {
+  .sectionContainer{
+    height: calc(100vh - 100px); // 100vh - header height
+  }
+  
+}
+
+@media (max-width:968px) {
+  .image{
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
+@media (max-width:576px) {
+  
+  .rowContainer{
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .sectionContainer{
+    height: 60vh; // 100vh - header height
+  }
+
+
+
+  .image{
+    object-fit: contain;
+    object-position: center bottom;
+
+  }
+
+  .imageContainer{
+    order: 2;
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+  .title{
+    order: 1;
+    display: flex;
+    margin-top: 2rem;
+  }
 }

@@ -4,24 +4,10 @@
   background: #E8E8E8;
 }
 
+
 //Clase para los bordes del grid
 .listBorder{
-//   div{
-//     &:nth-child(1) {
-//       border-right: rgba(29, 28, 27, 0.3) 2px solid;
-//       border-bottom: rgba(29, 28, 27, 0.3) 2px solid;
-//     }
-//     &:nth-child(2) {
-//       border-bottom: rgba(29, 28, 27, 0.3) 2px solid;
-//     }
-//     &:nth-child(3) {
-//       border-right: rgba(29, 28, 27, 0.3) 2px solid;
-//     }
-//     &:nth-child(4) {
-//       // border-right: black 2px solid;
-//     }
-    
-// }
+
 }
 
 .gridContainer {
@@ -79,4 +65,44 @@ $line-color: lightgrey;
   &::after {
     @include cross-lines(2px, 100%);
   }
+}
+
+@media (max-width:576px) {
+
+  .cross{
+    display: none;
+  }
+
+  .gridContainer {
+    justify-content: center;
+
+    div{
+   
+      &:nth-child(1) {
+        margin-top: 1rem;
+        // border-top: ;
+      }
+     
+      &:nth-child(2) {
+        margin-top: 1rem;
+        border-top: 1px solid rgba(29, 28, 27, 0.3);
+
+      }
+     
+      &:nth-child(3) {
+        margin-top: 3rem;
+        border-top: 1px solid rgba(29, 28, 27, 0.3);
+
+      }
+     
+      &:nth-child(4) {
+        margin-top: 3rem;
+        border-top: 1px solid rgba(29, 28, 27, 0.3);
+
+      }
+   
+    }
+   
+   
+   }
 }

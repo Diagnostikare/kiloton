@@ -122,7 +122,7 @@ export const GridSection = ({children, ...props}) => {
 
   return (
     <section className={styles.section} {...props}>
-      <div className='container position-relative'>
+      <div className={`${styles.mainContainer} container position-relative`}>
         <div className={`${styles.gridContainer} row`}>
           {_renderGridItems(data)}
         </div>

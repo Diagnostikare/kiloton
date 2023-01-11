@@ -21,6 +21,8 @@ export default async function UseFetch(slug, options) {
         uid: res.headers.get("uid"),
       };
       status = res.status;
+      console.log(res,"res desde unse")
+
       return res.json();
     })
     .then(
@@ -31,9 +33,9 @@ export default async function UseFetch(slug, options) {
           console.log("CONTROLLED ERROR", data, status);
           return { status: status === 401 ? status : 400, data };
         }
-        
+        console.log(data,"desde usefetch")
         // If response is ok, return the data
-        return { status, data: data.lead };
+        return { status, data: data };
       },
       // If response is not ok, return the error
       (rejectionReason) => {

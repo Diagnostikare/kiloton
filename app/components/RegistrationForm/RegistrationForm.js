@@ -10,6 +10,7 @@ import UseFetchGetUser from "../../api/useFetchGetUser";
 
 export default function RegistrationForm({ children, ...props }) {
   const [error, setError] = useState(false);
+  const [errorMessage,setErrorMessage] = useState("")
   const [loading, setLoading] = useState(true);
   const [fetchData, setFetchData] = useState(null);
   const [succeess, setSuccess] = useState(false);
@@ -70,6 +71,8 @@ export default function RegistrationForm({ children, ...props }) {
     },
   ];
 
+  
+
   const _renderReasonOptions = (options) =>
     options.map((option, index) => (
       <IconRadio
@@ -80,16 +83,18 @@ export default function RegistrationForm({ children, ...props }) {
         defaultIcon={option.defaultIcon}
         selectedIcon={option.selectedIcon}
         color={option.color}
-        />
+      />
     ));
 
-  const handleChangeID = (values, actions ,initialValues) => {
-    if (values.employee_id.length > 4) {
-      handleSubmitCheckEmployeeId(values, actions,initialValues);
-    }
+  const handleChangeID = (values, actions, initialValues) => {
+    setTimeout(() => {
+      if (values.employee_id.length > 5) {
+        handleSubmitCheckEmployeeId(values, actions, initialValues);
+      }
+    }, 0);
   };
 
-  const handleSubmitCheckEmployeeId = async (values, actions ,initialValues) => {
+  const handleSubmitCheckEmployeeId = async (values, actions, initialValues) => {
     setLoading(true);
     const optionsUsers = {
       method: "GET",
@@ -98,9 +103,8 @@ export default function RegistrationForm({ children, ...props }) {
       },
     };
     const userData = await UseFetchGetUser(optionsUsers, values.employee_id);
-  
-    const {data} = userData
- 
+
+    const { data } = userData
     if (userData.status === 302 || userData.status === 201 || userData.status === 200) {
       actions.setValues({
         ...values,
@@ -113,18 +117,22 @@ export default function RegistrationForm({ children, ...props }) {
       });
 
       setstatusDisabled(true)
-    } 
-    else {
-      actions.setValues({
-        ...initialValues,
+    } else {
+
+      actions.setFieldValue({
+        ...values,
+        first_name: "",
+        last_name: "",
+        email: "",
+        kiloton_reason: values.kiloton_reason,
         employee_id: values.employee_id,
-        kiloton_reason : values.kiloton_reason
       });
-      setstatusDisabled(false)
-
-
+      
+      actions.setFieldValue("first_name", initialValues.first_name);
+      actions.setFieldValue("last_name", initialValues.last_name);
+      actions.setFieldValue("email", initialValues.email);
     }
-
+    setstatusDisabled(false)
   }
 
   // REvisa el status que se negativo o respuesta incorrecta para manejra el estado en ionitial values
@@ -150,14 +158,23 @@ export default function RegistrationForm({ children, ...props }) {
     setLoading(true);
 
     const data = await UseFetch("registrations", options);
-   
 
 
     // If response returns error 401, redirect to login
     if (data.status === 401) {
-      setFetchData(null);
+      setErrorMessage('Usuario no autorizado')
+      setError(true)
+      // setFetchData(null);
       return;
     }
+
+    if (data.status === 409) {
+      setErrorMessage('Usuario ya registrado')
+      setError(true)
+      // setFetchData(null);
+      return;
+    }
+
 
     // If response is not ok, show error
     if (data.status !== 200 && data.status !== 201) {
@@ -174,6 +191,41 @@ export default function RegistrationForm({ children, ...props }) {
     actions.setSubmitting(false);
     setSuccess(true);
   };
+
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.employee_id) {
+      errors.employee_id = 'Campo requerido';
+    }
+    if (!values.first_name) {
+      errors.first_name = 'Campo requerido';
+    }
+    if (!values.last_name) {
+      errors.last_name = 'Campo requerido';
+    }
+    if (!values.email) {
+      errors.email = 'Campo requerido';
+    }
+    if (!values.date_of_birth) {
+      errors.date_of_birth = 'Campo requerido';
+    }
+    if (!values.height) {
+      errors.height = 'Campo requerido';
+    }
+    if (!values.weight) {
+      errors.weight = 'Campo requerido';
+    }
+    if (!values.company_name) {
+      errors.company_name = 'Campo requerido';
+    }
+    if (!values.kiloton_reason) {
+      errors.kiloton_reason = 'Campo requerido';
+    }
+    return errors;
+  }
+  
+
 
   if (succeess) {
     return (
@@ -195,7 +247,11 @@ export default function RegistrationForm({ children, ...props }) {
 
   return (
     <div className={styles.form}>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik 
+      initialValues={initialValues} 
+      validate={validate}
+      onSubmit={handleSubmit} 
+      >
         {(formik) => (
           <Form
             onReset={formik.handleReset}
@@ -230,7 +286,7 @@ export default function RegistrationForm({ children, ...props }) {
                   label="Número de socio"
                   placeholder="Escribe tu número de socio de Salud GS"
                   tooltip="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-                  onKeyUp={(e) => {handleChangeID(formik.values, formik ,initialValues)}}
+                  onKeyUp={(e) => { handleChangeID(formik.values, formik, initialValues) }}
                   onChange={(e) => {
                     formik.handleChange(e);
                   }}
@@ -239,7 +295,7 @@ export default function RegistrationForm({ children, ...props }) {
               <div className="col-12 col-md-6">
                 <MaterialField
                   className={`mb-4 ${styles.inputText}`}
-                  name="employee_area"
+                  name="company_name"
                   type="text"
                   as="select"
                   label="Unidad de negocio a la que perteneces"
@@ -297,6 +353,7 @@ export default function RegistrationForm({ children, ...props }) {
                   className={`mb-4 ${styles.inputText}`}
                   name="date_of_birth"
                   type="date"
+                  max="2005-01-01"
                   label="Fecha de nacimiento"
                   placeholder="DD/MM/AAAA"
                 />
@@ -323,6 +380,16 @@ export default function RegistrationForm({ children, ...props }) {
                 />
               </div>
             </div>
+            {error && (
+              <div className="row mb-5">
+                <div className="d-flex justify-content-center flex-column w-50">
+                <span className={`${styles.spanError}`}>Error</span>
+                <div className={` ${styles.messageErrorContainer} d-flex justify-content-center border border-danger`}>
+                  {errorMessage}
+                </div>
+                </div>
+              </div>
+            )}
             <div className="row">
               <div className="col-12 d-flex justify-content-center">
                 <Button

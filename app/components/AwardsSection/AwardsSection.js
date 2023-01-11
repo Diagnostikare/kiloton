@@ -1,12 +1,9 @@
-import Image from "next/image"
-import styles from './AwardSection.module.scss'
-
+import Image from "next/image";
+import styles from "./AwardSection.module.scss";
 
 export const AwardsSection = ({ children, ...props }) => {
   return (
-    <section
-      className={styles.sectionContainer} {...props}
-    >
+    <section id="prizes" className={styles.sectionContainer} {...props}>
       <Image
         priority
         className={styles.image}
@@ -49,14 +46,18 @@ export const AwardsSection = ({ children, ...props }) => {
                 src="/assets/images/landing/award/star.svg"
               />
             </div>
-            <h1 className={`bold ${styles.title}`}>kilotón Total premia tu esfuerzo</h1>
+            <h1 className={`bold ${styles.title}`}>
+              kilotón Total premia tu esfuerzo
+            </h1>
           </div>
 
           <div className={`${styles.termsContainer} col-12`}>
-            <small className={`${styles.terms}`}>*Cada 3 meses encuentra nuevos premios</small>
+            <small className={`${styles.terms}`}>
+              *Cada 3 meses encuentra nuevos premios
+            </small>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

@@ -36,6 +36,7 @@ export default function QuoteCarousel({ children, ...props }) {
               {isMobile && _renderAuthorPicture(slide.image)}
               <div className={styles.quoteAuthorDataContent}>
                 <span className={styles.quoteAuthor}>{slide.author}</span>
+                <span className="">{slide.location}</span>
                 <span
                   className={styles.quoteData}
                   dangerouslySetInnerHTML={{ __html: slide.data }}

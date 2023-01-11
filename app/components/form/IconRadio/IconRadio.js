@@ -20,7 +20,7 @@ export default function IconRadio({
   const [field, meta] = useField(name);
 
   return (
-    <div className="form-check form-check-inline">
+    <div className={`${styles.formGroup} form-check form-check-inline`}>
       <label className={`${styles.radio} form-check-label`}>
         {values[name] === value && (
           <Image

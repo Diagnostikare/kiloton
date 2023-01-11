@@ -11,6 +11,11 @@
   color: white;
 }
 
+.formTitle {
+  font-size: 20px;
+  text-align: center;
+}
+
 .message {
   display: flex;
   flex: 1;
@@ -27,8 +32,8 @@
   color: var(--primary-color);
 }
 
-.inputText{
-  input{
+.inputText {
+  input {
     color: white;
   }
 }
@@ -58,7 +63,3 @@
 .MaterialField.error {
     border-color: red;
 }
-
-
-
-

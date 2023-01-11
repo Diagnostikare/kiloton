@@ -1,15 +1,35 @@
 .successStories {
   position: relative;
-  padding: 67px 0;
+  padding: 40px 0;
   color: var(--complementary-color);
 }
 
+.quoteIcon {
+  margin-bottom: 24px;
+}
+
 .title {
-  font-size: 40px;
+  font-size: 24px;
   font-weight: 700;
 }
 
 .content {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 769px) {
+  .successStories {
+    padding: 67px 0;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .content {
+    font-size: 20px;
+    margin-bottom: initial;
+  }
 }

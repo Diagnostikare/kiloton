@@ -3,12 +3,21 @@ import Image from "next/image";
 import Button from "../Button/Button";
 import styles from "./HeaderMobile.module.scss";
 
-export default function HeaderMobile() {
+export default function HeaderMobile({ options }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const handleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
+
+  const _renderMenuOptions = (options) =>
+    options.map((option, index) => (
+      <li key={index}>
+        <a className={styles.item} href={option.link} onClick={handleMenu}>
+          {option.name}
+        </a>
+      </li>
+    ));
 
   return (
     <>
@@ -21,7 +30,7 @@ export default function HeaderMobile() {
               raw="true"
               alt="Kilotón"
               width={344}
-              height={128}
+              height={134}
               src="/assets/brand/logo-default.png"
             />
           </a>
@@ -37,10 +46,11 @@ export default function HeaderMobile() {
       <div className={`${styles.menu} ${isMenuOpen && styles.open}`}>
         <div className={styles.menuHeader}>
           <Image
+            className={styles.logoWhite}
             raw="true"
             src="/assets/brand/logo-white.png"
-            width={108}
-            height={40}
+            width={216}
+            height={124}
             alt="Kilotón"
           />
           <button type="button" className={styles.close} onClick={handleMenu}>
@@ -49,29 +59,7 @@ export default function HeaderMobile() {
           </button>
         </div>
         <nav className={styles.mainMenu}>
-          <ul className={styles.list}>
-            <li>
-              <a className={styles.item} href="#">
-                Programa
-              </a>
-            </li>
-
-            <li>
-              <a className={styles.item} href="#">
-                Testimonios
-              </a>
-            </li>
-            <li>
-              <a className={styles.item} href="#">
-                Premios
-              </a>
-            </li>
-            <li>
-              <a className={styles.item} href="#">
-                ¿Cómo participar?
-              </a>
-            </li>
-          </ul>
+          <ul className={styles.list}>{_renderMenuOptions(options)}</ul>
         </nav>
         <div className={styles.menuFooter}>
           <Image

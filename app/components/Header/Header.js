@@ -8,13 +8,39 @@ import HeaderMobile from "../HeaderMobile/HeaderMobile";
 export default function Header() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-
   let windowWidth;
+  const menuOptions = [
+    {
+      name: "¿Cómo participar?",
+      link: "#howToParticipate",
+    },
+    {
+      name: "Bases",
+      link: "#bases",
+    },
+    {
+      name: "Testimonios",
+      link: "#successStories",
+    },
+    {
+      name: "Premios",
+      link: "#prizes",
+    },
+  ];
 
   const handleResize = () => {
     windowWidth = window.innerWidth;
     setIsMobile(windowWidth < 768);
   };
+
+  const _renderMenuOptions = (options) =>
+    options.map((option, index) => (
+      <li key={index}>
+        <a className={styles.item} href={option.link}>
+          {option.name}
+        </a>
+      </li>
+    ));
 
   useEffect(() => {
     let isMounted = true;
@@ -35,7 +61,7 @@ export default function Header() {
 
   if (isLoading) return null;
 
-  if (isMobile) return <HeaderMobile />;
+  if (isMobile) return <HeaderMobile options={menuOptions} />;
 
   return (
     <header className={styles.header}>
@@ -46,35 +72,15 @@ export default function Header() {
             raw="true"
             alt="Kilotón"
             width={344}
-            height={128}
+            height={134}
             src="/assets/brand/logo-default.png"
           />
         </a>
 
         <ul className={styles.list}>
+          {_renderMenuOptions(menuOptions)}
           <li>
-            <a className={styles.item} href="#">
-              Programa
-            </a>
-          </li>
-
-          <li>
-            <a className={styles.item} href="#">
-              Testimonios
-            </a>
-          </li>
-          <li>
-            <a className={styles.item} href="#">
-              Premios
-            </a>
-          </li>
-          <li>
-            <a className={styles.item} href="#">
-              ¿Cómo participar?
-            </a>
-          </li>
-          <li>
-            <Button href="#" variant="primary">
+            <Button href="#registration" variant="primary">
               Quiero participar
             </Button>
           </li>

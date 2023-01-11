@@ -38,7 +38,6 @@
 .quoteText {
   display: flex;
   flex-direction: column;
-  padding-left: 2rem;
 }
 
 .quoteContent {
@@ -52,6 +51,8 @@
 }
 
 .quoteAuthorDataContent {
+  display: flex;
+  flex-direction: column;
   padding-left: 1rem;
 }
 
@@ -94,6 +95,9 @@
 @media (min-width: 769px) {
   .quote {
     padding: 40px 64px;
+  }
+  .quoteText {
+    padding-left: 2rem;
   }
   .quoteAuthorData {
     flex-direction: column;

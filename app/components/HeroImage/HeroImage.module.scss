@@ -1,8 +1,8 @@
 .hero {
   position: relative;
   display: flex;
-  height: calc(100vh - 112px); // 100vh - header height
-  min-height: 580px;
+  height: auto;
+  min-height: 446px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -25,11 +25,17 @@
 .heroContent {
   position: relative;
   z-index: 2;
+  margin: auto 0 0 0;
+  padding-bottom: 2rem;
 }
 
 .title,
 .content {
   color: white;
+}
+
+.title {
+  font-size: 24px;
 }
 
 .content {
@@ -53,8 +59,22 @@
 
 // Desktop
 @media (min-width: 768px) {
+  .hero {
+    height: calc(100vh - 112px); // 100vh - header height
+    min-height: 580px;
+  }
+
   .image {
     opacity: 1;
     object-position: center top;
+  }
+
+  .heroContent {
+    margin: auto;
+    padding-bottom: initial;
+  }
+
+  .title {
+    font-size: 56px;
   }
 }

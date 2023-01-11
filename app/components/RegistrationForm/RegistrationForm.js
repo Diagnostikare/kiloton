@@ -252,7 +252,6 @@ export default function RegistrationForm({ children, ...props }) {
       },
     };
     const userData = await UseFetchGetUser(optionsUsers, values.employee_id);
-
     const { data } = userData
     if (userData.status === 302 || userData.status === 201 || userData.status === 200) {
       actions.setValues({
@@ -281,7 +280,11 @@ export default function RegistrationForm({ children, ...props }) {
       actions.setFieldValue("last_name", initialValues.last_name);
       actions.setFieldValue("email", initialValues.email);
     }
-    setstatusDisabled(false)
+
+    if (userData.status == 404) {
+      setstatusDisabled(false)
+    }
+
   }
 
   // REvisa el status que se negativo o respuesta incorrecta para manejra el estado en ionitial values
@@ -306,8 +309,6 @@ export default function RegistrationForm({ children, ...props }) {
     setLoading(true);
 
     const data = await UseFetch("registrations", options);
-
-    console.log(data,"dataaaaaaaaaaaaaaaaa")
 
     // If response returns error 401, redirect to login
     if (data.status === 404) {
@@ -442,7 +443,6 @@ export default function RegistrationForm({ children, ...props }) {
                   type="text"
                   label="Número de socio"
                   placeholder="Escribe tu número de socio de Salud GS"
-                  tooltip="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                   onKeyUp={(e) => { handleChangeID(formik.values, formik, initialValues) }}
                   onChange={(e) => {
                     formik.handleChange(e);
@@ -456,7 +456,6 @@ export default function RegistrationForm({ children, ...props }) {
                   type="text"
                   as="select"
                   label="Unidad de negocio a la que perteneces"
-                  tooltip="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                   onChange={(e) => {
                     formik.handleChange(e);
                   }}

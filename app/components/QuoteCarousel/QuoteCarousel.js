@@ -16,8 +16,8 @@ export default function QuoteCarousel({ children, ...props }) {
         className={styles.quoteImg}
         raw="true"
         src={image}
-        width={100}
-        height={100}
+        width={600}
+        height={600}
         alt="Author picture"
       />
     </div>
@@ -47,7 +47,7 @@ export default function QuoteCarousel({ children, ...props }) {
       </SwiperSlide>
     ));
 
-  const handdleResize = () => {
+  const handleResize = () => {
     windowWidth = window.innerWidth;
     setIsMobile(windowWidth < 768);
   };
@@ -57,13 +57,13 @@ export default function QuoteCarousel({ children, ...props }) {
 
     if (isMounted) {
       windowWidth = window.innerWidth;
-      handdleResize();
+      handleResize();
       // Add resize listener
-      window.addEventListener("resize", handdleResize);
+      window.addEventListener("resize", handleResize);
     }
 
     return () => {
-      window.removeEventListener("resize", handdleResize);
+      window.removeEventListener("resize", handleResize);
       isMounted = false;
     };
   }, []);

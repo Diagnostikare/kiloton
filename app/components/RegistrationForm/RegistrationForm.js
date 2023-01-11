@@ -36,7 +36,7 @@ export default function RegistrationForm({ children, ...props }) {
     height: "",
     weight: "",
     company_name: "",
-    kiloton_reason: ""
+    kiloton_reason: "",
   };
 
   const reasonOptions = [
@@ -80,16 +80,20 @@ export default function RegistrationForm({ children, ...props }) {
         defaultIcon={option.defaultIcon}
         selectedIcon={option.selectedIcon}
         color={option.color}
-        />
+      />
     ));
 
-  const handleChangeID = (values, actions ,initialValues) => {
+  const handleChangeID = (values, actions, initialValues) => {
     if (values.employee_id.length > 4) {
-      handleSubmitCheckEmployeeId(values, actions,initialValues);
+      handleSubmitCheckEmployeeId(values, actions, initialValues);
     }
   };
 
-  const handleSubmitCheckEmployeeId = async (values, actions ,initialValues) => {
+  const handleSubmitCheckEmployeeId = async (
+    values,
+    actions,
+    initialValues
+  ) => {
     setLoading(true);
     const optionsUsers = {
       method: "GET",
@@ -98,10 +102,14 @@ export default function RegistrationForm({ children, ...props }) {
       },
     };
     const userData = await UseFetchGetUser(optionsUsers, values.employee_id);
-  
-    const {data} = userData
- 
-    if (userData.status === 302 || userData.status === 201 || userData.status === 200) {
+
+    const { data } = userData;
+
+    if (
+      userData.status === 302 ||
+      userData.status === 201 ||
+      userData.status === 200
+    ) {
       actions.setValues({
         ...values,
         first_name: data.first_name,
@@ -112,23 +120,18 @@ export default function RegistrationForm({ children, ...props }) {
         // weight: data.weight,
       });
 
-      setstatusDisabled(true)
-    } 
-    else {
+      setstatusDisabled(true);
+    } else {
       actions.setValues({
         ...initialValues,
         employee_id: values.employee_id,
-        kiloton_reason : values.kiloton_reason
+        kiloton_reason: values.kiloton_reason,
       });
-      setstatusDisabled(false)
-
-
+      setstatusDisabled(false);
     }
-
-  }
+  };
 
   // REvisa el status que se negativo o respuesta incorrecta para manejra el estado en ionitial values
-
 
   const handleSubmit = async (values, actions) => {
     setLoading(true);
@@ -150,8 +153,6 @@ export default function RegistrationForm({ children, ...props }) {
     setLoading(true);
 
     const data = await UseFetch("registrations", options);
-   
-
 
     // If response returns error 401, redirect to login
     if (data.status === 401) {
@@ -183,8 +184,8 @@ export default function RegistrationForm({ children, ...props }) {
           <div className="my-auto">
             <p>
               Recibirás en tu correo electrónico:{" "}
-              <b>{fetchData && fetchData.data.email}</b> toda la información sobre
-              los siguientes pasos para ser parte del kilotón 2013
+              <b>{fetchData && fetchData.data.email}</b> toda la información
+              sobre los siguientes pasos para ser parte del kilotón 2013
             </p>
             <strong className={`${styles.accent} bold`}>¡Mucho éxito!</strong>
           </div>
@@ -204,7 +205,7 @@ export default function RegistrationForm({ children, ...props }) {
           >
             <div className="row">
               <div className="col-12 d-flex justify-content-center">
-                <strong className="mb-4">
+                <strong className={`${styles.formTitle} mb-4`}>
                   Razón por la que quieres participar
                 </strong>
               </div>
@@ -230,7 +231,9 @@ export default function RegistrationForm({ children, ...props }) {
                   label="Número de socio"
                   placeholder="Escribe tu número de socio de Salud GS"
                   tooltip="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-                  onKeyUp={(e) => {handleChangeID(formik.values, formik ,initialValues)}}
+                  onKeyUp={(e) => {
+                    handleChangeID(formik.values, formik, initialValues);
+                  }}
                   onChange={(e) => {
                     formik.handleChange(e);
                   }}
@@ -275,7 +278,6 @@ export default function RegistrationForm({ children, ...props }) {
                   label="Apellido"
                   placeholder="Escribe tu apellido completo"
                   disabled={statusDisabled}
-
                 />
               </div>
             </div>
@@ -288,7 +290,6 @@ export default function RegistrationForm({ children, ...props }) {
                   label="Correo electrónico"
                   placeholder="Escribe tu correo electrónico"
                   disabled={statusDisabled}
-
                 />
               </div>
               <div className="col-12 col-md-6">

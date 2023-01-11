@@ -32,3 +32,33 @@
     color: white;
   }
 }
+
+.messageErrorContainer{
+  background-color: transparent;
+  border-radius: 4px;
+  width: 100%;
+  height: 42px;
+  color: white;
+  align-items: center;
+  font-size: 14px;
+}
+
+.spanError{
+  color: red;
+  font-size: 14px;
+  padding-left: 0;
+  margin-bottom: 0.3rem;
+}
+
+
+.errorMessage {
+  color: red;
+  font-size: 12px;
+}
+.MaterialField.error {
+    border-color: red;
+}
+
+
+
+

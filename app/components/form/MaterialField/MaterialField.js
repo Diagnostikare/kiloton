@@ -47,7 +47,7 @@ const MaterialField = ({
           >
             {label}
 
-            {/* Tootip */}
+            {/* Tootip
             {tooltip && (
               <div className={styles.tooltip}>
                 <Image
@@ -59,7 +59,7 @@ const MaterialField = ({
                 />
                 <span dangerouslySetInnerHTML={{ __html: tooltip }} />
               </div>
-            )}
+            )} */}
           </label>
         )}
 

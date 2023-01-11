@@ -71,7 +71,155 @@ export default function RegistrationForm({ children, ...props }) {
     },
   ];
 
+  const companyOptions = [
+    {
+      label: "Selecciona una opcion",
+      value: "0",
+      color: "#",
+    },
+    {
+      label: "Agencia I",
+      value: "Agencia I",
+      color: "#",
+    },
+    {
+      label: "Italika",
+      value: "Italika",
+      color: "#",
+    },
+    {
+      label: "ITK ENSAMBLIKA",
+      value: "ITK ENSAMBLIKA",
+      color: "#",
+    },
+    {
+      label: "Presta prenda",
+      value: "Presta prenda",
+      color: "#",
+    },
+    {
+      label: "Promo espacio",
+      value: "Promo espacio",
+      color: "#",
+    },
+    {
+      label: "Punto Casa de Bolsa",
+      value: "Punto Casa de Bolsa",
+      color: "#",
+    },
+    {
+      label: "Totalplay",
+      value: "Totalplay",
+      color: "#",
+    },
+    {
+      label: "TV Azteca",
+      value: "TV Azteca",
+      color: "#",
+    },
+    {
+      label: "Otros TVA",
+      value: "Otros TVA",
+      color: "#",
+    },
+    {
+      label: "UPAX",
+      value: "UPAX",
+      color: "#",
+    },
+    {
+      label: "BOFF y Despachos GS",
+      value: "BOFF y Despachos GS",
+      color: "#",
+    },
+    {
+      label: "Despachos LAM",
+      value: "Despachos LAM",
+      color: "#",
+    },
+    {
+      label: "Elektra marca",
+      value: "Elektra marca",
+      color: "#",
+    },
+    {
+      label: "Red de Suministro",
+      value: "Red de Suministro",
+      color: "#",
+    },
+    {
+      label: "Dragón",
+      value: "Dragón",
+      color: "#",
+    },
+    {
+      label: "Neto",
+      value: "Neto",
+      color: "#",
+    },
+    {
+      label: "Otros EKT",
+      value: "Otros EKT",
+      color: "#",
+    },
+    {
+      label: "Red única",
+      value: "Red única",
+      color: "#",
+    },
+    {
+      label: "BAZ Corporativo",
+      value: "BAZ Corporativo",
+      color: "#",
+    },
+    {
+      label: "BAZ CyC",
+      value: "BAZ CyC",
+      color: "#",
+    },
+    {
+      label: "Super App",
+      value: "Super App",
+      color: "#",
+    },
+    {
+      label: "Afore y Seguros",
+      value: "Afore y Seguros",
+      color: "#",
+    },
+    {
+      label: "BIG",
+      value: "BIG",
+      color: "#",
+    },
+    {
+      label: "Red Digitial",
+      value: "Red Digitial",
+      color: "#",
+    },
+  ];
+
   
+  const _renderCompanyOptions = (options) =>
+    options.map((option,index)=> (
+      option.value == "0" ? 
+      <option
+      key={index}
+      className={`${styles.optionSelect}`}
+      default
+      >
+        {option.label}
+      </option>
+      :
+      <option
+      key={index}
+      value={option.value}
+      className={`${styles.optionSelect}`}
+      >
+        {option.label}
+      </option>
+    ));
+    
 
   const _renderReasonOptions = (options) =>
     options.map((option, index) => (
@@ -87,6 +235,7 @@ export default function RegistrationForm({ children, ...props }) {
     ));
 
   const handleChangeID = (values, actions, initialValues) => {
+    console.log(values,"valueeeeeeeeeees")
     setTimeout(() => {
       if (values.employee_id.length > 5) {
         handleSubmitCheckEmployeeId(values, actions, initialValues);
@@ -158,13 +307,23 @@ export default function RegistrationForm({ children, ...props }) {
 
     const data = await UseFetch("registrations", options);
 
+    console.log(data,"dataaaaaaaaaaaaaaaaa")
+
     // If response returns error 401, redirect to login
+    if (data.status === 404) {
+      setErrorMessage('Usuario no encontrado')
+      setError(true)
+      // setFetchData(null);
+      return;
+    }
+
     if (data.status === 401) {
       setErrorMessage('Usuario no autorizado')
       setError(true)
       // setFetchData(null);
       return;
     }
+
 
     if (data.status === 409) {
       setErrorMessage('Usuario ya registrado')
@@ -183,7 +342,7 @@ export default function RegistrationForm({ children, ...props }) {
     }
 
     // if response is ok, update lead data
-    setFetchData(data.data);
+    setFetchData(data.data.lead);
     setError(false);
     setLoading(false);
     actions.setSubmitting(false);
@@ -302,11 +461,8 @@ export default function RegistrationForm({ children, ...props }) {
                     formik.handleChange(e);
                   }}
                 >
-                  <option default>Elige una opción</option>
-                  <option value="0">Opción 1</option>
-                  <option value="1">Opción 2</option>
-                  <option value="2">Opción 3</option>
-                  <option value="3">Opción 4</option>
+                 {_renderCompanyOptions(companyOptions)}
+                  
                 </MaterialField>
               </div>
             </div>

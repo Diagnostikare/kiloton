@@ -28,7 +28,7 @@ export default function HeaderMobile({ options }) {
             <Image
               className={styles.logo}
               raw="true"
-              alt="Kilotón"
+              alt="kilotón"
               width={344}
               height={134}
               src="/assets/brand/logo-default.png"
@@ -51,7 +51,7 @@ export default function HeaderMobile({ options }) {
             src="/assets/brand/logo-white.png"
             width={216}
             height={124}
-            alt="Kilotón"
+            alt="kilotón"
           />
           <button type="button" className={styles.close} onClick={handleMenu}>
             <span></span>
@@ -67,7 +67,7 @@ export default function HeaderMobile({ options }) {
             src="/assets/brand/salud-gs-white.png"
             width={73}
             height={40}
-            alt="Kilotón"
+            alt="kilotón"
           />
         </div>
       </div>

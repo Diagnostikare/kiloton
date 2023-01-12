@@ -21,10 +21,21 @@
   flex: 1;
   flex-direction: column;
   text-align: center;
+  padding: 32px 40px;
+  border-radius: 8px;
+  background-color: var(--complementary-color);
+  box-shadow: 0 10px 40px rgba(18, 18, 18, 0.5);
 }
 
 .messageTitle {
   font-weight: 700;
+}
+
+.messageImage {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  margin: 0 auto;
 }
 
 .accent {
@@ -38,7 +49,7 @@
   }
 }
 
-.messageErrorContainer{
+.messageErrorContainer {
   background-color: transparent;
   border-radius: 4px;
   width: 100%;
@@ -48,28 +59,24 @@
   font-size: 14px;
 }
 
-.spanError{
+.spanError {
   color: red;
   font-size: 14px;
   padding-left: 0;
   margin-bottom: 0.3rem;
 }
 
-
 .errorMessage {
   color: red;
   font-size: 12px;
 }
 .MaterialField.error {
-    border-color: red;
+  border-color: red;
 }
 
-
-
-.optionSelect{
- background-color: var(--complementary-color);
- color: var(--primary-bg-color);
-  
+.optionSelect {
+  background-color: var(--complementary-color);
+  color: var(--primary-bg-color);
 }
 
 // #option{

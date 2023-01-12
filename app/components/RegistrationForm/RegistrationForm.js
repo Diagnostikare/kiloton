@@ -7,13 +7,14 @@ import Button from "../Button/Button";
 import UseFetch from "../../api/UseFetch";
 import IconRadio from "../form/IconRadio/IconRadio";
 import UseFetchGetUser from "../../api/useFetchGetUser";
+import Image from "next/image";
 
 export default function RegistrationForm({ children, ...props }) {
   const [error, setError] = useState(false);
-  const [errorMessage,setErrorMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [fetchData, setFetchData] = useState(null);
-  const [succeess, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [statusDisabled, setstatusDisabled] = useState(false);
   // const initialValues = {
   //   reason: "",
@@ -199,27 +200,22 @@ export default function RegistrationForm({ children, ...props }) {
     },
   ];
 
-  
   const _renderCompanyOptions = (options) =>
-    options.map((option,index)=> (
-      option.value == "0" ? 
-      <option
-      key={index}
-      className={`${styles.optionSelect}`}
-      default
-      >
-        {option.label}
-      </option>
-      :
-      <option
-      key={index}
-      value={option.value}
-      className={`${styles.optionSelect}`}
-      >
-        {option.label}
-      </option>
-    ));
-    
+    options.map((option, index) =>
+      option.value == "0" ? (
+        <option key={index} className={`${styles.optionSelect}`} default>
+          {option.label}
+        </option>
+      ) : (
+        <option
+          key={index}
+          value={option.value}
+          className={`${styles.optionSelect}`}
+        >
+          {option.label}
+        </option>
+      )
+    );
 
   const _renderReasonOptions = (options) =>
     options.map((option, index) => (
@@ -235,7 +231,7 @@ export default function RegistrationForm({ children, ...props }) {
     ));
 
   const handleChangeID = (values, actions, initialValues) => {
-    console.log(values,"valueeeeeeeeeees")
+    console.log(values, "valueeeeeeeeeees");
     setTimeout(() => {
       if (values.employee_id.length > 5) {
         handleSubmitCheckEmployeeId(values, actions, initialValues);
@@ -243,7 +239,11 @@ export default function RegistrationForm({ children, ...props }) {
     }, 0);
   };
 
-  const handleSubmitCheckEmployeeId = async (values, actions, initialValues) => {
+  const handleSubmitCheckEmployeeId = async (
+    values,
+    actions,
+    initialValues
+  ) => {
     setLoading(true);
     const optionsUsers = {
       method: "GET",
@@ -252,8 +252,12 @@ export default function RegistrationForm({ children, ...props }) {
       },
     };
     const userData = await UseFetchGetUser(optionsUsers, values.employee_id);
-    const { data } = userData
-    if (userData.status === 302 || userData.status === 201 || userData.status === 200) {
+    const { data } = userData;
+    if (
+      userData.status === 302 ||
+      userData.status === 201 ||
+      userData.status === 200
+    ) {
       actions.setValues({
         ...values,
         first_name: data.first_name,
@@ -264,9 +268,8 @@ export default function RegistrationForm({ children, ...props }) {
         // weight: data.weight,
       });
 
-      setstatusDisabled(true)
+      setstatusDisabled(true);
     } else {
-
       actions.setFieldValue({
         ...values,
         first_name: "",
@@ -275,17 +278,16 @@ export default function RegistrationForm({ children, ...props }) {
         kiloton_reason: values.kiloton_reason,
         employee_id: values.employee_id,
       });
-      
+
       actions.setFieldValue("first_name", initialValues.first_name);
       actions.setFieldValue("last_name", initialValues.last_name);
       actions.setFieldValue("email", initialValues.email);
     }
 
     if (userData.status == 404) {
-      setstatusDisabled(false)
+      setstatusDisabled(false);
     }
-
-  }
+  };
 
   // REvisa el status que se negativo o respuesta incorrecta para manejra el estado en ionitial values
 
@@ -312,27 +314,25 @@ export default function RegistrationForm({ children, ...props }) {
 
     // If response returns error 401, redirect to login
     if (data.status === 404) {
-      setErrorMessage('Usuario no encontrado')
-      setError(true)
+      setErrorMessage("Usuario no encontrado");
+      setError(true);
       // setFetchData(null);
       return;
     }
 
     if (data.status === 401) {
-      setErrorMessage('Usuario no autorizado')
-      setError(true)
+      setErrorMessage("Usuario no autorizado");
+      setError(true);
       // setFetchData(null);
       return;
     }
-
 
     if (data.status === 409) {
-      setErrorMessage('Usuario ya registrado')
-      setError(true)
+      setErrorMessage("Usuario ya registrado");
+      setError(true);
       // setFetchData(null);
       return;
     }
-
 
     // If response is not ok, show error
     if (data.status !== 200 && data.status !== 201) {
@@ -350,54 +350,56 @@ export default function RegistrationForm({ children, ...props }) {
     setSuccess(true);
   };
 
-
   const validate = (values) => {
     const errors = {};
     if (!values.employee_id) {
-      errors.employee_id = 'Campo requerido';
+      errors.employee_id = "Campo requerido";
     }
     if (!values.first_name) {
-      errors.first_name = 'Campo requerido';
+      errors.first_name = "Campo requerido";
     }
     if (!values.last_name) {
-      errors.last_name = 'Campo requerido';
+      errors.last_name = "Campo requerido";
     }
     if (!values.email) {
-      errors.email = 'Campo requerido';
+      errors.email = "Campo requerido";
     }
     if (!values.date_of_birth) {
-      errors.date_of_birth = 'Campo requerido';
+      errors.date_of_birth = "Campo requerido";
     }
     if (!values.height) {
-      errors.height = 'Campo requerido';
+      errors.height = "Campo requerido";
     }
     if (!values.weight) {
-      errors.weight = 'Campo requerido';
+      errors.weight = "Campo requerido";
     }
     if (!values.company_name) {
-      errors.company_name = 'Campo requerido';
+      errors.company_name = "Campo requerido";
     }
     if (!values.kiloton_reason) {
-      errors.kiloton_reason = 'Campo requerido';
+      errors.kiloton_reason = "Campo requerido";
     }
     return errors;
-  }
-  
+  };
 
-
-  if (succeess) {
+  if (!success) {
     return (
-      <div className={styles.form}>
-        <div className={styles.message}>
-          <h3 className={styles.messageTitle}>¡Tu registro está listo!</h3>
-          <div className="my-auto">
-            <p>
-              Recibirás en tu correo electrónico:{" "}
-              <b>{fetchData && fetchData.data.email}</b> toda la información
-              sobre los siguientes pasos para ser parte del kilotón 2013
-            </p>
-            <strong className={`${styles.accent} bold`}>¡Mucho éxito!</strong>
-          </div>
+      <div className={styles.message}>
+        <h3 className={styles.messageTitle}>¡Tu registro está listo!</h3>
+        <Image
+          className={styles.messageImage}
+          src="/assets/icons/landing/form/check-animation.gif"
+          width={500}
+          height={500}
+          alt="Registro completado"
+        />
+        <div className="my-auto">
+          <p>
+            Recibirás en tu correo electrónico:{" "}
+            <b>{fetchData && fetchData.data.email}</b> toda la información sobre
+            los siguientes pasos para ser parte del kilotón 2023
+          </p>
+          <strong className={`${styles.accent} bold`}>¡Mucho éxito!</strong>
         </div>
       </div>
     );
@@ -405,10 +407,10 @@ export default function RegistrationForm({ children, ...props }) {
 
   return (
     <div className={styles.form}>
-      <Formik 
-      initialValues={initialValues} 
-      validate={validate}
-      onSubmit={handleSubmit} 
+      <Formik
+        initialValues={initialValues}
+        validate={validate}
+        onSubmit={handleSubmit}
       >
         {(formik) => (
           <Form
@@ -443,7 +445,9 @@ export default function RegistrationForm({ children, ...props }) {
                   type="text"
                   label="Número de socio"
                   placeholder="Escribe tu número de socio de Salud GS"
-                  onKeyUp={(e) => { handleChangeID(formik.values, formik, initialValues) }}
+                  onKeyUp={(e) => {
+                    handleChangeID(formik.values, formik, initialValues);
+                  }}
                   onChange={(e) => {
                     formik.handleChange(e);
                   }}
@@ -460,8 +464,7 @@ export default function RegistrationForm({ children, ...props }) {
                     formik.handleChange(e);
                   }}
                 >
-                 {_renderCompanyOptions(companyOptions)}
-                  
+                  {_renderCompanyOptions(companyOptions)}
                 </MaterialField>
               </div>
             </div>
@@ -534,10 +537,12 @@ export default function RegistrationForm({ children, ...props }) {
             {error && (
               <div className="row mb-5">
                 <div className="d-flex justify-content-center flex-column w-50">
-                <span className={`${styles.spanError}`}>Error</span>
-                <div className={` ${styles.messageErrorContainer} d-flex justify-content-center border border-danger`}>
-                  {errorMessage}
-                </div>
+                  <span className={`${styles.spanError}`}>Error</span>
+                  <div
+                    className={` ${styles.messageErrorContainer} d-flex justify-content-center border border-danger`}
+                  >
+                    {errorMessage}
+                  </div>
                 </div>
               </div>
             )}

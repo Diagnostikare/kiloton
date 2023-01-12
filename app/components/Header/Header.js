@@ -70,7 +70,7 @@ export default function Header() {
           <Image
             className={styles.logo}
             raw="true"
-            alt="Kilotón"
+            alt="kilotón"
             width={344}
             height={134}
             src="/assets/brand/logo-default.png"

@@ -47,7 +47,7 @@ export default function Footer(props) {
                 src="/assets/brand/logo-white.png"
                 width={216}
                 height={124}
-                alt="Kilotón"
+                alt="kilotón"
               />
             </div>
           </div>
@@ -79,7 +79,7 @@ export default function Footer(props) {
                 src="/assets/brand/salud-gs-white.png"
                 width={73}
                 height={40}
-                alt="Kilotón"
+                alt="kilotón"
               />
             </div>
           </div>

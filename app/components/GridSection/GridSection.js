@@ -9,7 +9,7 @@ export const GridSection = ({ children, ...props }) => {
       items: [
         {
           id: "1",
-          content: "Contesta tu <b>kilotest</b> a partir del 23 de enero",
+          content: "Contesta tu <b>kilotest</b> a partir del 30 de enero",
           anotherChild: false,
         },
         {

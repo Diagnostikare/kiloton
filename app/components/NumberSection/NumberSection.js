@@ -11,7 +11,7 @@ export const NumberSection = ({ children, ...props }) => {
     {
       id: "2",
       title: "Responde tu kilotest ",
-      subtitle: "Completa tu kilotest a partir del 23 de enero",
+      subtitle: "Completa tu kilotest a partir del 30 de enero",
     },
     {
       id: "3",

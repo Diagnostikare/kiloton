@@ -53,7 +53,7 @@ export const AwardsSection = ({ children, ...props }) => {
 
           <div className={`${styles.termsContainer} col-12`}>
             <small className={`${styles.terms}`}>
-              *Cada 3 meses encuentra nuevos premios
+              *Nuevos premios a lo largo del año
             </small>
           </div>
         </div>

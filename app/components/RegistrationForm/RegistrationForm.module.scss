@@ -18,24 +18,18 @@
 
 .message {
   display: flex;
+  overflow: hidden;
   flex: 1;
   flex-direction: column;
   text-align: center;
-  padding: 32px 40px;
   border-radius: 8px;
   background-color: var(--complementary-color);
   box-shadow: 0 10px 40px rgba(18, 18, 18, 0.5);
 }
 
-.messageTitle {
-  font-weight: 700;
-}
-
 .messageImage {
   width: 100%;
-  max-width: 280px;
   height: auto;
-  margin: 0 auto;
 }
 
 .accent {

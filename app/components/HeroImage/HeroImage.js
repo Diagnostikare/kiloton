@@ -9,7 +9,7 @@ export default function HeroImage(props) {
         priority
         className={styles.image}
         raw="true"
-        alt="Kilotón"
+        alt="kilotón"
         width={1440}
         height={792}
         src="/assets/images/landing/hero/hero-image.jpg"

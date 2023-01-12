@@ -8,7 +8,7 @@ export const AwardsSection = ({ children, ...props }) => {
         priority
         className={styles.image}
         raw="true"
-        alt="Kilotón"
+        alt="kilotón"
         width={1440}
         height={792}
         src="/assets/images/landing/award/awards.png"

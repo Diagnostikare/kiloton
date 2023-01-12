@@ -385,22 +385,13 @@ export default function RegistrationForm({ children, ...props }) {
   if (!success) {
     return (
       <div className={styles.message}>
-        <h3 className={styles.messageTitle}>¡Tu registro está listo!</h3>
         <Image
           className={styles.messageImage}
-          src="/assets/icons/landing/form/check-animation.gif"
-          width={500}
-          height={500}
+          src="/assets/images/landing/form/success-message.jpg"
+          width={2000}
+          height={2000}
           alt="Registro completado"
         />
-        <div className="my-auto">
-          <p>
-            Recibirás en tu correo electrónico:{" "}
-            <b>{fetchData && fetchData.data.email}</b> toda la información sobre
-            los siguientes pasos para ser parte del kilotón 2023
-          </p>
-          <strong className={`${styles.accent} bold`}>¡Mucho éxito!</strong>
-        </div>
       </div>
     );
   }

@@ -76,6 +76,11 @@
   color: var(--primary-bg-color);
 }
 
+.error {
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px var(--error-color);
+}
+
 // #option{
 //   padding-top: 1rem !important;
 

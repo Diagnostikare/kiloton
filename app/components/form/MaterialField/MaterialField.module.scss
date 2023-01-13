@@ -30,9 +30,27 @@
   border: 1px solid #9b959f;
   border-radius: 4px;
 
+  &:disabled {
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+
   &:focus {
     outline: none;
     border-color: var(--primary-color);
+  }
+}
+
+.fieldDate {
+  background-image: url(/assets/icons/landing/form/calendar-icon.svg);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 16px) center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  &::-webkit-calendar-picker-indicator {
+    background: transparent;
+    cursor: pointer;
   }
 }
 

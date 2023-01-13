@@ -33,10 +33,21 @@ export default function Header() {
     setIsMobile(windowWidth < 768);
   };
 
+  const scrollToOffset = (e) => {
+    e.preventDefault();
+    const target = e.target.getAttribute("href");
+    const element = document.querySelector(target);
+    const offset = 115;
+    window.scrollTo({
+      top: element.offsetTop - offset,
+      behavior: "smooth",
+    });
+  };
+
   const _renderMenuOptions = (options) =>
     options.map((option, index) => (
       <li key={index}>
-        <a className={styles.item} href={option.link}>
+        <a className={styles.item} href={option.link} onClick={scrollToOffset}>
           {option.name}
         </a>
       </li>
@@ -80,7 +91,11 @@ export default function Header() {
         <ul className={styles.list}>
           {_renderMenuOptions(menuOptions)}
           <li>
-            <Button href="#registration" variant="primary">
+            <Button
+              href="#registration"
+              variant="primary"
+              onClick={scrollToOffset}
+            >
               Quiero participar
             </Button>
           </li>

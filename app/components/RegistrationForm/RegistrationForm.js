@@ -9,6 +9,7 @@ import UseFetch from "../../api/UseFetch";
 import IconRadio from "../form/IconRadio/IconRadio";
 import UseFetchGetUser from "../../api/useFetchGetUser";
 import Image from "next/image";
+import Chart from "../Chart/Chart";
 
 export default function RegistrationForm({ children, ...props }) {
   const [error, setError] = useState(false);
@@ -207,6 +208,15 @@ export default function RegistrationForm({ children, ...props }) {
       />
     ));
 
+  const formatDate = (date) => {
+    const d = new Date(date);
+    let month = "" + (d.getMonth() + 1);
+    let day = "" + d.getDate();
+    const year = d.getFullYear();
+    console.log([day, month, year].join(""));
+    return [day, month, year].join("");
+  };
+
   const handleChangeID = (values, actions, initialValues) => {
     console.log(values, "valueeeeeeeeeees");
     setTimeout(() => {
@@ -266,14 +276,14 @@ export default function RegistrationForm({ children, ...props }) {
     }
   };
 
-  // REvisa el status que se negativo o respuesta incorrecta para manejra el estado en ionitial values
-
+  // Revisa el status que sea negativo o respuesta incorrecta para manejar el estado en initial values
   const handleSubmit = async (values, actions) => {
     setLoading(true);
+
     const JSONdata = JSON.stringify({
       lead: {
         ...values,
-        date_of_birth: values.date_of_birth.replaceAll("-", ""),
+        date_of_birth: formatDate(values.date_of_birth),
       },
     });
 
@@ -388,7 +398,11 @@ export default function RegistrationForm({ children, ...props }) {
               <div className="col-12">
                 <div className="mb-4">
                   <div
-                    className="d-flex justify-content-between"
+                    className={`${
+                      formik.touched?.kiloton_reason &&
+                      formik.errors?.kiloton_reason &&
+                      styles.error
+                    } d-flex justify-content-between py-2`}
                     role="group"
                     aria-labelledby="my-radio-group"
                   >
@@ -492,6 +506,12 @@ export default function RegistrationForm({ children, ...props }) {
                   type="text"
                   label="Peso"
                   placeholder="En kilogramos"
+                />
+              </div>
+              <div className="col-12 col-md-6">
+                <Chart
+                  height={formik.values.height}
+                  weight={formik.values.weight}
                 />
               </div>
             </div>

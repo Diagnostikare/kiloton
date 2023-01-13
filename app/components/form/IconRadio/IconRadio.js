@@ -21,10 +21,16 @@ export default function IconRadio({
 
   return (
     <div className={`${styles.formGroup} form-check form-check-inline`}>
-      <label className={`${styles.radio} form-check-label`}>
+      <label
+        className={`${styles.radio} ${
+          meta.touched && meta.error && styles.error
+        } form-check-label`}
+      >
         {values[name] === value && (
           <Image
-            className={styles.icon}
+            className={`${styles.icon} ${
+              meta.touched && meta.error && styles.error
+            }`}
             raw="true"
             src={selectedIcon}
             width={72}

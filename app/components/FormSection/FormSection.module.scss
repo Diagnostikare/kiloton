@@ -1,0 +1,38 @@
+.section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: white;
+}
+
+.title,
+.content {
+  color: var(--complementary-color);
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+.content {
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 769px) {
+  .section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .title {
+    margin-bottom: 2rem;
+  }
+  .content {
+    margin-bottom: initial;
+  }
+}

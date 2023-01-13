@@ -1,0 +1,108 @@
+.section{
+  padding-top: 64px;
+  padding-bottom: 64px;
+  background: #E8E8E8;
+}
+
+
+//Clase para los bordes del grid
+.listBorder{
+
+}
+
+.gridContainer {
+ div{
+
+   &:nth-child(1) {
+     margin-top: 1rem;
+   }
+  
+   &:nth-child(2) {
+     margin-top: 1rem;
+   }
+  
+   &:nth-child(3) {
+     margin-top: 3rem;
+   }
+  
+   &:nth-child(4) {
+     margin-top: 3rem;
+   }
+
+ }
+
+
+}
+
+
+$line-color: lightgrey;
+
+@mixin cross-lines($width, $height) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $line-color;
+  width: $width;
+  height: $height;
+}
+
+.cross {
+  position: absolute;
+  height:100%;
+  width: 85%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+
+  &::before,
+  &::after {
+    content: "";
+    @include cross-lines(100%, 2px);
+  }
+
+  &::after {
+    @include cross-lines(2px, 100%);
+  }
+}
+
+@media (max-width:576px) {
+
+  .cross{
+    display: none;
+  }
+
+  .gridContainer {
+    justify-content: center;
+
+    div{
+   
+      &:nth-child(1) {
+        margin-top: 1rem;
+        // border-top: ;
+      }
+     
+      &:nth-child(2) {
+        margin-top: 1rem;
+        border-top: 1px solid rgba(29, 28, 27, 0.3);
+
+      }
+     
+      &:nth-child(3) {
+        margin-top: 3rem;
+        border-top: 1px solid rgba(29, 28, 27, 0.3);
+
+      }
+     
+      &:nth-child(4) {
+        margin-top: 3rem;
+        border-top: 1px solid rgba(29, 28, 27, 0.3);
+
+      }
+   
+    }
+   
+   
+   }
+}

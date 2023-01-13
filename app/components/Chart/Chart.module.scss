@@ -1,0 +1,49 @@
+.chart {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #e2e2e2;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.graph {
+  position: relative;
+}
+
+.state {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: #9b959f;
+  text-align: center;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 8px;
+}
+
+.value {
+  font-weight: 700;
+  font-size: 24px;
+  color: #9b959f;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 13px;
+  color: #9b959f;
+}
+
+.path {
+  opacity: 0.3;
+}
+
+.active {
+  opacity: 1;
+}

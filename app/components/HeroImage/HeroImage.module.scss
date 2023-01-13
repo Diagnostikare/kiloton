@@ -1,0 +1,80 @@
+.hero {
+  position: relative;
+  display: flex;
+  height: auto;
+  min-height: 446px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--complementary-color);
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  opacity: 0.4;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  margin: auto 0 0 0;
+  padding-bottom: 2rem;
+}
+
+.title,
+.content {
+  color: white;
+}
+
+.title {
+  font-size: 24px;
+}
+
+.content {
+  line-height: 1.8;
+}
+
+.uderline {
+  position: relative;
+  display: inline-block;
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 5px;
+    background-color: var(--primary-color);
+  }
+}
+
+// Desktop
+@media (min-width: 768px) {
+  .hero {
+    height: calc(100vh - 112px); // 100vh - header height
+    min-height: 580px;
+  }
+
+  .image {
+    opacity: 1;
+    object-position: center top;
+  }
+
+  .heroContent {
+    margin: auto;
+    padding-bottom: initial;
+  }
+
+  .title {
+    font-size: 56px;
+  }
+}

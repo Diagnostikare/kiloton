@@ -54,8 +54,8 @@ export default function Footer(props) {
           <div className="col-12 col-sm-6 col-md-4 col-lg-3">
             <ul className={styles.footerList}>
               <li>
-                <Link href="mailto:kilotón@elektra.com.mx">
-                  kilotón@elektra.com.mx
+                <Link href="mailto:kiloton@elektra.com.mx">
+                  kiloton@elektra.com.mx
                 </Link>
               </li>
             </ul>

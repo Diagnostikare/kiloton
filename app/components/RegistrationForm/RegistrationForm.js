@@ -382,7 +382,7 @@ export default function RegistrationForm({ children, ...props }) {
     return errors;
   };
 
-  if (!success) {
+  if (success) {
     return (
       <div className={styles.message}>
         <Image
@@ -412,7 +412,7 @@ export default function RegistrationForm({ children, ...props }) {
             <div className="row">
               <div className="col-12 d-flex justify-content-center">
                 <strong className={`${styles.formTitle} mb-4`}>
-                  Razón por la que quieres participar
+                  Elige la razón por la que quieres participar
                 </strong>
               </div>
               <div className="col-12">
@@ -434,8 +434,8 @@ export default function RegistrationForm({ children, ...props }) {
                   className={`mb-4 ${styles.inputText}`}
                   name="employee_id"
                   type="text"
-                  label="Número de socio"
-                  placeholder="Escribe tu número de socio de Salud GS"
+                  label="Número de Socio"
+                  placeholder="Escribe tu Número de Socio de Salud GS"
                   onKeyUp={(e) => {
                     handleChangeID(formik.values, formik, initialValues);
                   }}
@@ -450,7 +450,7 @@ export default function RegistrationForm({ children, ...props }) {
                   name="company_name"
                   type="text"
                   as="select"
-                  label="Unidad de negocio a la que perteneces"
+                  label="Unidad de Negocio a la que perteneces"
                   onChange={(e) => {
                     formik.handleChange(e);
                   }}

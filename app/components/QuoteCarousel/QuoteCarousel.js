@@ -85,6 +85,22 @@ export default function QuoteCarousel({ children, ...props }) {
     >
       {/* Slides */}
       {_renderSlides(props.data)}
+
+      <SwiperSlide className={styles.slide}>
+        <div className={styles.quote}>
+          <div className={styles.quotePicture}>
+            <Image
+              className={styles.quoteImg}
+              raw="true"
+              src="/assets/images/landing/success-stories/Alejandra Fernández Ramírez- Italika.jpg"
+              width={600}
+              height={600}
+              alt="Author picture"
+            />
+          </div>
+        </div>
+      </SwiperSlide>
+
       {/* Navigation */}
       {props.data.length > 1 && (
         <div className={styles.carouselNavigation}>

@@ -9,7 +9,7 @@ export const GridSection = ({ children, ...props }) => {
       items: [
         {
           id: "1",
-          content: "Contesta tu <b>kilotest</b> a partir del 30 de enero",
+          content: "Contesta tu <b>kilotest</b> a partir del 30 de enero.",
           anotherChild: false,
         },
         {
@@ -36,7 +36,7 @@ export const GridSection = ({ children, ...props }) => {
         },
       ],
       footer:
-        "Importante: el <b>kilotest</b> es requisito indispensable para poder participar en el kilotón",
+        "Importante: el <b>kilotest</b> es requisito indispensable para poder participar en el kilotón.",
     },
     {
       title: "Puntos",
@@ -45,7 +45,7 @@ export const GridSection = ({ children, ...props }) => {
         {
           id: "1",
           content:
-            "Obtén puntos mostrando tus avances a través del <b>kilotest</b> o cada 15 días para incrementar tu puntaje",
+            "Obtén puntos mostrando tus avances a través del <b>kilotest</b> o cada 15 días para incrementar tu puntaje.",
           anotherChild: false,
         },
         {
@@ -93,7 +93,7 @@ export const GridSection = ({ children, ...props }) => {
         {
           id: "5",
           content:
-            "Cualquier duda o comentario, puedes escribir a <b>kilotón@elektra.com.mx</b>",
+            "Cualquier duda o comentario, puedes escribir a <b>kiloton@elektra.com.mx</b>",
           anotherChild: false,
         },
       ],

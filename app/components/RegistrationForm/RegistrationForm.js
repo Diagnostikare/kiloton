@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./RegistrationForm.module.scss";
 import MaterialField from "../form/MaterialField/MaterialField";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import Button from "../Button/Button";
 import UseFetch from "../../api/UseFetch";
 import IconRadio from "../form/IconRadio/IconRadio";
@@ -16,30 +17,6 @@ export default function RegistrationForm({ children, ...props }) {
   const [fetchData, setFetchData] = useState(null);
   const [success, setSuccess] = useState(false);
   const [statusDisabled, setstatusDisabled] = useState(false);
-  // const initialValues = {
-  //   reason: "",
-  //   employee_id: "",
-  //   employee_area: "",
-  //   first_name: "",
-  //   last_name: "",
-  //   email: "",
-  //   date_of_birth: "",
-  //   height: "",
-  //   weight: "",
-  //   company_name: "grupo-salinas",
-  // };
-
-  const initialValues = {
-    employee_id: "",
-    first_name: "",
-    last_name: "",
-    email: "",
-    date_of_birth: "",
-    height: "",
-    weight: "",
-    company_name: "",
-    kiloton_reason: "",
-  };
 
   const reasonOptions = [
     {
@@ -74,7 +51,7 @@ export default function RegistrationForm({ children, ...props }) {
 
   const companyOptions = [
     {
-      label: "Selecciona una opcion",
+      label: "Selecciona una opción",
       value: "0",
       color: "#",
     },
@@ -350,37 +327,29 @@ export default function RegistrationForm({ children, ...props }) {
     setSuccess(true);
   };
 
-  const validate = (values) => {
-    const errors = {};
-    if (!values.employee_id) {
-      errors.employee_id = "Campo requerido";
-    }
-    if (!values.first_name) {
-      errors.first_name = "Campo requerido";
-    }
-    if (!values.last_name) {
-      errors.last_name = "Campo requerido";
-    }
-    if (!values.email) {
-      errors.email = "Campo requerido";
-    }
-    if (!values.date_of_birth) {
-      errors.date_of_birth = "Campo requerido";
-    }
-    if (!values.height) {
-      errors.height = "Campo requerido";
-    }
-    if (!values.weight) {
-      errors.weight = "Campo requerido";
-    }
-    if (!values.company_name) {
-      errors.company_name = "Campo requerido";
-    }
-    if (!values.kiloton_reason) {
-      errors.kiloton_reason = "Campo requerido";
-    }
-    return errors;
+  const initialValues = {
+    employee_id: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    date_of_birth: "",
+    height: "",
+    weight: "",
+    company_name: "",
+    kiloton_reason: "",
   };
+
+  const validationSchema = Yup.object({
+    employee_id: Yup.string().required("Campo requerido"),
+    first_name: Yup.string().required("Campo requerido"),
+    last_name: Yup.string().required("Campo requerido"),
+    email: Yup.string().email("Correo inválido").required("Campo requerido"),
+    date_of_birth: Yup.string().required("Campo requerido"),
+    height: Yup.string().required("Campo requerido"),
+    weight: Yup.string().required("Campo requerido"),
+    company_name: Yup.string().required("Campo requerido"),
+    kiloton_reason: Yup.string().required("Campo requerido"),
+  });
 
   if (success) {
     return (
@@ -400,7 +369,8 @@ export default function RegistrationForm({ children, ...props }) {
     <div className={styles.form}>
       <Formik
         initialValues={initialValues}
-        validate={validate}
+        // validate={validate}
+        validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
         {(formik) => (
@@ -412,7 +382,7 @@ export default function RegistrationForm({ children, ...props }) {
             <div className="row">
               <div className="col-12 d-flex justify-content-center">
                 <strong className={`${styles.formTitle} mb-4`}>
-                  Elige la razón por la que quieres participar
+                  Elige una razón por la que quieres participar
                 </strong>
               </div>
               <div className="col-12">
@@ -527,12 +497,12 @@ export default function RegistrationForm({ children, ...props }) {
             </div>
             {error && (
               <div className="row mb-5">
-                <div className="d-flex justify-content-center flex-column w-50">
-                  <span className={`${styles.spanError}`}>Error</span>
+                <div className="d-flex justify-content-center flex-row">
                   <div
-                    className={` ${styles.messageErrorContainer} d-flex justify-content-center border border-danger`}
+                    className={`${styles.messageErrorContainer} border border-danger`}
                   >
-                    {errorMessage}
+                    <span className={styles.spanError}>Error</span>
+                    <b className={styles.spanError}>{errorMessage}</b>
                   </div>
                 </div>
               </div>
@@ -541,6 +511,7 @@ export default function RegistrationForm({ children, ...props }) {
               <div className="col-12 d-flex justify-content-center">
                 <Button
                   as="button"
+                  variant="primary"
                   type="submit"
                   disabled={formik.isSubmitting}
                 >

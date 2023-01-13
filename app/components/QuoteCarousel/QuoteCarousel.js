@@ -89,7 +89,7 @@ export default function QuoteCarousel({ children, ...props }) {
             <Image
               className={styles.quoteImg}
               raw="true"
-              src="/assets/images/landing/success-stories/Alejandra Fernández Ramírez- Italika.jpg"
+              src="/assets/images/landing/successStories/veronica-amigon.jpg"
               width={600}
               height={600}
               alt="Author picture"
@@ -110,7 +110,7 @@ export default function QuoteCarousel({ children, ...props }) {
           >
             <Image
               raw="true"
-              src="/assets/icons/landing/success-stories/angle-left-icon.svg"
+              src="/assets/icons/landing/successStories/angle-left-icon.svg"
               width={32}
               height={32}
               alt="Previous"

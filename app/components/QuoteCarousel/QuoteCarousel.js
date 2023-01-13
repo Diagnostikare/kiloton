@@ -83,9 +83,6 @@ export default function QuoteCarousel({ children, ...props }) {
       }}
       {...props}
     >
-      {/* Slides */}
-      {_renderSlides(props.data)}
-
       <SwiperSlide className={styles.slide}>
         <div className={styles.quote}>
           <div className={styles.quotePicture}>
@@ -100,6 +97,8 @@ export default function QuoteCarousel({ children, ...props }) {
           </div>
         </div>
       </SwiperSlide>
+      {/* Slides */}
+      {_renderSlides(props.data)}
 
       {/* Navigation */}
       {props.data.length > 1 && (

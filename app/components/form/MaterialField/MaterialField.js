@@ -65,7 +65,7 @@ const MaterialField = ({
 
         {/* Field */}
         <Field
-          className={`${styles.field} ${
+          className={`${styles.field} ${type === "date" && styles.fieldDate} ${
             meta.touched && meta.error && styles.error
           }`}
           name={name}

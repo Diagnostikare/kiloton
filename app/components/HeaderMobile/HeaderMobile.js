@@ -10,10 +10,25 @@ export default function HeaderMobile({ options }) {
     setMenuOpen(!isMenuOpen);
   };
 
+  const scrollToOffset = (e) => {
+    e.preventDefault();
+    const target = e.target.getAttribute("href");
+    const element = document.querySelector(target);
+    const offset = 57;
+    window.scrollTo({
+      top: element.offsetTop - offset,
+      behavior: "smooth",
+    });
+  };
+
   const _renderMenuOptions = (options) =>
     options.map((option, index) => (
       <li key={index}>
-        <a className={styles.item} href={option.link} onClick={handleMenu}>
+        <a
+          className={styles.item}
+          href={option.link}
+          onClick={(event) => (handleMenu(), scrollToOffset(event))}
+        >
           {option.name}
         </a>
       </li>

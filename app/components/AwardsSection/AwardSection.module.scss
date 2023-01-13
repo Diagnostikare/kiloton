@@ -1,14 +1,13 @@
-
 .sectionContainer {
   position: relative;
   display: flex;
   flex-direction: row;
   background-color: var(--complementary-color);
   padding: 2rem;
-  height: calc(100vh - 100px)
+  height: calc(100vh - 100px);
 }
 
-.rowContainer{
+.rowContainer {
   display: flex;
   // justify-content:space-between;
   height: 100%;
@@ -26,14 +25,14 @@
   object-position: center bottom;
 }
 
-.imageStar{
+.imageStar {
   display: flex;
   object-fit: contain;
   margin-right: 1rem;
   margin-left: 1rem;
 }
 
-.imageContainer{
+.imageContainer {
   display: flex;
   width: 100%;
   height: auto;
@@ -42,24 +41,24 @@
   margin-bottom: 2rem;
 }
 
-.termsContainer{
+.termsContainer {
   position: relative;
   z-index: 2;
   text-align: center;
-  align-items: end;
+  align-items: flex-end;
   display: flex;
   justify-content: center;
 }
 
-.terms{
+.terms {
   color: white;
 }
 
-.title{
+.title {
   color: white;
 }
 
-.bodyContainer{
+.bodyContainer {
   position: relative;
   z-index: 2;
   text-align: center;
@@ -67,45 +66,40 @@
   flex-direction: column;
 }
 
-@media (min-width:1400px) {
-  .sectionContainer{
+@media (min-width: 1400px) {
+  .sectionContainer {
     height: calc(100vh - 100px); // 100vh - header height
   }
-  
 }
 
-@media (max-width:968px) {
-  .image{
+@media (max-width: 968px) {
+  .image {
     object-fit: contain;
     object-position: center center;
   }
 }
 
-@media (max-width:576px) {
-  
-  .rowContainer{
+@media (max-width: 576px) {
+  .rowContainer {
     flex-direction: column;
     gap: 2rem;
   }
 
-  .sectionContainer{
+  .sectionContainer {
     height: 60vh; // 100vh - header height
   }
 
-
-
-  .image{
+  .image {
     object-fit: contain;
     object-position: center bottom;
-
   }
 
-  .imageContainer{
+  .imageContainer {
     order: 2;
     margin-top: 2rem;
     margin-bottom: 0;
   }
-  .title{
+  .title {
     order: 1;
     display: flex;
     margin-top: 2rem;

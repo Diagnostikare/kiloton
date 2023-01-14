@@ -85,6 +85,7 @@ export default function QuoteCarousel({ children, ...props }) {
     >
       {/* Slides */}
       {_renderSlides(props.data)}
+
       {/* Navigation */}
       {props.data.length > 1 && (
         <div className={styles.carouselNavigation}>

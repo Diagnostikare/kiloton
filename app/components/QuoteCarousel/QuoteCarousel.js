@@ -96,7 +96,7 @@ export default function QuoteCarousel({ children, ...props }) {
           >
             <Image
               raw="true"
-              src="/assets/icons/landing/successStories/angle-left-icon.svg"
+              src="/assets/icons/landing/success-stories/angle-left-icon.svg"
               width={32}
               height={32}
               alt="Previous"

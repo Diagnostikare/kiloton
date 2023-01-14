@@ -208,12 +208,20 @@ export default function RegistrationForm({ children, ...props }) {
       />
     ));
 
+  const formatMonth = (month) => {
+    if (month.length == 1) {
+      return `0${month}`;
+    }
+    return month;
+  };
+
   const formatDate = (date) => {
-    const d = new Date(date);
-    let month = "" + (d.getMonth() + 1);
+    console.log("before", date);
+    const d = new Date(date.replace(/-/g, "/"));
+    let month = formatMonth("" + (d.getMonth() + 1));
     let day = "" + d.getDate();
     const year = d.getFullYear();
-    console.log([day, month, year].join(""));
+    console.log("after", [day, month, year].join(""));
     return [day, month, year].join("");
   };
 

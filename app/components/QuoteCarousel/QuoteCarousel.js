@@ -83,20 +83,6 @@ export default function QuoteCarousel({ children, ...props }) {
       }}
       {...props}
     >
-      <SwiperSlide className={styles.slide}>
-        <div className={styles.quote}>
-          <div className={styles.quotePicture}>
-            <Image
-              className={styles.quoteImg}
-              raw="true"
-              src="/assets/images/landing/successStories/veronica-amigon.jpg"
-              width={600}
-              height={600}
-              alt="Author picture"
-            />
-          </div>
-        </div>
-      </SwiperSlide>
       {/* Slides */}
       {_renderSlides(props.data)}
 

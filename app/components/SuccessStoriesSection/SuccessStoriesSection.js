@@ -11,8 +11,8 @@ export default function SuccessStoriesSection({ children, ...props }) {
       data: "61 años, <b>29 kg menos</b>",
       content:
         "Soy hipertensa, tenía que bajar 20 kg sí o sí y con el kilotón lo logré en 1 año",
-
       image: "/assets/images/landing/successStories/lilia-oliva-sosa.jpg",
+
     },
     {
       author: "Verónica Amigón",
@@ -20,8 +20,8 @@ export default function SuccessStoriesSection({ children, ...props }) {
       data: "40 años, <b>5 kg menos</b>",
       content:
         "Después de mi embarazo subí varios kilogramos y decidí meterme al kilotón para recuperar mi peso",
-
       image: "/assets/images/landing/successStories/veronica-amigon.jpg",
+
     },
     {
       author: "Juan Pablo Gutiérrez",
@@ -37,7 +37,6 @@ export default function SuccessStoriesSection({ children, ...props }) {
       data: "52 años, <b>6 kg menos</b>",
       content:
         "Con el kilotón tomas conciencia de lo que estás comiendo. Además, ganas por todos lados, en premios y en salud",
-
       image: "/assets/images/landing/successStories/martha-gutierrez-lopez.jpg",
     },
     {
@@ -46,7 +45,6 @@ export default function SuccessStoriesSection({ children, ...props }) {
       data: "40 años, <b>6 kg menos</b>",
       content:
         "El kilotón me ayudó muchísimo, porque además de bajar de peso, gane músculo, tonalidad y hubo cambios muy visibles en mi cara",
-
       image: "/assets/images/landing/successStories/rodrigo-ventura.jpg",
     },
     {
@@ -55,7 +53,6 @@ export default function SuccessStoriesSection({ children, ...props }) {
       data: "44 años, <b>12 kg menos</b>",
       content:
         "El kilotón cambió mi vida. Perder peso te hace ver más joven, te da otro aspecto y te hace sentir mejor contigo mismo",
-
       image:
         "/assets/images/landing/successStories/alejandra-fernandez-ramirez.jpg",
     },

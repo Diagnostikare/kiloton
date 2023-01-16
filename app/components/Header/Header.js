@@ -1,53 +1,26 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
+import componentData from "./Header.json";
 import Button from "../Button/Button";
 import Image from "next/image";
 import HeaderMobile from "../HeaderMobile/HeaderMobile";
+import { scrollToElement } from "../../common/helpers";
 
 export default function Header() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   let windowWidth;
-  const menuOptions = [
-    {
-      name: "¿Cómo participar?",
-      link: "#howToParticipate",
-    },
-    {
-      name: "Bases",
-      link: "#bases",
-    },
-    {
-      name: "Testimonios",
-      link: "#successStories",
-    },
-    {
-      name: "Premios",
-      link: "#prizes",
-    },
-  ];
 
   const handleResize = () => {
     windowWidth = window.innerWidth;
     setIsMobile(windowWidth < 768);
   };
 
-  const scrollToOffset = (e) => {
-    e.preventDefault();
-    const target = e.target.getAttribute("href");
-    const element = document.querySelector(target);
-    const offset = 115;
-    window.scrollTo({
-      top: element.offsetTop - offset,
-      behavior: "smooth",
-    });
-  };
-
   const _renderMenuOptions = (options) =>
     options.map((option, index) => (
       <li key={index}>
-        <a className={styles.item} href={option.link} onClick={scrollToOffset}>
+        <a className={styles.item} href={option.link} onClick={scrollToElement}>
           {option.name}
         </a>
       </li>
@@ -72,7 +45,7 @@ export default function Header() {
 
   if (isLoading) return null;
 
-  if (isMobile) return <HeaderMobile options={menuOptions} />;
+  if (isMobile) return <HeaderMobile options={componentData.menuOptions} />;
 
   return (
     <header className={styles.header}>
@@ -89,12 +62,12 @@ export default function Header() {
         </a>
 
         <ul className={styles.list}>
-          {_renderMenuOptions(menuOptions)}
+          {_renderMenuOptions(componentData.menuOptions)}
           <li>
             <Button
               href="#registration"
               variant="primary"
-              onClick={scrollToOffset}
+              onClick={scrollToElement}
             >
               Quiero participar
             </Button>

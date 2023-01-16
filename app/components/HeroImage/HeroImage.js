@@ -1,6 +1,8 @@
+"use client";
 import styles from "./HeroImage.module.scss";
 import Button from "../Button/Button";
 import Image from "next/image";
+import { scrollToElement } from "../../common/helpers";
 
 export default function HeroImage(props) {
   return (
@@ -26,7 +28,13 @@ export default function HeroImage(props) {
             <p className={styles.content}>
               Participas todo el año, acumulas puntos y ganas premios increíbles
             </p>
-            <Button variant="primary">Quiero participar</Button>
+            <Button
+              href="#registration"
+              variant="primary"
+              onClick={scrollToElement}
+            >
+              Quiero participar
+            </Button>
           </div>
         </div>
       </div>

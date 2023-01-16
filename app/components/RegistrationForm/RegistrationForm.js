@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "./RegistrationForm.module.scss";
+import componentData from "./RegistrationForm.json";
 import MaterialField from "../form/MaterialField/MaterialField";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -10,6 +11,7 @@ import IconRadio from "../form/IconRadio/IconRadio";
 import UseFetchGetUser from "../../api/useFetchGetUser";
 import Image from "next/image";
 import Chart from "../Chart/Chart";
+import { formatDate } from "../../common/helpers";
 
 export default function RegistrationForm({ children, ...props }) {
   const [error, setError] = useState(false);
@@ -18,165 +20,6 @@ export default function RegistrationForm({ children, ...props }) {
   const [fetchData, setFetchData] = useState(null);
   const [success, setSuccess] = useState(false);
   const [statusDisabled, setstatusDisabled] = useState(false);
-
-  const reasonOptions = [
-    {
-      label: "perder peso",
-      value: "1",
-      defaultIcon: "/assets/icons/landing/form/option-1-icon-default.svg",
-      selectedIcon: "/assets/icons/landing/form/option-1-icon-selected.svg",
-      color: "#30E8F4",
-    },
-    {
-      label: "bajar talla",
-      value: "2",
-      defaultIcon: "/assets/icons/landing/form/option-2-icon-default.svg",
-      selectedIcon: "/assets/icons/landing/form/option-2-icon-selected.svg",
-      color: "#A968EA",
-    },
-    {
-      label: "más energía",
-      value: "3",
-      defaultIcon: "/assets/icons/landing/form/option-3-icon-default.svg",
-      selectedIcon: "/assets/icons/landing/form/option-3-icon-selected.svg",
-      color: "#FF9744",
-    },
-    {
-      label: "hábitos saludables",
-      value: "4",
-      defaultIcon: "/assets/icons/landing/form/option-4-icon-default.svg",
-      selectedIcon: "/assets/icons/landing/form/option-4-icon-selected.svg",
-      color: "#C8FB66",
-    },
-  ];
-
-  const companyOptions = [
-    {
-      label: "Selecciona una opción",
-      value: "0",
-      color: "#",
-    },
-    {
-      label: "Agencia I",
-      value: "Agencia I",
-      color: "#",
-    },
-    {
-      label: "Italika",
-      value: "Italika",
-      color: "#",
-    },
-    {
-      label: "ITK ENSAMBLIKA",
-      value: "ITK ENSAMBLIKA",
-      color: "#",
-    },
-    {
-      label: "Presta prenda",
-      value: "Presta prenda",
-      color: "#",
-    },
-    {
-      label: "Promo espacio",
-      value: "Promo espacio",
-      color: "#",
-    },
-    {
-      label: "Punto Casa de Bolsa",
-      value: "Punto Casa de Bolsa",
-      color: "#",
-    },
-    {
-      label: "Totalplay",
-      value: "Totalplay",
-      color: "#",
-    },
-    {
-      label: "TV Azteca",
-      value: "TV Azteca",
-      color: "#",
-    },
-    {
-      label: "Otros TVA",
-      value: "Otros TVA",
-      color: "#",
-    },
-    {
-      label: "UPAX",
-      value: "UPAX",
-      color: "#",
-    },
-    {
-      label: "BOFF y Despachos GS",
-      value: "BOFF y Despachos GS",
-      color: "#",
-    },
-    {
-      label: "Despachos LAM",
-      value: "Despachos LAM",
-      color: "#",
-    },
-    {
-      label: "Elektra marca",
-      value: "Elektra marca",
-      color: "#",
-    },
-    {
-      label: "Red de Suministro",
-      value: "Red de Suministro",
-      color: "#",
-    },
-    {
-      label: "Dragón",
-      value: "Dragón",
-      color: "#",
-    },
-    {
-      label: "Neto",
-      value: "Neto",
-      color: "#",
-    },
-    {
-      label: "Otros EKT",
-      value: "Otros EKT",
-      color: "#",
-    },
-    {
-      label: "Red única",
-      value: "Red única",
-      color: "#",
-    },
-    {
-      label: "BAZ Corporativo",
-      value: "BAZ Corporativo",
-      color: "#",
-    },
-    {
-      label: "BAZ CyC",
-      value: "BAZ CyC",
-      color: "#",
-    },
-    {
-      label: "Super App",
-      value: "Super App",
-      color: "#",
-    },
-    {
-      label: "Afore y Seguros",
-      value: "Afore y Seguros",
-      color: "#",
-    },
-    {
-      label: "BIG",
-      value: "BIG",
-      color: "#",
-    },
-    {
-      label: "Red Digitial",
-      value: "Red Digitial",
-      color: "#",
-    },
-  ];
 
   const _renderCompanyOptions = (options) =>
     options.map((option, index) =>
@@ -208,25 +51,7 @@ export default function RegistrationForm({ children, ...props }) {
       />
     ));
 
-  const formatMonth = (month) => {
-    if (month.length == 1) {
-      return `0${month}`;
-    }
-    return month;
-  };
-
-  const formatDate = (date) => {
-    console.log("before", date);
-    const d = new Date(date.replace(/-/g, "/"));
-    let month = formatMonth("" + (d.getMonth() + 1));
-    let day = "" + d.getDate();
-    const year = d.getFullYear();
-    console.log("after", [day, month, year].join(""));
-    return [day, month, year].join("");
-  };
-
   const handleChangeID = (values, actions, initialValues) => {
-    console.log(values, "valueeeeeeeeeees");
     setTimeout(() => {
       if (values.employee_id.length > 5) {
         handleSubmitCheckEmployeeId(values, actions, initialValues);
@@ -258,9 +83,6 @@ export default function RegistrationForm({ children, ...props }) {
         first_name: data.first_name,
         last_name: data.last_name,
         email: data.email,
-        // date_of_birth: data.date_of_birth,
-        // height: data.height,
-        // weight: data.weight,
       });
 
       setstatusDisabled(true);
@@ -387,7 +209,6 @@ export default function RegistrationForm({ children, ...props }) {
     <div className={styles.form}>
       <Formik
         initialValues={initialValues}
-        // validate={validate}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
@@ -414,7 +235,7 @@ export default function RegistrationForm({ children, ...props }) {
                     role="group"
                     aria-labelledby="my-radio-group"
                   >
-                    {_renderReasonOptions(reasonOptions)}
+                    {_renderReasonOptions(componentData.reasonOptions)}
                   </div>
                 </div>
               </div>
@@ -447,7 +268,7 @@ export default function RegistrationForm({ children, ...props }) {
                     formik.handleChange(e);
                   }}
                 >
-                  {_renderCompanyOptions(companyOptions)}
+                  {_renderCompanyOptions(componentData.companyOptions)}
                 </MaterialField>
               </div>
             </div>
@@ -553,5 +374,3 @@ export default function RegistrationForm({ children, ...props }) {
     </div>
   );
 }
-
-// POST data fetch with next js 13

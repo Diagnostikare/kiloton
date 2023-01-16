@@ -1,0 +1,20 @@
+{
+  "menuOptions": [
+    {
+      "name": "¿Cómo participar?",
+      "link": "#howToParticipate"
+    },
+    {
+      "name": "Bases",
+      "link": "#bases"
+    },
+    {
+      "name": "Testimonios",
+      "link": "#successStories"
+    },
+    {
+      "name": "Premios",
+      "link": "#prizes"
+    }
+  ]
+}

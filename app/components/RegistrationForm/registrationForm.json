@@ -1,0 +1,159 @@
+{
+  "reasonOptions": [
+    {
+      "label": "perder peso",
+      "value": "1",
+      "defaultIcon": "/assets/icons/landing/form/option-1-icon-default.svg",
+      "selectedIcon": "/assets/icons/landing/form/option-1-icon-selected.svg",
+      "color": "#30E8F4"
+    },
+    {
+      "label": "bajar talla",
+      "value": "2",
+      "defaultIcon": "/assets/icons/landing/form/option-2-icon-default.svg",
+      "selectedIcon": "/assets/icons/landing/form/option-2-icon-selected.svg",
+      "color": "#A968EA"
+    },
+    {
+      "label": "más energía",
+      "value": "3",
+      "defaultIcon": "/assets/icons/landing/form/option-3-icon-default.svg",
+      "selectedIcon": "/assets/icons/landing/form/option-3-icon-selected.svg",
+      "color": "#FF9744"
+    },
+    {
+      "label": "hábitos saludables",
+      "value": "4",
+      "defaultIcon": "/assets/icons/landing/form/option-4-icon-default.svg",
+      "selectedIcon": "/assets/icons/landing/form/option-4-icon-selected.svg",
+      "color": "#C8FB66"
+    }
+  ],
+  "companyOptions": [
+    {
+      "label": "Selecciona una opción",
+      "value": "0",
+      "color": "#"
+    },
+    {
+      "label": "Agencia I",
+      "value": "Agencia I",
+      "color": "#"
+    },
+    {
+      "label": "Italika",
+      "value": "Italika",
+      "color": "#"
+    },
+    {
+      "label": "ITK ENSAMBLIKA",
+      "value": "ITK ENSAMBLIKA",
+      "color": "#"
+    },
+    {
+      "label": "Presta prenda",
+      "value": "Presta prenda",
+      "color": "#"
+    },
+    {
+      "label": "Promo espacio",
+      "value": "Promo espacio",
+      "color": "#"
+    },
+    {
+      "label": "Punto Casa de Bolsa",
+      "value": "Punto Casa de Bolsa",
+      "color": "#"
+    },
+    {
+      "label": "Totalplay",
+      "value": "Totalplay",
+      "color": "#"
+    },
+    {
+      "label": "TV Azteca",
+      "value": "TV Azteca",
+      "color": "#"
+    },
+    {
+      "label": "Otros TVA",
+      "value": "Otros TVA",
+      "color": "#"
+    },
+    {
+      "label": "UPAX",
+      "value": "UPAX",
+      "color": "#"
+    },
+    {
+      "label": "BOFF y Despachos GS",
+      "value": "BOFF y Despachos GS",
+      "color": "#"
+    },
+    {
+      "label": "Despachos LAM",
+      "value": "Despachos LAM",
+      "color": "#"
+    },
+    {
+      "label": "Elektra marca",
+      "value": "Elektra marca",
+      "color": "#"
+    },
+    {
+      "label": "Red de Suministro",
+      "value": "Red de Suministro",
+      "color": "#"
+    },
+    {
+      "label": "Dragón",
+      "value": "Dragón",
+      "color": "#"
+    },
+    {
+      "label": "Neto",
+      "value": "Neto",
+      "color": "#"
+    },
+    {
+      "label": "Otros EKT",
+      "value": "Otros EKT",
+      "color": "#"
+    },
+    {
+      "label": "Red única",
+      "value": "Red única",
+      "color": "#"
+    },
+    {
+      "label": "BAZ Corporativo",
+      "value": "BAZ Corporativo",
+      "color": "#"
+    },
+    {
+      "label": "BAZ CyC",
+      "value": "BAZ CyC",
+      "color": "#"
+    },
+    {
+      "label": "Super App",
+      "value": "Super App",
+      "color": "#"
+    },
+    {
+      "label": "Afore y Seguros",
+      "value": "Afore y Seguros",
+      "color": "#"
+    },
+    {
+      "label": "BIG",
+      "value": "BIG",
+      "color": "#"
+    },
+    {
+      "label": "Red Digitial",
+      "value": "Red Digitial",
+      "color": "#"
+    }
+  ]
+}

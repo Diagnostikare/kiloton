@@ -1,34 +1,15 @@
+"use client";
 import styles from "./Footer.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import componentData from "./footer.json";
+import { scrollToElement } from "../../common/helpers";
 
 export default function Footer(props) {
-  const columnsOneOptions = [
-    {
-      name: "¿Cómo participar?",
-      link: "#howToParticipate",
-    },
-    {
-      name: "Bases",
-      link: "#bases",
-    },
-  ];
-
-  const columnsTwoOptions = [
-    {
-      name: "Testimonios",
-      link: "#successStories",
-    },
-    {
-      name: "Premios",
-      link: "#prizes",
-    },
-  ];
-
   const _renderMenuOptions = (options) =>
     options.map((option, index) => (
       <li key={index}>
-        <a className={styles.item} href={option.link}>
+        <a className={styles.item} href={option.link} onClick={scrollToElement}>
           {option.name}
         </a>
       </li>
@@ -62,12 +43,12 @@ export default function Footer(props) {
           </div>
           <div className="col-12 col-sm-6 col-md-4 col-lg-3">
             <ul className={styles.footerList}>
-              {_renderMenuOptions(columnsOneOptions)}
+              {_renderMenuOptions(componentData.columnsOneOptions)}
             </ul>
           </div>
           <div className="col-12 col-sm-6 col-md-4 col-lg-3">
             <ul className={styles.footerList}>
-              {_renderMenuOptions(columnsTwoOptions)}
+              {_renderMenuOptions(componentData.columnsTwoOptions)}
             </ul>
           </div>
           <div

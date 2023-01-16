@@ -1,0 +1,22 @@
+{
+  "columnsOneOptions": [
+    {
+      "name": "¿Cómo participar?",
+      "link": "#howToParticipate"
+    },
+    {
+      "name": "Bases",
+      "link": "#bases"
+    }
+  ],
+  "columnsTwoOptions": [
+    {
+      "name": "Testimonios",
+      "link": "#successStories"
+    },
+    {
+      "name": "Premios",
+      "link": "#prizes"
+    }
+  ]
+}

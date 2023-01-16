@@ -1,25 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import Button from "../Button/Button";
 import styles from "./HeaderMobile.module.scss";
+import { scrollToElement } from "../../common/helpers";
+import Button from "../Button/Button";
 
 export default function HeaderMobile({ options }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
-
-  const handleMenu = () => {
-    setMenuOpen(!isMenuOpen);
-  };
-
-  const scrollToOffset = (e) => {
-    e.preventDefault();
-    const target = e.target.getAttribute("href");
-    const element = document.querySelector(target);
-    const offset = 57;
-    window.scrollTo({
-      top: element.offsetTop - offset,
-      behavior: "smooth",
-    });
-  };
 
   const _renderMenuOptions = (options) =>
     options.map((option, index) => (
@@ -27,7 +13,9 @@ export default function HeaderMobile({ options }) {
         <a
           className={styles.item}
           href={option.link}
-          onClick={(event) => (handleMenu(), scrollToOffset(event))}
+          onClick={(event) => (
+            setMenuOpen(!isMenuOpen), scrollToElement(event, 57)
+          )}
         >
           {option.name}
         </a>
@@ -50,7 +38,11 @@ export default function HeaderMobile({ options }) {
             />
           </a>
 
-          <button type="button" className={styles.burger} onClick={handleMenu}>
+          <button
+            type="button"
+            className={styles.burger}
+            onClick={() => setMenuOpen(!isMenuOpen)}
+          >
             <span></span>
             <span></span>
             <span></span>
@@ -68,13 +60,30 @@ export default function HeaderMobile({ options }) {
             height={124}
             alt="kilotón"
           />
-          <button type="button" className={styles.close} onClick={handleMenu}>
+          <button
+            type="button"
+            className={styles.close}
+            onClick={() => setMenuOpen(!isMenuOpen)}
+          >
             <span></span>
             <span></span>
           </button>
         </div>
         <nav className={styles.mainMenu}>
-          <ul className={styles.list}>{_renderMenuOptions(options)}</ul>
+          <ul className={styles.list}>
+            {_renderMenuOptions(options)}
+            <li className="p-3">
+              <Button
+                href="#registration"
+                variant="primary"
+                onClick={(event) => {
+                  setMenuOpen(!isMenuOpen), scrollToElement(event, 57);
+                }}
+              >
+                Quiero participar
+              </Button>
+            </li>
+          </ul>
         </nav>
         <div className={styles.menuFooter}>
           <Image

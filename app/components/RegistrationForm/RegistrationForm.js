@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "./RegistrationForm.module.scss";
-import componentData from "./RegistrationForm.json";
+import componentData from "./registrationForm.json";
 import MaterialField from "../form/MaterialField/MaterialField";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";

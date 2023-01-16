@@ -1,6 +1,6 @@
 import ItemNumberComponent from "../ItemNumberComponent/ItemNumberComponent";
 import styles from "./NumberSection.module.scss";
-import componentData from "./NumberSection.json";
+import componentData from "./numberSection.json";
 
 export const NumberSection = ({ children, ...props }) => {
   const _renderNumbersItems = (data) =>

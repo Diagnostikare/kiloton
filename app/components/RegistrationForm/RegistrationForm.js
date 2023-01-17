@@ -1,9 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./RegistrationForm.module.scss";
 import componentData from "./registrationForm.json";
 import MaterialField from "../form/MaterialField/MaterialField";
-import { Formik, Form, Field, ErrorMessage, replace } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Button from "../Button/Button";
 import UseFetch from "../../api/UseFetch";

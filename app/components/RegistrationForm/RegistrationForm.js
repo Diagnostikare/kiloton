@@ -269,7 +269,7 @@ export default function RegistrationForm({ children, ...props }) {
                   name="employee_id"
                   type="text"
                   label="Número de Socio"
-                  placeholder="Escribe tu Número de Socio de Salud GS"
+                  placeholder="Escribe tu Número de Socio"
                   onKeyUp={(e) => {
                     handleChangeID(formik.values, formik, initialValues);
                   }}

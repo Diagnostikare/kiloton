@@ -1,3 +1,10 @@
+// Format day to DD
+const formatDay = (day) => {
+  if (day.length == 1) {
+    return `0${day}`;
+  }
+  return day;
+};
 // Format month to MM
 const formatMonth = (month) => {
   if (month.length == 1) {
@@ -10,7 +17,7 @@ const formatMonth = (month) => {
 export const formatDate = (date) => {
   const d = new Date(date.replace(/-/g, "/"));
   let month = formatMonth("" + (d.getMonth() + 1));
-  let day = "" + d.getDate();
+  let day = formatDay("" + d.getDate());
   const year = d.getFullYear();
   return [day, month, year].join("");
 };

@@ -200,8 +200,8 @@ export default function RegistrationForm({ children, ...props }) {
         "No se permiten letras o caracteres especiales ( . , : ; )"
       )
       .required("Campo requerido"),
-    weight: Yup.string()
-      .matches(/^[^abc]*$/, "No se permiten letras")
+    weight: Yup.number()
+      .typeError("No se permiten letras")
       .required("Campo requerido"),
     company_name: Yup.string().required("Campo requerido"),
     kiloton_reason: Yup.string().required("Campo requerido"),

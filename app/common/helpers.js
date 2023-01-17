@@ -28,7 +28,6 @@ export const scrollToElement = (e, offset = 115) => {
 
 // Replace special characters
 export const replaceSpecialCharacters = (str) => {
-  console.log(str);
   return str
     .replace(/[^a-zA-Z0-9 ]/g, "")
     .replace(/\s/g, "-")

@@ -1,9 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./RegistrationForm.module.scss";
 import componentData from "./registrationForm.json";
 import MaterialField from "../form/MaterialField/MaterialField";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Button from "../Button/Button";
 import UseFetch from "../../api/UseFetch";
@@ -11,12 +11,14 @@ import IconRadio from "../form/IconRadio/IconRadio";
 import UseFetchGetUser from "../../api/useFetchGetUser";
 import Image from "next/image";
 import Chart from "../Chart/Chart";
-import { formatDate } from "../../common/helpers";
+import { formatDate, replaceSpecialCharacters } from "../../common/helpers";
+import Loader from "../Loader/Loader";
 
 export default function RegistrationForm({ children, ...props }) {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [searcherLoading, setSearcherLoading] = useState(false);
   const [fetchData, setFetchData] = useState(null);
   const [success, setSuccess] = useState(false);
   const [statusDisabled, setstatusDisabled] = useState(false);
@@ -64,7 +66,7 @@ export default function RegistrationForm({ children, ...props }) {
     actions,
     initialValues
   ) => {
-    setLoading(true);
+    setSearcherLoading(true);
     const optionsUsers = {
       method: "GET",
       headers: {
@@ -85,6 +87,7 @@ export default function RegistrationForm({ children, ...props }) {
         email: data.email,
       });
 
+      setSearcherLoading(false);
       setstatusDisabled(true);
     } else {
       actions.setFieldValue({
@@ -99,10 +102,12 @@ export default function RegistrationForm({ children, ...props }) {
       actions.setFieldValue("first_name", initialValues.first_name);
       actions.setFieldValue("last_name", initialValues.last_name);
       actions.setFieldValue("email", initialValues.email);
+      setSearcherLoading(false);
     }
 
     if (userData.status == 404) {
       setstatusDisabled(false);
+      setSearcherLoading(false);
     }
   };
 
@@ -125,21 +130,24 @@ export default function RegistrationForm({ children, ...props }) {
       body: JSONdata,
     };
 
-    setLoading(true);
-
     const data = await UseFetch("registrations", options);
 
     // If response returns error 401, redirect to login
     if (data.status === 404) {
       setErrorMessage("Usuario no encontrado");
       setError(true);
+      setLoading(false);
+
       // setFetchData(null);
       return;
     }
 
     if (data.status === 401) {
-      setErrorMessage("Usuario no autorizado");
+      setErrorMessage(
+        "Usuario no autorizado, favor de verificar que los datos sean correctos"
+      );
       setError(true);
+      setLoading(false);
       // setFetchData(null);
       return;
     }
@@ -147,6 +155,7 @@ export default function RegistrationForm({ children, ...props }) {
     if (data.status === 409) {
       setErrorMessage("Usuario ya registrado");
       setError(true);
+      setLoading(false);
       // setFetchData(null);
       return;
     }
@@ -185,8 +194,15 @@ export default function RegistrationForm({ children, ...props }) {
     last_name: Yup.string().required("Campo requerido"),
     email: Yup.string().email("Correo inválido").required("Campo requerido"),
     date_of_birth: Yup.string().required("Campo requerido"),
-    height: Yup.string().required("Campo requerido"),
-    weight: Yup.string().required("Campo requerido"),
+    height: Yup.string()
+      .matches(
+        /^[\d]*$/,
+        "No se permiten letras o caracteres especiales ( . , : ; )"
+      )
+      .required("Campo requerido"),
+    weight: Yup.string()
+      .matches(/^[^abc]*$/, "No se permiten letras")
+      .required("Campo requerido"),
     company_name: Yup.string().required("Campo requerido"),
     kiloton_reason: Yup.string().required("Campo requerido"),
   });
@@ -242,7 +258,12 @@ export default function RegistrationForm({ children, ...props }) {
             </div>
             <hr className="mb-5" />
             <div className="row">
-              <div className="col-12 col-md-6">
+              <div
+                className={`${styles.searcherLoaderContainer} col-12 col-md-6`}
+              >
+                {searcherLoading && (
+                  <Loader className={styles.searcherLoader} />
+                )}
                 <MaterialField
                   className={`mb-4 ${styles.inputText}`}
                   name="employee_id"
@@ -324,8 +345,15 @@ export default function RegistrationForm({ children, ...props }) {
                   className={`mb-4 ${styles.inputText}`}
                   name="height"
                   type="text"
-                  label="Altura"
+                  label="Altura (cm)"
                   placeholder="En centímetros"
+                  maxlength="3"
+                  onKeyUp={(e) => {
+                    formik.setFieldValue(
+                      "height",
+                      replaceSpecialCharacters(e.target.value)
+                    );
+                  }}
                 />
               </div>
               <div className="col-12 col-md-6">
@@ -333,8 +361,9 @@ export default function RegistrationForm({ children, ...props }) {
                   className={`mb-4 ${styles.inputText}`}
                   name="weight"
                   type="text"
-                  label="Peso"
+                  label="Peso (kg)"
                   placeholder="En kilogramos"
+                  maxlength="6"
                 />
               </div>
               <div className="col-12 col-md-6">
@@ -350,7 +379,6 @@ export default function RegistrationForm({ children, ...props }) {
                   <div
                     className={`${styles.messageErrorContainer} border border-danger`}
                   >
-                    <span className={styles.spanError}>Error</span>
                     <b className={styles.spanError}>{errorMessage}</b>
                   </div>
                 </div>
@@ -360,11 +388,15 @@ export default function RegistrationForm({ children, ...props }) {
               <div className="col-12 d-flex justify-content-center">
                 <Button
                   as="button"
-                  variant="primary"
+                  variant={loading ? "secondary" : "primary"}
                   type="submit"
-                  disabled={formik.isSubmitting}
+                  disabled={formik.isSubmitting || loading}
                 >
-                  Unirme al kilotón
+                  {loading && <Loader />}
+                  {loading && (
+                    <span className="px-2">Enviando información...</span>
+                  )}
+                  {!loading && "Unirme al kilotón"}
                 </Button>
               </div>
             </div>

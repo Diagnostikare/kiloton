@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./RegistrationForm.module.scss";
 import componentData from "./registrationForm.json";
 import MaterialField from "../form/MaterialField/MaterialField";
@@ -59,6 +59,10 @@ export default function RegistrationForm({ children, ...props }) {
         handleSubmitCheckEmployeeId(values, actions, initialValues);
       }
     }, 0);
+  };
+
+  const handleOnChangeError = (e) => {
+    setError(false);
   };
 
   const handleSubmitCheckEmployeeId = async (
@@ -137,45 +141,52 @@ export default function RegistrationForm({ children, ...props }) {
 
     // If response returns error 401, redirect to login
     if (data.status === 404) {
+      actions.setSubmitting(false);
       setErrorMessage("Usuario no encontrado");
       setError(true);
       setLoading(false);
-
-      // setFetchData(null);
+      setSuccess(false);
+      setFetchData(null);
       return;
     }
 
     if (data.status === 401) {
+      actions.setSubmitting(false);
       setErrorMessage(
         "Usuario no autorizado, favor de verificar que los datos sean correctos"
       );
       setError(true);
       setLoading(false);
-      // setFetchData(null);
+      setSuccess(false);
+      setFetchData(null);
       return;
     }
 
     if (data.status === 409) {
+      actions.setSubmitting(false);
       setErrorMessage("Usuario ya registrado");
       setError(true);
       setLoading(false);
-      // setFetchData(null);
+      setSuccess(false);
+      setFetchData(null);
       return;
     }
 
     // If response is not ok, show error
     if (data.status !== 200 && data.status !== 201) {
+      actions.setSubmitting(false);
       setFetchData(null);
       setError(true);
       setLoading(false);
+      setSuccess(false);
       return;
     }
 
     // if response is ok, update lead data
+    actions.setSubmitting(false);
     setFetchData(data.data.lead);
     setError(false);
     setLoading(false);
-    actions.setSubmitting(false);
     setSuccess(true);
   };
 
@@ -282,6 +293,7 @@ export default function RegistrationForm({ children, ...props }) {
                   }}
                   onChange={(e) => {
                     formik.handleChange(e);
+                    handleOnChangeError();
                   }}
                 />
               </div>
@@ -292,9 +304,6 @@ export default function RegistrationForm({ children, ...props }) {
                   type="text"
                   as="select"
                   label="Unidad de Negocio a la que perteneces"
-                  onChange={(e) => {
-                    formik.handleChange(e);
-                  }}
                 >
                   {_renderCompanyOptions(componentData.companyOptions)}
                 </MaterialField>
@@ -342,6 +351,10 @@ export default function RegistrationForm({ children, ...props }) {
                   max="2005-01-01"
                   label="Fecha de nacimiento"
                   placeholder="DD/MM/AAAA"
+                  onChange={(e) => {
+                    formik.handleChange(e);
+                    handleOnChangeError();
+                  }}
                 />
               </div>
             </div>
@@ -354,7 +367,7 @@ export default function RegistrationForm({ children, ...props }) {
                   type="text"
                   label="Altura (cm)"
                   placeholder="En centímetros"
-                  maxlength="3"
+                  maxLength={3}
                   onKeyUp={(e) => {
                     formik.setFieldValue(
                       "height",
@@ -370,7 +383,7 @@ export default function RegistrationForm({ children, ...props }) {
                   type="text"
                   label="Peso (kg)"
                   placeholder="En kilogramos"
-                  maxlength="6"
+                  maxLength={6}
                 />
               </div>
               <div className="col-12 col-md-6">

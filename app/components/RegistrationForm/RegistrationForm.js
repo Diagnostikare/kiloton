@@ -76,9 +76,11 @@ export default function RegistrationForm({ children, ...props }) {
     const userData = await UseFetchGetUser(optionsUsers, values.employee_id);
     const { data } = userData;
     if (
-      userData.status === 302 ||
-      userData.status === 201 ||
-      userData.status === 200
+      (userData.status === 302 ||
+        userData.status === 201 ||
+        userData.status === 200) &&
+      data.first_name &&
+      data.last_name
     ) {
       actions.setValues({
         ...values,
@@ -103,6 +105,7 @@ export default function RegistrationForm({ children, ...props }) {
       actions.setFieldValue("last_name", initialValues.last_name);
       actions.setFieldValue("email", initialValues.email);
       setSearcherLoading(false);
+      setstatusDisabled(false);
     }
 
     if (userData.status == 404) {
@@ -190,8 +193,12 @@ export default function RegistrationForm({ children, ...props }) {
 
   const validationSchema = Yup.object({
     employee_id: Yup.string().required("Campo requerido"),
-    first_name: Yup.string().required("Campo requerido"),
-    last_name: Yup.string().required("Campo requerido"),
+    first_name: Yup.string("La información no es válida").required(
+      "Campo requerido"
+    ),
+    last_name: Yup.string("La información no es válida").required(
+      "Campo requerido"
+    ),
     email: Yup.string().email("Correo inválido").required("Campo requerido"),
     date_of_birth: Yup.string().required("Campo requerido"),
     height: Yup.string()

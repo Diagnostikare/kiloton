@@ -15,6 +15,10 @@ export default function Footer(props) {
       </li>
     ));
 
+    let today = new Date();
+    let year = today.getFullYear();
+
+
   return (
     <footer id="footer" className={styles.footer} {...props}>
       <div className="container">
@@ -63,6 +67,25 @@ export default function Footer(props) {
                 alt="kilotón"
               />
             </div>
+          </div>
+        </div>
+        <div className="row mt-5">
+          <div className={`${styles.footerText} col-12`}>
+            <small>
+            Diagnostikare © {year}. 
+            </small>
+            <br></br>
+            <small>
+            Diagnostikare es una marca registrada
+            propiedad de Servicios Clínicos Inteligentes DXKARE, S.A.P.I. de
+            C.V. 
+            </small>
+            <br></br>
+            <small>
+            El programa kilotón Total y la plataforma Salud GS son
+            propiedad de Grupo Salinas y empresas afiliadas, para uso exclusivo
+            de sus respectivos colaboradores.
+            </small>
           </div>
         </div>
       </div>

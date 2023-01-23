@@ -35,6 +35,13 @@
   }
 }
 
+.footerText{
+  color: #fff;
+  opacity: .6;
+  font-size: smaller;
+  line-height: 1.2rem;
+}
+
 @media (min-width: 769px) {
   .footerLogos {
     flex-direction: column;
@@ -42,3 +49,4 @@
     margin-bottom: 0;
   }
 }
+

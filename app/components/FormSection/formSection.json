@@ -1,0 +1,16 @@
+{
+  "copies": [
+    {
+      "title": "¡Participa y gana salud!",
+      "content": " Al unirte al kilotón obtienes grandes beneficios para cuidar tu salud y recibes recompensas por hacerlo."
+    },
+    {
+      "title": "¡Contesta tukilotest!",
+      "content": "Con la información que nos proporciones podremos darte dietas, rutinas y tips personalizados para que alcances tu meta."
+    },
+    {
+      "title": "¡Aquí tienes tus resultados!",
+      "content": "Con base en tus respuestas te informamos..."
+    }
+  ]
+}

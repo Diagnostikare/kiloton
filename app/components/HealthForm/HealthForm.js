@@ -1,7 +1,6 @@
-"use client";
 import React, { useState } from "react";
-import styles from "./RegistrationForm.module.scss";
-import componentData from "./registrationForm.json";
+import styles from "./HealthForm.module.scss";
+import componentData from "./HealthForm.json";
 import MaterialField from "../form/MaterialField/MaterialField";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -14,7 +13,7 @@ import Chart from "../Chart/Chart";
 import { formatDate, replaceSpecialCharacters } from "../../common/helpers";
 import Loader from "../Loader/Loader";
 
-export default function RegistrationForm({ children, ...props }) {
+export default function HealthForm({ children, ...props }) {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);

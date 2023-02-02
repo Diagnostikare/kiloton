@@ -29,6 +29,7 @@
   background-color: transparent;
   border: 1px solid #9b959f;
   border-radius: 4px;
+  color: white;
 
   &:disabled {
     border-color: rgba(255, 255, 255, 0.05);
@@ -96,6 +97,7 @@
   width: 100%;
   padding-bottom: 6px;
   font-size: 14px;
+  color: white;
 }
 
 .tooltip {

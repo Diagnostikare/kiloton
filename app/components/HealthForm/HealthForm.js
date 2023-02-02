@@ -129,6 +129,36 @@ export default function HealthForm({ children, ...props }) {
       }
     }
 
+    if (data.status === 500) {
+      if (data.data.message === "Waist image no puede ser mayor a 10MB") {
+        actions.setFieldError(
+          "waist_image",
+          "La imagen no puede ser mayor a 10MB"
+        );
+      }
+
+      if (data.data.message === "Weight image no puede ser mayor a 10MB") {
+        actions.setFieldError(
+          "weight_image",
+          "La imagen no puede ser mayor a 10MB"
+        );
+      }
+
+      if (
+        data.data.message ===
+        "Weight image no puede ser mayor a 10MB y Waist image no puede ser mayor a 10MB"
+      ) {
+        actions.setFieldError(
+          "waist_image",
+          "La imagen no puede ser mayor a 10MB"
+        );
+        actions.setFieldError(
+          "weight_image",
+          "La imagen no puede ser mayor a 10MB"
+        );
+      }
+    }
+
     setLoading(false);
     actions.setSubmitting(false);
   };

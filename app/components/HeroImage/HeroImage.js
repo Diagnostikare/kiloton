@@ -4,7 +4,7 @@ import styles from "./HeroImage.module.scss";
 import Button from "../Button/Button";
 import Image from "next/image";
 import { scrollToElement } from "../../common/helpers";
-import UserValidationModal from "../userValidationModal/userValidationModal";
+import UserValidationModal from "../UserValidationModal/UserValidationModal";
 import Context from "../../context/context";
 
 export default function HeroImage(props) {

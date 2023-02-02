@@ -238,7 +238,7 @@ export default function RegistrationForm({ children, ...props }) {
           alt="Registro completado"
         />
         <div className={styles.testButton}>
-          <span>Responde tu kilotest para completar tu registro.</span>
+          <span className={styles.spanText}>Responde tu kilotest para completar tu registro.</span>
           <Button
             variant="primary"
             className={styles.messageButton}

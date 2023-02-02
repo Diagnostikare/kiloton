@@ -55,7 +55,7 @@ export default function UserValidationModal(props) {
         {(formik) => (
           <Form onSubmit={formik.handleSubmit}>
             <div className={modalStyles.header}>
-              <h3>Ya soy parte de kilotón</h3>
+              <h3>Ya soy parte del kilotón</h3>
             </div>
             <div className={modalStyles.body}>
               <div className="row">

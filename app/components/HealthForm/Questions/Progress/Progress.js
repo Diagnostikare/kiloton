@@ -4,7 +4,6 @@ import { useFormikContext, useField } from "formik";
 
 export default function Progress() {
   const { setFieldValue } = useFormikContext();
-
   return (
     <>
       <div className="row">
@@ -29,6 +28,7 @@ export default function Progress() {
         <div className="col-12 col-md-6">
           <MaterialField
             name="data.weight"
+            className={styles.inputText}
             label="Peso al día de hoy (kg)"
             type="text"
           />
@@ -50,6 +50,7 @@ export default function Progress() {
         <div className="col-12 col-md-6">
           <MaterialField
             name="data.waist_centimeters"
+            className={styles.inputText}
             label="Circunferencia de cintura (cm)"
             type="text"
           />

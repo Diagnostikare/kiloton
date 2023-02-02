@@ -1,4 +1,5 @@
 import MaterialField from "../../../form/MaterialField/MaterialField";
+import FileField from "../../../form/FileField/FileField";
 import styles from "./Progress.module.scss";
 import { useFormikContext, useField } from "formik";
 
@@ -39,18 +40,15 @@ export default function Progress() {
           />
         </div>
         <div className="col-12 col-md-6">
-          <MaterialField
+          <FileField
             name="weight_image"
             label="Sube una imagen de cuerpo entero"
             type="file"
-            value={getFieldValue("weight_image")}
-            accept=".jpg, .jpeg, .png"
             helper="jpeg, jpg, png, máximo 10MB"
-            // save image in formik
-            onChange={(e) => {
-              console.log(e.currentTarget.files[0]);
-              setFieldValue("weight_image", e.currentTarget.files[0]);
-            }}
+            placeholder="Selecciona una imagen"
+            onChange={(e) =>
+              setFieldValue("weight_image", e.currentTarget.files[0])
+            }
           />
         </div>
         <div className="col-12 col-md-6">
@@ -61,17 +59,15 @@ export default function Progress() {
           />
         </div>
         <div className="col-12 col-md-6">
-          <MaterialField
+          <FileField
             name="waist_image"
             label="Sube foto de la báscula o ticket de tu peso"
             type="file"
-            value={getFieldValue("waist_image")}
-            accept=".jpg, .jpeg, .png"
             helper="jpeg, jpg, png, máximo 10MB"
-            onChange={(e) => {
-              console.log(e.currentTarget.files[0]);
-              setFieldValue("waist_image", e.currentTarget.files[0]);
-            }}
+            placeholder="Selecciona una imagen"
+            onChange={(e) =>
+              setFieldValue("waist_image", e.currentTarget.files[0])
+            }
           />
         </div>
       </div>

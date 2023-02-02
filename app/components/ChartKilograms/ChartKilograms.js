@@ -25,7 +25,6 @@ export default function ChartKilograms({ height, weight }) {
         const initialAverage = (weight * 0) / 100;
         const finalAverage = (weight * 3) / 100;
         const average = (initialAverage + finalAverage) / 2;
-        console.log(initialAverage, finalAverage, average);
         setKilogramsToLose(average.toFixed(2));
       } else if (BMI >= 25 && BMI < 30) {
         // Average

@@ -120,10 +120,7 @@ export default function HealthForm({ children, ...props }) {
     // PUT request
     const data = await UseFetch(`/leads/${user.employee_id}`, options);
 
-    console.log("FORMIK", values);
-    console.log("RES", data);
     if (data.status === 200) {
-      console.log(step, dataHealth.questions.length);
       if (step < dataHealth.questions.length - 1) {
         setStep(step + 1);
       }

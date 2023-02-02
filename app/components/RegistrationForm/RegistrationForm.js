@@ -180,7 +180,6 @@ export default function RegistrationForm({ children, ...props }) {
     }
 
     // if response is ok, update lead data
-    console.log("LEAD", data.data.lead.data);
     actions.setSubmitting(false);
     setUser({ ...user, ...data.data.lead.data });
     setError(false);

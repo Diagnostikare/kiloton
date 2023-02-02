@@ -7,20 +7,23 @@ import styles from "./Modal.module.scss";
 
 export default function Modal({ show, children }) {
   const [isShow, setShow] = useState(false);
+  const [isMounted, setMounted] = useState(false);
 
   useEffect(() => {
-    let isMounted = true;
+    let mounted = true;
 
-    if (isMounted) {
+    if (mounted) {
       setShow(show);
+      setMounted(true);
     }
 
     return () => {
-      isMounted = false;
+      mounted = false;
+      setMounted(false);
     };
   }, [show]);
 
-  if (!isShow) return null;
+  if (!isMounted) return null;
 
   return (
     <>

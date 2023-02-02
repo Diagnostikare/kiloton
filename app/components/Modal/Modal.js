@@ -1,29 +1,19 @@
 "use client";
-import { Formik } from "formik";
 import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
-import MaterialField from "../form/MaterialField/MaterialField";
 import styles from "./Modal.module.scss";
 
 export default function Modal({ show, children }) {
   const [isShow, setShow] = useState(false);
-  const [isMounted, setMounted] = useState(false);
 
   useEffect(() => {
-    let mounted = true;
+    let isMounted = true;
 
-    if (mounted) {
+    if (isMounted) {
       setShow(show);
-      setMounted(true);
     }
-
-    return () => {
-      mounted = false;
-      setMounted(false);
-    };
   }, [show]);
 
-  if (!isMounted) return null;
+  if (!show) return null;
 
   return (
     <>

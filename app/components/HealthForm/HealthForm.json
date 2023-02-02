@@ -1,159 +1,323 @@
 {
-  "reasonOptions": [
+  "questions": [
     {
-      "label": "perder peso",
-      "value": "1",
-      "defaultIcon": "/assets/icons/landing/form/option-1-icon-default.svg",
-      "selectedIcon": "/assets/icons/landing/form/option-1-icon-selected.svg",
-      "color": "#30E8F4"
+      "type": "registration"
     },
     {
-      "label": "bajar talla",
-      "value": "2",
-      "defaultIcon": "/assets/icons/landing/form/option-2-icon-default.svg",
-      "selectedIcon": "/assets/icons/landing/form/option-2-icon-selected.svg",
-      "color": "#A968EA"
+      "type": "info",
+      "title": "Antes de comenzar, ten a la mano:"
     },
     {
-      "label": "más energía",
-      "value": "3",
-      "defaultIcon": "/assets/icons/landing/form/option-3-icon-default.svg",
-      "selectedIcon": "/assets/icons/landing/form/option-3-icon-selected.svg",
-      "color": "#FF9744"
+      "type": "fields",
+      "title": "Queremos conocer tus hábitos",
+      "question": "Esta información nos ayudará a evaluar tu progreso",
+      "fields": [
+        {
+          "label": "Peso al día de hoy",
+          "type": "text",
+          "right": "kg",
+          "placeholder": "00",
+          "required": "true",
+          "validation": {
+            "type": "number",
+            "min": 0,
+            "max": 300
+          },
+          "error": "Ingresa un número válido",
+          "name": "data.weight",
+          "value": ""
+        }
+      ]
     },
     {
-      "label": "hábitos saludables",
-      "value": "4",
-      "defaultIcon": "/assets/icons/landing/form/option-4-icon-default.svg",
-      "selectedIcon": "/assets/icons/landing/form/option-4-icon-selected.svg",
-      "color": "#C8FB66"
-    }
-  ],
-  "companyOptions": [
-    {
-      "label": "Selecciona una opción",
-      "value": "0",
-      "color": "#"
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Sexo al nacimiento?",
+      "answers": [
+        {
+          "label": "Femenino",
+          "name": "data.sex",
+          "value": "female"
+        },
+        {
+          "label": "Masculino",
+          "name": "data.sex",
+          "value": "male"
+        }
+      ]
     },
     {
-      "label": "Agencia I",
-      "value": "Agencia I",
-      "color": "#"
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Haces ejercicio?",
+      "answers": [
+        {
+          "label": "No realizo actividad física",
+          "name": "data.questions.exercise_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "Menos de 1 hora por semana",
+          "name": "data.questions.exercise_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "1 a 2 horas por semana",
+          "name": "data.questions.exercise_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "3 a 5 horas por semana",
+          "name": "data.questions.exercise_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "Más de 6 horas por semana",
+          "name": "data.questions.exercise_answer_id",
+          "value": "5"
+        },
+        {
+          "label": "Soy atleta",
+          "name": "data.questions.exercise_answer_id",
+          "value": "6"
+        }
+      ]
     },
     {
-      "label": "Italika",
-      "value": "Italika",
-      "color": "#"
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Fumas?",
+      "answers": [
+        {
+          "label": "No fumo",
+          "name": "data.questions.smoke_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "Ex fumador",
+          "name": "data.questions.smoke_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "Ocasionalmente",
+          "name": "data.questions.smoke_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "Fumador pasivo",
+          "name": "data.questions.smoke_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "Suspendido recientemente",
+          "name": "data.questions.smoke_answer_id",
+          "value": "5"
+        },
+        {
+          "label": "Algunos cigarrillos al día",
+          "name": "data.questions.smoke_answer_id",
+          "value": "6"
+        },
+        {
+          "label": "Menos de 1 cajetilla al día",
+          "name": "data.questions.smoke_answer_id",
+          "value": "7"
+        },
+        {
+          "label": "Más de 1 cajetilla al día",
+          "name": "data.questions.smoke_answer_id",
+          "value": "8"
+        }
+      ]
     },
     {
-      "label": "ITK ENSAMBLIKA",
-      "value": "ITK ENSAMBLIKA",
-      "color": "#"
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Cuántas horas duermes en promedio cada noche?",
+      "answers": [
+        {
+          "label": "6 o menos horas",
+          "name": "data.questions.avrg_sleep_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "de 7 a 8 horas",
+          "name": "data.questions.avrg_sleep_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "9 o más horas",
+          "name": "data.questions.avrg_sleep_answer_id",
+          "value": "3"
+        }
+      ]
     },
     {
-      "label": "Presta prenda",
-      "value": "Presta prenda",
-      "color": "#"
+      "type": "mosaic",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Cuánta agua bebes en promedio por día?",
+      "answers": [
+        {
+          "icon": "/assets/icons/landing/health-form/soda-1-icon.svg",
+          "label": "Menos de 1 litro por día",
+          "name": "data.questions.water_intake_answer_id",
+          "value": "1"
+        },
+        {
+          "icon": "/assets/icons/landing/health-form/soda-2-icon.svg",
+          "label": "1 a 1.5 litros por día",
+          "name": "data.questions.water_intake_answer_id",
+          "value": "2"
+        },
+        {
+          "icon": "/assets/icons/landing/health-form/soda-3-icon.svg",
+          "label": "1.5 a 2.5 litros por día",
+          "name": "data.questions.water_intake_answer_id",
+          "value": "3"
+        },
+        {
+          "icon": "/assets/icons/landing/health-form/soda-4-icon.svg",
+          "label": "Más de 2.5 litros al día",
+          "name": "data.questions.water_intake_answer_id",
+          "value": "4"
+        }
+      ]
     },
     {
-      "label": "Promo espacio",
-      "value": "Promo espacio",
-      "color": "#"
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Bebes alcohol?",
+      "answers": [
+        {
+          "label": "No tomo",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "Ya no tomo",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "Ocasionalmente",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "Todos los fines de semana",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "1 a 2 copas diarias",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "5"
+        },
+        {
+          "label": "3 o más copas diario",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "6"
+        }
+      ]
     },
     {
-      "label": "Punto Casa de Bolsa",
-      "value": "Punto Casa de Bolsa",
-      "color": "#"
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "En las últimas 2 semanas, ¿Qué tan satisfecho te has sentido contigo mismo?",
+      "answers": [
+        {
+          "label": "😞",
+          "name": "data.questions.self_eval_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "😣",
+          "name": "data.questions.self_eval_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "😕",
+          "name": "data.questions.self_eval_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "😊",
+          "name": "data.questions.self_eval_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "🤩",
+          "name": "data.questions.self_eval_answer_id",
+          "value": "5"
+        }
+      ]
     },
     {
-      "label": "Totalplay",
-      "value": "Totalplay",
-      "color": "#"
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Te sientes con mal estado de salud o sin energía?",
+      "answers": [
+        {
+          "label": "Nunca",
+          "name": "data.questions.health_state_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "A veces",
+          "name": "data.questions.health_state_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "Muy seguido",
+          "name": "data.questions.health_state_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "VegeCasi siempre",
+          "name": "data.questions.health_state_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "Siempre",
+          "name": "data.questions.health_state_answer_id",
+          "value": "5"
+        }
+      ]
     },
     {
-      "label": "TV Azteca",
-      "value": "TV Azteca",
-      "color": "#"
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Qué tipo de alimentación sigues?",
+      "answers": [
+        {
+          "label": "Sin restricciones de alimentos ",
+          "name": "data.questions.nourish_type_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "Sin lácteos",
+          "name": "data.questions.nourish_type_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "Antiinflamatoria",
+          "name": "data.questions.nourish_type_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "Vegetariana o vegana ",
+          "name": "data.questions.nourish_type_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "Baja en carbohidratos/Alta en proteína",
+          "name": "data.questions.nourish_type_answer_id",
+          "value": "5"
+        }
+      ]
     },
     {
-      "label": "Otros TVA",
-      "value": "Otros TVA",
-      "color": "#"
-    },
-    {
-      "label": "UPAX",
-      "value": "UPAX",
-      "color": "#"
-    },
-    {
-      "label": "BOFF y Despachos GS",
-      "value": "BOFF y Despachos GS",
-      "color": "#"
-    },
-    {
-      "label": "Despachos LAM",
-      "value": "Despachos LAM",
-      "color": "#"
-    },
-    {
-      "label": "Elektra marca",
-      "value": "Elektra marca",
-      "color": "#"
-    },
-    {
-      "label": "Red de Suministro",
-      "value": "Red de Suministro",
-      "color": "#"
-    },
-    {
-      "label": "Dragón",
-      "value": "Dragón",
-      "color": "#"
-    },
-    {
-      "label": "Neto",
-      "value": "Neto",
-      "color": "#"
-    },
-    {
-      "label": "Otros EKT",
-      "value": "Otros EKT",
-      "color": "#"
-    },
-    {
-      "label": "Red única",
-      "value": "Red única",
-      "color": "#"
-    },
-    {
-      "label": "BAZ Corporativo",
-      "value": "BAZ Corporativo",
-      "color": "#"
-    },
-    {
-      "label": "BAZ CyC",
-      "value": "BAZ CyC",
-      "color": "#"
-    },
-    {
-      "label": "Super App",
-      "value": "Super App",
-      "color": "#"
-    },
-    {
-      "label": "Afore y Seguros",
-      "value": "Afore y Seguros",
-      "color": "#"
-    },
-    {
-      "label": "BIG",
-      "value": "BIG",
-      "color": "#"
-    },
-    {
-      "label": "Red Digitial",
-      "value": "Red Digitial",
-      "color": "#"
+      "type": "results"
     }
   ]
 }

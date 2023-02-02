@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./RegistrationForm.module.scss";
 import componentData from "./registrationForm.json";
 import MaterialField from "../form/MaterialField/MaterialField";
@@ -10,11 +10,13 @@ import UseFetch from "../../api/UseFetch";
 import IconRadio from "../form/IconRadio/IconRadio";
 import UseFetchGetUser from "../../api/useFetchGetUser";
 import Image from "next/image";
-import Chart from "../Chart/Chart";
+import ChartBMI from "../ChartBMI/ChartBMI";
 import { formatDate, replaceSpecialCharacters } from "../../common/helpers";
 import Loader from "../Loader/Loader";
+import Context from "../../context/context";
 
 export default function RegistrationForm({ children, ...props }) {
+  const { setStep } = useContext(Context);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -235,6 +237,18 @@ export default function RegistrationForm({ children, ...props }) {
           height={2000}
           alt="Registro completado"
         />
+        <div className={styles.testButton}>
+          <span>Responde tu kilotest para completar tu registro.</span>
+          <Button
+            variant="primary"
+            className={styles.messageButton}
+            onClick={() => {
+              setStep(1);
+            }}
+          >
+            Entra aquí
+          </Button>
+        </div>
       </div>
     );
   }
@@ -387,7 +401,7 @@ export default function RegistrationForm({ children, ...props }) {
                 />
               </div>
               <div className="col-12 col-md-6">
-                <Chart
+                <ChartBMI
                   height={formik.values.height}
                   weight={formik.values.weight}
                 />

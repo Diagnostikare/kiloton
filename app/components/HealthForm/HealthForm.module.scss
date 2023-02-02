@@ -12,6 +12,13 @@
   color: white;
 }
 
+.container {
+  display: flex;
+  flex: 1;
+  min-height: 100%;
+  flex-direction: column;
+}
+
 .formTitle {
   font-size: 20px;
   text-align: center;
@@ -93,6 +100,20 @@
 .error {
   border-radius: 8px;
   box-shadow: 0 0 0 1px var(--error-color);
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: auto;
+  margin-bottom: 0;
+  gap: 3rem;
+
+  button {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 // #option{

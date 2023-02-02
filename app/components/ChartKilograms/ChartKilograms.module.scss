@@ -1,0 +1,24 @@
+.chart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+.square {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 95px;
+  height: 64px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 20px;
+  color: white;
+  border: 3px solid var(--primary-color);
+}
+
+.content {
+  font-weight: 500;
+  font-size: 16px;
+}

@@ -1,228 +1,137 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./HealthForm.module.scss";
-import componentData from "./HealthForm.json";
-import MaterialField from "../form/MaterialField/MaterialField";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Button from "../Button/Button";
 import UseFetch from "../../api/UseFetch";
-import IconRadio from "../form/IconRadio/IconRadio";
-import UseFetchGetUser from "../../api/useFetchGetUser";
 import Image from "next/image";
-import Chart from "../Chart/Chart";
-import { formatDate, replaceSpecialCharacters } from "../../common/helpers";
 import Loader from "../Loader/Loader";
+import Instructions from "./Questions/Instructions/Instructions";
+import Context from "../../context/context";
+import Progress from "./Questions/Progress/Progress";
+import Multiple from "./Questions/Multiple/Multiple";
+import dataHealth from "./HealthForm.json";
+import { validationSchema } from "./HealthFormValidations";
+import Mosaic from "./Questions/Mosaic/Mosaic";
+import Results from "./Questions/Results/Results";
 
 export default function HealthForm({ children, ...props }) {
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const { user, setUser, step, setStep } = useContext(Context);
   const [loading, setLoading] = useState(false);
-  const [searcherLoading, setSearcherLoading] = useState(false);
-  const [fetchData, setFetchData] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [statusDisabled, setstatusDisabled] = useState(false);
-
-  const _renderCompanyOptions = (options) =>
-    options.map((option, index) =>
-      option.value == "0" ? (
-        <option key={index} className={`${styles.optionSelect}`} default>
-          {option.label}
-        </option>
-      ) : (
-        <option
-          key={index}
-          value={option.value}
-          className={`${styles.optionSelect}`}
-        >
-          {option.label}
-        </option>
-      )
-    );
-
-  const _renderReasonOptions = (options) =>
-    options.map((option, index) => (
-      <IconRadio
-        key={index}
-        name="kiloton_reason"
-        label={option.label}
-        value={option.value}
-        defaultIcon={option.defaultIcon}
-        selectedIcon={option.selectedIcon}
-        color={option.color}
-      />
-    ));
-
-  const handleChangeID = (values, actions, initialValues) => {
-    setTimeout(() => {
-      if (values.employee_id.length > 5) {
-        handleSubmitCheckEmployeeId(values, actions, initialValues);
-      }
-    }, 0);
-  };
-
-  const handleOnChangeError = (e) => {
-    setError(false);
-  };
-
-  const handleSubmitCheckEmployeeId = async (
-    values,
-    actions,
-    initialValues
-  ) => {
-    setSearcherLoading(true);
-    const optionsUsers = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const userData = await UseFetchGetUser(optionsUsers, values.employee_id);
-    const { data } = userData;
-    if (
-      (userData.status === 302 ||
-        userData.status === 201 ||
-        userData.status === 200) &&
-      data.first_name &&
-      data.last_name
-    ) {
-      actions.setValues({
-        ...values,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        email: data.email,
-      });
-
-      setSearcherLoading(false);
-      setstatusDisabled(true);
-    } else {
-      actions.setFieldValue({
-        ...values,
-        first_name: "",
-        last_name: "",
-        email: "",
-        kiloton_reason: values.kiloton_reason,
-        employee_id: values.employee_id,
-      });
-
-      actions.setFieldValue("first_name", initialValues.first_name);
-      actions.setFieldValue("last_name", initialValues.last_name);
-      actions.setFieldValue("email", initialValues.email);
-      setSearcherLoading(false);
-      setstatusDisabled(false);
-    }
-
-    if (userData.status == 404) {
-      setstatusDisabled(false);
-      setSearcherLoading(false);
-    }
-  };
-
-  // Revisa el status que sea negativo o respuesta incorrecta para manejar el estado en initial values
-  const handleSubmit = async (values, actions) => {
-    setLoading(true);
-
-    const JSONdata = JSON.stringify({
-      lead: {
-        ...values,
-        date_of_birth: formatDate(values.date_of_birth),
-      },
-    });
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSONdata,
-    };
-
-    const data = await UseFetch("registrations", options);
-
-    // If response returns error 401, redirect to login
-    if (data.status === 404) {
-      actions.setSubmitting(false);
-      setErrorMessage("Usuario no encontrado");
-      setError(true);
-      setLoading(false);
-      setSuccess(false);
-      setFetchData(null);
-      return;
-    }
-
-    if (data.status === 401) {
-      actions.setSubmitting(false);
-      setErrorMessage(
-        "Usuario no autorizado, favor de verificar que los datos sean correctos"
-      );
-      setError(true);
-      setLoading(false);
-      setSuccess(false);
-      setFetchData(null);
-      return;
-    }
-
-    if (data.status === 409) {
-      actions.setSubmitting(false);
-      setErrorMessage("Usuario ya registrado");
-      setError(true);
-      setLoading(false);
-      setSuccess(false);
-      setFetchData(null);
-      return;
-    }
-
-    // If response is not ok, show error
-    if (data.status !== 200 && data.status !== 201) {
-      actions.setSubmitting(false);
-      setFetchData(null);
-      setError(true);
-      setLoading(false);
-      setSuccess(false);
-      return;
-    }
-
-    // if response is ok, update lead data
-    actions.setSubmitting(false);
-    setFetchData(data.data.lead);
-    setError(false);
-    setLoading(false);
-    setSuccess(true);
-  };
 
   const initialValues = {
-    employee_id: "",
-    first_name: "",
-    last_name: "",
-    email: "",
-    date_of_birth: "",
-    height: "",
-    weight: "",
-    company_name: "",
-    kiloton_reason: "",
+    weight_image: null,
+    waist_image: null,
+    data: {
+      sex: "",
+      weight: "",
+      waist_centimeters: "",
+      questions: {
+        exercise_answer_id: "",
+        smoke_answer_id: "",
+        avrg_sleep_answer_id: "",
+        water_intake_answer_id: "",
+        alcohol_intake_answer_id: "",
+        self_eval_answer_id: "",
+        health_state_answer_id: "",
+        nourish_type_answer_id: "",
+      },
+    },
   };
 
-  const validationSchema = Yup.object({
-    employee_id: Yup.string().required("Campo requerido"),
-    first_name: Yup.string("La información no es válida").required(
-      "Campo requerido"
-    ),
-    last_name: Yup.string("La información no es válida").required(
-      "Campo requerido"
-    ),
-    email: Yup.string().email("Correo inválido").required("Campo requerido"),
-    date_of_birth: Yup.string().required("Campo requerido"),
-    height: Yup.string()
-      .matches(
-        /^[\d]*$/,
-        "No se permiten letras o caracteres especiales ( . , : ; )"
-      )
-      .required("Campo requerido"),
-    weight: Yup.number()
-      .typeError("No se permiten letras")
-      .required("Campo requerido"),
-    company_name: Yup.string().required("Campo requerido"),
-    kiloton_reason: Yup.string().required("Campo requerido"),
-  });
+  const _renderQuestion = (step) => {
+    switch (dataHealth.questions[step].type) {
+      case "info":
+        return <Instructions />;
+      case "fields":
+        return <Progress />;
+      case "multiple":
+        return <Multiple data={dataHealth.questions[step]} />;
+      case "mosaic":
+        return <Mosaic data={dataHealth.questions[step]} />;
+      case "results":
+        return <Results />;
+      default:
+        return <Multiple data={dataHealth.questions[step]} />;
+    }
+  };
+
+  const handleSubmit = async (values, actions) => {
+    // Go to next step
+    if (dataHealth.questions[step].type === "info") {
+      setStep(step + 1);
+      actions.setSubmitting(false);
+      return;
+    }
+
+    setLoading(true);
+    actions.setSubmitting(true);
+
+    // Udate user data in context
+    setUser({ ...user, ...values });
+
+    const formData = new FormData();
+    formData.append("lead[weight_image]", values.weight_image);
+    formData.append("lead[waist_image]", values.waist_image);
+    formData.append("lead[data][weight]", values.data.weight);
+    formData.append(
+      "lead[data][waist_centimeters]",
+      values.data.waist_centimeters
+    );
+    formData.append("lead[data][sex]", values.data.sex);
+    formData.append(
+      "lead[data][questions][exercise_answer_id]",
+      values.data.questions.exercise_answer_id
+    );
+    formData.append(
+      "lead[data][questions][smoke_answer_id]",
+      values.data.questions.smoke_answer_id
+    );
+    formData.append(
+      "lead[data][questions][avrg_sleep_answer_id]",
+      values.data.questions.avrg_sleep_answer_id
+    );
+    formData.append(
+      "lead[data][questions][water_intake_answer_id]",
+      values.data.questions.water_intake_answer_id
+    );
+    formData.append(
+      "lead[data][questions][alcohol_intake_answer_id]",
+      values.data.questions.alcohol_intake_answer_id
+    );
+    formData.append(
+      "lead[data][questions][self_eval_answer_id]",
+      values.data.questions.self_eval_answer_id
+    );
+    formData.append(
+      "lead[data][questions][health_state_answer_id]",
+      values.data.questions.health_state_answer_id
+    );
+    formData.append(
+      "lead[data][questions][nourish_type_answer_id]",
+      values.data.questions.nourish_type_answer_id
+    );
+    const options = {
+      method: "PUT",
+      body: formData,
+    };
+
+    // PUT request
+    const data = await UseFetch(`/leads/${user.employee_id}`, options);
+
+    console.log("FORMIK", values);
+    console.log("RES", data);
+    if (data.status === 200) {
+      console.log(step, dataHealth.questions.length);
+      if (step < dataHealth.questions.length - 1) {
+        setStep(step + 1);
+      }
+    }
+
+    setLoading(false);
+    actions.setSubmitting(false);
+  };
 
   if (success) {
     return (
@@ -242,7 +151,7 @@ export default function HealthForm({ children, ...props }) {
     <div className={styles.form}>
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        validationSchema={() => validationSchema(step)}
         onSubmit={handleSubmit}
       >
         {(formik) => (
@@ -251,173 +160,34 @@ export default function HealthForm({ children, ...props }) {
             onSubmit={formik.handleSubmit}
             className="w-100"
           >
-            <div className="row">
-              <div className="col-12 d-flex justify-content-center">
-                <strong className={`${styles.formTitle} mb-4`}>
-                  Elige una razón por la que quieres participar
-                </strong>
-              </div>
-              <div className="col-12">
-                <div className="mb-4">
-                  <div
-                    className={`${
-                      formik.touched?.kiloton_reason &&
-                      formik.errors?.kiloton_reason &&
-                      styles.error
-                    } d-flex justify-content-between py-2`}
-                    role="group"
-                    aria-labelledby="my-radio-group"
+            <div className={styles.container}>
+              {_renderQuestion(step)}
+
+              {dataHealth.questions[step].type !== "results" && (
+                <div className={`${styles.footer}`}>
+                  <Button
+                    as="button"
+                    variant="secondary"
+                    type="button"
+                    onClick={() => setStep(step - 1)}
                   >
-                    {_renderReasonOptions(componentData.reasonOptions)}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr className="mb-5" />
-            <div className="row">
-              <div
-                className={`${styles.searcherLoaderContainer} col-12 col-md-6`}
-              >
-                {searcherLoading && (
-                  <Loader className={styles.searcherLoader} />
-                )}
-                <MaterialField
-                  className={`mb-4 ${styles.inputText}`}
-                  name="employee_id"
-                  type="text"
-                  label="Número de Socio"
-                  placeholder="Escribe tu Número de Socio"
-                  onKeyUp={(e) => {
-                    handleChangeID(formik.values, formik, initialValues);
-                  }}
-                  onChange={(e) => {
-                    formik.handleChange(e);
-                    handleOnChangeError();
-                  }}
-                />
-              </div>
-              <div className="col-12 col-md-6">
-                <MaterialField
-                  className={`mb-4 ${styles.inputText}`}
-                  name="company_name"
-                  type="text"
-                  as="select"
-                  label="Unidad de Negocio a la que perteneces"
-                >
-                  {_renderCompanyOptions(componentData.companyOptions)}
-                </MaterialField>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12 col-md-6">
-                <MaterialField
-                  className={`mb-4 ${styles.inputText}`}
-                  name="first_name"
-                  type="text"
-                  label="Nombre"
-                  placeholder="Escribe tu nombre completo"
-                  disabled={statusDisabled}
-                />
-              </div>
-              <div className="col-12 col-md-6">
-                <MaterialField
-                  className={`mb-4 ${styles.inputText}`}
-                  name="last_name"
-                  type="text"
-                  label="Apellido"
-                  placeholder="Escribe tu apellido completo"
-                  disabled={statusDisabled}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12 col-md-6">
-                <MaterialField
-                  className={`mb-4 ${styles.inputText}`}
-                  name="email"
-                  type="email"
-                  label="Correo electrónico"
-                  placeholder="Escribe tu correo electrónico"
-                  disabled={statusDisabled}
-                />
-              </div>
-              <div className="col-12 col-md-6">
-                {/* Obligatorio y formato date de ruby año 19880927 YYYYMMDD*/}
-                <MaterialField
-                  className={`mb-4 ${styles.inputText}`}
-                  name="date_of_birth"
-                  type="date"
-                  max="2005-01-01"
-                  label="Fecha de nacimiento"
-                  placeholder="DD/MM/AAAA"
-                  onChange={(e) => {
-                    formik.handleChange(e);
-                    handleOnChangeError();
-                  }}
-                />
-              </div>
-            </div>
-            <hr />
-            <div className="row mb-5">
-              <div className="col-12 col-md-6">
-                <MaterialField
-                  className={`mb-4 ${styles.inputText}`}
-                  name="height"
-                  type="text"
-                  label="Altura (cm)"
-                  placeholder="En centímetros"
-                  maxLength={3}
-                  onKeyUp={(e) => {
-                    formik.setFieldValue(
-                      "height",
-                      replaceSpecialCharacters(e.target.value)
-                    );
-                  }}
-                />
-              </div>
-              <div className="col-12 col-md-6">
-                <MaterialField
-                  className={`mb-4 ${styles.inputText}`}
-                  name="weight"
-                  type="text"
-                  label="Peso (kg)"
-                  placeholder="En kilogramos"
-                  maxLength={6}
-                />
-              </div>
-              <div className="col-12 col-md-6">
-                <Chart
-                  height={formik.values.height}
-                  weight={formik.values.weight}
-                />
-              </div>
-            </div>
-            {error && (
-              <div className="row mb-5">
-                <div className="d-flex justify-content-center flex-row">
-                  <div
-                    className={`${styles.messageErrorContainer} border border-danger`}
+                    Atrás
+                  </Button>
+                  <Button
+                    as="button"
+                    variant={loading ? "" : "primary"}
+                    type="submit"
+                    disabled={formik.isSubmitting || loading}
                   >
-                    <b className={styles.spanError}>{errorMessage}</b>
-                  </div>
+                    {loading && <Loader />}
+                    {loading ? (
+                      <span className="px-2">Guardando...</span>
+                    ) : (
+                      "Siguiente"
+                    )}
+                  </Button>
                 </div>
-              </div>
-            )}
-            <div className="row">
-              <div className="col-12 d-flex justify-content-center">
-                <Button
-                  as="button"
-                  variant={loading ? "" : "primary"}
-                  type="submit"
-                  disabled={formik.isSubmitting || loading}
-                >
-                  {loading && <Loader />}
-                  {loading && (
-                    <span className="px-2">Enviando información...</span>
-                  )}
-                  {!loading && "Unirme al kilotón"}
-                </Button>
-              </div>
+              )}
             </div>
           </Form>
         )}

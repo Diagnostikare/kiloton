@@ -27,19 +27,16 @@ export default function Modal({ show, children }) {
 
   return (
     <>
-      {createPortal(
-        <div
-          className={`${styles.modal} ${isShow && styles.show}`}
-          tabIndex="-1"
-          aria-labelledby="modalLabel"
-          aria-hidden="true"
-        >
-          <div className={styles.dialog}>
-            <div className="modal-content">{children}</div>
-          </div>
-        </div>,
-        document.body
-      )}
+      <div
+        className={`${styles.modal} ${isShow && styles.show}`}
+        tabIndex="-1"
+        aria-labelledby="modalLabel"
+        aria-hidden="true"
+      >
+        <div className={styles.dialog}>
+          <div className="modal-content">{children}</div>
+        </div>
+      </div>
     </>
   );
 }

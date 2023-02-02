@@ -20,7 +20,9 @@ export default function Instructions(props) {
           </strong>
         </div>
       </div>
+
       <hr className="mb-5" />
+
       <div className="row">
         <div className="col-12">
           <ul className={styles.list}>

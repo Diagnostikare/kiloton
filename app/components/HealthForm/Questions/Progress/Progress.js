@@ -5,6 +5,11 @@ import { useFormikContext, useField } from "formik";
 export default function Progress() {
   const { setFieldValue } = useFormikContext();
 
+  const getFieldValue = (name) => {
+    const field = useField(name);
+    return field.value;
+  };
+
   return (
     <>
       <div className="row">
@@ -38,7 +43,7 @@ export default function Progress() {
             name="weight_image"
             label="Sube una imagen de cuerpo entero"
             type="file"
-            value={useField("weight_image").value?.name}
+            value={getFieldValue("weight_image")}
             accept=".jpg, .jpeg, .png"
             helper="jpeg, jpg, png, máximo 10MB"
             // save image in formik
@@ -60,7 +65,7 @@ export default function Progress() {
             name="waist_image"
             label="Sube foto de la báscula o ticket de tu peso"
             type="file"
-            value={useField("waist_image").value?.name}
+            value={getFieldValue("waist_image")}
             accept=".jpg, .jpeg, .png"
             helper="jpeg, jpg, png, máximo 10MB"
             onChange={(e) => {

@@ -14,8 +14,6 @@ export default function ChartKilograms({ height, weight }) {
       const calcBMI = (weight / (heightInMeters * heightInMeters)).toFixed(2);
       if (!isNaN(calcBMI)) setBMI(calcBMI);
     }
-
-    return () => (isMounted = false);
   }, [height, weight]);
 
   useEffect(() => {
@@ -53,8 +51,6 @@ export default function ChartKilograms({ height, weight }) {
         setKilogramsToLose(average.toFixed(2));
       }
     }
-
-    return () => (isMounted = false);
   }, [BMI, weight]);
 
   return (

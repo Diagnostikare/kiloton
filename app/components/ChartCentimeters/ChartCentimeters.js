@@ -14,7 +14,6 @@ export default function ChartCentimeters({ sex, waist }) {
         setCentimetersToLose(waist - 90);
       }
     }
-    return () => (isMounted = false);
   }, [sex, waist]);
 
   return (

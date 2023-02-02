@@ -3,7 +3,6 @@ import "swiper/css";
 import styles from "./QuoteCarousel.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
-import { Navigation } from "swiper";
 
 export default function QuoteCarousel({ children, ...props }) {
   const swiperRef = useRef();

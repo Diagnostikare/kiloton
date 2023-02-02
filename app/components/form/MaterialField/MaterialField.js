@@ -27,7 +27,7 @@ const MaterialField = ({
       }
     }
 
-    () => (isMounted = false);
+    return () => (isMounted = false);
   }, [meta, props]);
 
   return (

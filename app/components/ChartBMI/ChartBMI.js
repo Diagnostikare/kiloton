@@ -23,6 +23,8 @@ export default function ChartBMI({ height, weight }) {
       const calcBMI = (weight / (heightInMeters * heightInMeters)).toFixed(2);
       if (!isNaN(calcBMI)) setBMI(calcBMI);
     }
+
+    return () => (isMounted = false);
   }, [height, weight]);
 
   return (

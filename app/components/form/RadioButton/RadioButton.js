@@ -28,8 +28,6 @@ const RadioButton = ({
         setFilled(meta.value.length > 0);
       }
     }
-
-    return () => (isMounted = false);
   }, [meta, props]);
 
   return (

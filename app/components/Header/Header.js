@@ -39,7 +39,6 @@ export default function Header() {
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      isMounted = false;
     };
   }, []);
 

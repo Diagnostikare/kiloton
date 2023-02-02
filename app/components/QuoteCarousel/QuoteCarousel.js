@@ -64,7 +64,6 @@ export default function QuoteCarousel({ children, ...props }) {
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      isMounted = false;
     };
   }, []);
 

@@ -9,9 +9,9 @@ export default function ChartCentimeters({ sex, waist }) {
     let isMounted = true;
     if (isMounted) {
       if (sex === "male") {
-        setCentimetersToLose(waist - 80);
-      } else {
         setCentimetersToLose(waist - 90);
+      } else {
+        setCentimetersToLose(waist - 80);
       }
     }
   }, [sex, waist]);

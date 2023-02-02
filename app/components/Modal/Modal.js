@@ -5,8 +5,6 @@ import { createPortal } from "react-dom";
 import MaterialField from "../form/MaterialField/MaterialField";
 import styles from "./Modal.module.scss";
 
-const modalRoot = document.querySelector(".modal-root");
-
 export default function Modal({ show, children }) {
   const [isShow, setShow] = useState(false);
 
@@ -21,6 +19,8 @@ export default function Modal({ show, children }) {
       isMounted = false;
     };
   }, [show]);
+
+  if (!isShow) return null;
 
   return (
     <>

@@ -12,8 +12,7 @@ import Context from "../../context/context";
 import { scrollToElement } from "../../common/helpers";
 
 export default function UserValidationModal(props) {
-  const { setUser, setStep } = useContext(Context);
-  const { show, setShow } = props;
+  const { setUser, setStep, openLogin, setOpenLogin } = useContext(Context);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (values, actions) => {
@@ -37,12 +36,12 @@ export default function UserValidationModal(props) {
 
     setUser(data.data.data);
     setStep(1);
-    setShow(false);
+    setOpenLogin(false);
     scrollToElement("#registration");
   };
 
   return (
-    <Modal show={show}>
+    <Modal show={openLogin}>
       <Formik
         initialValues={{
           employee_id: "",
@@ -84,7 +83,7 @@ export default function UserValidationModal(props) {
                   "Ingresar"
                 )}
               </Button>
-              <Button onClick={() => setShow(false)}>Cancelar</Button>
+              <Button onClick={() => setOpenLogin(false)}>Cancelar</Button>
             </div>
           </Form>
         )}

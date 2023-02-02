@@ -1,13 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import componentData from "./Header.json";
 import Button from "../Button/Button";
 import Image from "next/image";
 import HeaderMobile from "../HeaderMobile/HeaderMobile";
 import { scrollToElement } from "../../common/helpers";
+import Context from "../../context/context";
 
 export default function Header() {
+  const { setStep, setOpenLogin } = useContext(Context);
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   let windowWidth;
@@ -63,10 +65,25 @@ export default function Header() {
         <ul className={styles.list}>
           {_renderMenuOptions(componentData.menuOptions)}
           <li>
+            <a
+              className={styles.item}
+              href="#registration"
+              onClick={(e) => {
+                e.preventDefault(e);
+                setOpenLogin(true);
+              }}
+            >
+              Ya tengo cuenta
+            </a>
+          </li>
+          <li>
             <Button
               href="#registration"
               variant="primary"
-              onClick={scrollToElement}
+              onClick={(e) => {
+                scrollToElement(e);
+                setStep(0);
+              }}
             >
               Quiero participar
             </Button>

@@ -108,7 +108,7 @@
   justify-content: space-between;
   margin-top: auto;
   margin-bottom: 0;
-  gap: 3rem;
+  gap: 1rem;
 
   button {
     width: 100%;
@@ -116,7 +116,8 @@
   }
 }
 
-// #option{
-//   padding-top: 1rem !important;
-
-// }
+@media (min-width: 729px) {
+  .footer {
+    gap: 3rem;
+  }
+}

@@ -16,12 +16,11 @@ import Loader from "../Loader/Loader";
 import Context from "../../context/context";
 
 export default function RegistrationForm({ children, ...props }) {
-  const { setStep } = useContext(Context);
+  const { user, setUser, setStep } = useContext(Context);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [searcherLoading, setSearcherLoading] = useState(false);
-  const [fetchData, setFetchData] = useState(null);
   const [success, setSuccess] = useState(false);
   const [statusDisabled, setstatusDisabled] = useState(false);
 
@@ -148,7 +147,6 @@ export default function RegistrationForm({ children, ...props }) {
       setError(true);
       setLoading(false);
       setSuccess(false);
-      setFetchData(null);
       return;
     }
 
@@ -160,7 +158,6 @@ export default function RegistrationForm({ children, ...props }) {
       setError(true);
       setLoading(false);
       setSuccess(false);
-      setFetchData(null);
       return;
     }
 
@@ -170,14 +167,12 @@ export default function RegistrationForm({ children, ...props }) {
       setError(true);
       setLoading(false);
       setSuccess(false);
-      setFetchData(null);
       return;
     }
 
     // If response is not ok, show error
     if (data.status !== 200 && data.status !== 201) {
       actions.setSubmitting(false);
-      setFetchData(null);
       setError(true);
       setLoading(false);
       setSuccess(false);
@@ -185,8 +180,9 @@ export default function RegistrationForm({ children, ...props }) {
     }
 
     // if response is ok, update lead data
+    console.log("LEAD", data.data.lead.data);
     actions.setSubmitting(false);
-    setFetchData(data.data.lead);
+    setUser({ ...user, ...data.data.lead.data });
     setError(false);
     setLoading(false);
     setSuccess(true);
@@ -230,6 +226,7 @@ export default function RegistrationForm({ children, ...props }) {
   if (success) {
     return (
       <div className={styles.message}>
+        {JSON.stringify(user)}
         <Image
           className={styles.messageImage}
           src="/assets/images/landing/form/success-message.jpg"

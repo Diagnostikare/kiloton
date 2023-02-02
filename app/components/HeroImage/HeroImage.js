@@ -8,7 +8,7 @@ import UserValidationModal from "../UserValidationModal/UserValidationModal";
 import Context from "../../context/context";
 
 export default function HeroImage(props) {
-  const { setStep } = useContext(Context);
+  const { setStep, setOpenLogin } = useContext(Context);
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -36,29 +36,27 @@ export default function HeroImage(props) {
                 Participas todo el año, acumulas puntos y ganas premios
                 increíbles
               </p>
-              <Button
-                as="button"
-                href="#registration"
-                variant="primary"
-                onClick={(event) => {
-                  scrollToElement(event);
-                  setStep(0);
-                }}
-              >
-                Quiero participar
-              </Button>
-              <Button
-                className={styles.secondaryButton}
-                variant="secondary"
-                onClick={() => setShowModal(true)}
-              >
-                Ya tengo cuenta
-              </Button>
+              <div className={styles.buttons}>
+                <Button
+                  as="button"
+                  href="#registration"
+                  variant="primary"
+                  onClick={(event) => {
+                    scrollToElement(event);
+                    setStep(0);
+                  }}
+                >
+                  Quiero participar
+                </Button>
+                <Button variant="secondary" onClick={() => setOpenLogin(true)}>
+                  Ya tengo cuenta
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      <UserValidationModal show={showModal} setShow={setShowModal} />
+      <UserValidationModal />
     </>
   );
 }

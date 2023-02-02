@@ -13,9 +13,12 @@ const plus = Plus_Jakarta_Sans({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   const [user, setUser] = useState(null);
   const [step, setStep] = useState(0);
+  const [openLogin, setOpenLogin] = useState(false);
 
   return (
-    <Context.Provider value={{ user, setUser, step, setStep }}>
+    <Context.Provider
+      value={{ user, setUser, step, setStep, openLogin, setOpenLogin }}
+    >
       <html>
         <Head />
         <body className={plus.className}>

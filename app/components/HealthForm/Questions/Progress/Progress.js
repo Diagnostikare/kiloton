@@ -40,6 +40,7 @@ export default function Progress() {
             type="file"
             value={useField("weight_image").value?.name}
             accept=".jpg, .jpeg, .png"
+            helper="jpeg, jpg, png, máximo 10MB"
             // save image in formik
             onChange={(e) => {
               console.log(e.currentTarget.files[0]);
@@ -61,6 +62,7 @@ export default function Progress() {
             type="file"
             value={useField("waist_image").value?.name}
             accept=".jpg, .jpeg, .png"
+            helper="jpeg, jpg, png, máximo 10MB"
             onChange={(e) => {
               console.log(e.currentTarget.files[0]);
               setFieldValue("waist_image", e.currentTarget.files[0]);

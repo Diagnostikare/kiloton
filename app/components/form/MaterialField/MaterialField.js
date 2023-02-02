@@ -9,6 +9,7 @@ const MaterialField = ({
   label,
   placeholder,
   tooltip,
+  helper,
   className,
   children,
   validate,
@@ -74,6 +75,7 @@ const MaterialField = ({
         >
           {children && props.as === "select" && children}
         </Field>
+        {helper && <small className={styles.helper}>{helper}</small>}
       </div>
       {/* Errormessage */}
       {meta.touched && meta.error && validate !== false && (

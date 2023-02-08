@@ -1,6 +1,4 @@
 import styles from "./Results.module.scss";
-import dataCopies from "./Instructions.json";
-import Image from "next/image";
 import ChartBMI from "../../../ChartBMI/ChartBMI";
 import ChartCentimeters from "../../../ChartCentimeters/ChartCentimeters";
 import ChartKilograms from "../../../ChartKilograms/ChartKilograms";
@@ -59,7 +57,10 @@ export default function Results(props) {
             Pronto recibirás tu informe completo y las instrucciones para subir
             tu progreso
           </span>
-          <small>¡Mucho éxito en tu objetivo!</small>
+          <small>
+            A partir del [fecha] podrás entrar al kilotón para empezar a obtener
+            puntos.
+          </small>
         </div>
       </div>
     </>

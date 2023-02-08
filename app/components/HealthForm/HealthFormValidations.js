@@ -7,7 +7,9 @@ export const validationSchema = (step) => {
         // Validate image
         // file is a File object
         weight_image: Yup.mixed().required("Requerido"),
-        waist_image: Yup.mixed().required("Requerido"),
+        waist_image:
+          Yup.mixed()
+          .required("Requerido"),
         data: Yup.object({
           weight: Yup.string().required("Requerido"),
           waist_centimeters: Yup.string().required("Requerido"),
@@ -85,5 +87,75 @@ export const validationSchema = (step) => {
       });
     default:
       return Yup.object({});
+  }
+};
+
+export const responseValidationSchema = async (data, step, actions) => {
+  if (data.status === 500) {
+    if (data.data.message === "Weight image no puede ser mayor a 10MB") {
+      actions.setFieldError(
+        "weight_image",
+        "La imagen no puede ser mayor a 10MB"
+      );
+    }
+
+    if (data.data.message === "Waist image no puede ser mayor a 10MB") {
+      actions.setFieldError(
+        "waist_image",
+        "La imagen no puede ser mayor a 10MB"
+      );
+    }
+
+    if (
+      data.data.message ===
+      "Weight image no puede ser mayor a 10MB y Waist image no puede ser mayor a 10MB"
+    ) {
+      actions.setFieldError(
+        "weight_image",
+        "La imagen no puede ser mayor a 10MB"
+      );
+      actions.setFieldError(
+        "waist_image",
+        "La imagen no puede ser mayor a 10MB"
+      );
+    }
+
+    if (data.data.message === "Weight image tiene que ser formato PNG or JPG") {
+      actions.setFieldError("weight_image", "Formato de imagen no válido");
+    }
+
+    if (data.data.message === "Waist image tiene que ser formato PNG or JPG") {
+      actions.setFieldError("waist_image", "Formato de imagen no válido");
+    }
+
+    if (
+      data.data.message ===
+      "Weight image tiene que ser formato PNG or JPG y Waist image tiene que ser formato PNG or JPG"
+    ) {
+      actions.setFieldError("weight_image", "Formato de imagen no válido");
+      actions.setFieldError("waist_image", "Formato de imagen no válido");
+    }
+
+    if (
+      data.data.message ===
+      "Weight image no puede ser mayor a 10MB y Waist image tiene que ser formato PNG or JPG"
+    ) {
+      actions.setFieldError(
+        "weight_image",
+        "La imagen no puede ser mayor a 10MB"
+      );
+      actions.setFieldError("waist_image", "Formato de imagen no válido");
+    }
+
+    if (
+      data.data.message ===
+      "Weight image tiene que ser formato PNG or JPG y Waist image no puede ser mayor a 10MB"
+    ) {
+      actions.setFieldError("weight_image", "Formato de imagen no válido");
+      actions.setFieldError(
+        "waist_image",
+        "La imagen no puede ser mayor a 10MB"
+      );
+    }
   }
 };

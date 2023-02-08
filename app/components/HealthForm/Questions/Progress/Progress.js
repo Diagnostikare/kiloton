@@ -42,7 +42,7 @@ export default function Progress() {
         <div className="col-12 col-md-6">
           <FileField
             name="weight_image"
-            label="Sube una imagen de cuerpo entero"
+            label="Sube una imagen de cuerpo completo"
             type="file"
             helper="jpeg, jpg, png, máximo 10MB"
             placeholder="Selecciona una imagen"

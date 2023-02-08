@@ -12,12 +12,15 @@ import Context from "../../context/context";
 import { scrollToElement } from "../../common/helpers";
 
 export default function UserValidationModal(props) {
+  const TOKEN = process.env.NEXT_PUBLIC_TOKEN;
   const { setUser, setStep, openLogin, setOpenLogin } = useContext(Context);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (values, actions) => {
     setLoading(true);
-    const data = await UseFetch(`leads/${values.employee_id}`);
+    const data = await UseFetch(
+      `leads/${values.employee_id}?password=${TOKEN}`
+    );
     setLoading(false);
 
     if (data.status === 404) {

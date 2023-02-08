@@ -11,11 +11,15 @@ import Context from "../../context/context";
 import Progress from "./Questions/Progress/Progress";
 import Multiple from "./Questions/Multiple/Multiple";
 import dataHealth from "./HealthForm.json";
-import { validationSchema } from "./HealthFormValidations";
+import {
+  responseValidationSchema,
+  validationSchema,
+} from "./HealthFormValidations";
 import Mosaic from "./Questions/Mosaic/Mosaic";
 import Results from "./Questions/Results/Results";
 
 export default function HealthForm({ children, ...props }) {
+  const TOKEN = process.env.NEXT_PUBLIC_TOKEN;
   const { user, setUser, step, setStep } = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -72,13 +76,15 @@ export default function HealthForm({ children, ...props }) {
     setUser({ ...user, ...values });
 
     const formData = new FormData();
-    formData.append("lead[weight_image]", values.weight_image);
-    formData.append("lead[waist_image]", values.waist_image);
-    formData.append("lead[data][weight]", values.data.weight);
-    formData.append(
-      "lead[data][waist_centimeters]",
-      values.data.waist_centimeters
-    );
+    if (step === 2) {
+      formData.append("lead[weight_image]", values.weight_image);
+      formData.append("lead[waist_image]", values.waist_image);
+      formData.append("lead[data][weight]", values.data.weight);
+      formData.append(
+        "lead[data][waist_centimeters]",
+        values.data.waist_centimeters
+      );
+    }
     formData.append("lead[data][sex]", values.data.sex);
     formData.append(
       "lead[data][questions][exercise_answer_id]",
@@ -117,8 +123,15 @@ export default function HealthForm({ children, ...props }) {
       body: formData,
     };
 
+    for (let value of formData.values()) {
+      console.log(value);
+    }
+
     // PUT request
-    const data = await UseFetch(`/leads/${user.employee_id}`, options);
+    const data = await UseFetch(
+      `/leads/${user.employee_id}?password=${TOKEN}`,
+      options
+    );
 
     if (data.status === 200) {
       if (step < dataHealth.questions.length - 1) {
@@ -126,35 +139,7 @@ export default function HealthForm({ children, ...props }) {
       }
     }
 
-    if (data.status === 500) {
-      if (data.data.message === "Waist image no puede ser mayor a 10MB") {
-        actions.setFieldError(
-          "waist_image",
-          "La imagen no puede ser mayor a 10MB"
-        );
-      }
-
-      if (data.data.message === "Weight image no puede ser mayor a 10MB") {
-        actions.setFieldError(
-          "weight_image",
-          "La imagen no puede ser mayor a 10MB"
-        );
-      }
-
-      if (
-        data.data.message ===
-        "Weight image no puede ser mayor a 10MB y Waist image no puede ser mayor a 10MB"
-      ) {
-        actions.setFieldError(
-          "waist_image",
-          "La imagen no puede ser mayor a 10MB"
-        );
-        actions.setFieldError(
-          "weight_image",
-          "La imagen no puede ser mayor a 10MB"
-        );
-      }
-    }
+    await responseValidationSchema(data, step, actions);
 
     setLoading(false);
     actions.setSubmitting(false);

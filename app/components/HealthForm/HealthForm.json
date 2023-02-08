@@ -32,7 +32,7 @@
     {
       "type": "multiple",
       "title": "Queremos conocer tus hábitos",
-      "question": "¿Sexo al nacimiento?",
+      "question": "Sexo",
       "answers": [
         {
           "label": "Femenino",
@@ -94,7 +94,7 @@
           "value": "1"
         },
         {
-          "label": "Ex fumador",
+          "label": "Exfumador",
           "name": "data.questions.smoke_answer_id",
           "value": "2"
         },
@@ -141,7 +141,7 @@
           "value": "1"
         },
         {
-          "label": "de 7 a 8 horas",
+          "label": "De 7 a 8 horas",
           "name": "data.questions.avrg_sleep_answer_id",
           "value": "2"
         },
@@ -155,7 +155,7 @@
     {
       "type": "mosaic",
       "title": "Queremos conocer tus hábitos",
-      "question": "¿Cuánta agua bebes en promedio por día?",
+      "question": "¿Cuántos litros de agua bebes al día?",
       "answers": [
         {
           "icon": "/assets/icons/landing/health-form/soda-1-icon.svg",
@@ -223,7 +223,7 @@
     {
       "type": "multiple",
       "title": "Queremos conocer tus hábitos",
-      "question": "En las últimas 2 semanas, ¿Qué tan satisfecho te has sentido contigo mismo?",
+      "question": "En las últimas 2 semanas, ¿qué tan satisfecho te has sentido contigo mismo?",
       "answers": [
         {
           "label": "😞",

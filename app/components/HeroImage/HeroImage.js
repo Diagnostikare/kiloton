@@ -30,7 +30,7 @@ export default function HeroImage(props) {
                 Con el nuevo kilotón, <br />
                 todos ganan.
                 <br />
-                <span className={styles.uderline}>¡Inscríbete!</span>
+                <span className={styles.uderline}>¡Regístrate!</span>
               </h1>
               <p className={styles.content}>
                 Participas todo el año, acumulas puntos y ganas premios
@@ -46,10 +46,11 @@ export default function HeroImage(props) {
                     setStep(0);
                   }}
                 >
-                  Quiero participar
+                  Quiero inscribirme
                 </Button>
                 <Button variant="secondary" onClick={() => setOpenLogin(true)}>
-                  Ya tengo cuenta
+                  <span>Quiero hacer mi &nbsp;</span>
+                  <b>kilotest</b>
                 </Button>
               </div>
             </div>

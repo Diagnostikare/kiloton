@@ -24,8 +24,9 @@ export const formatDate = (date) => {
 
 // Scroll to element
 export const scrollToElement = (e, offset = 115) => {
-  e.preventDefault();
-  const target = e.target.getAttribute("href");
+  if (e.target) e.preventDefault();
+  // Get the target element attribute or href
+  const target = e.target ? e.target.getAttribute("href") : e;
   const element = document.querySelector(target);
   window.scrollTo({
     top: element.offsetTop - offset,

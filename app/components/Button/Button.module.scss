@@ -9,6 +9,10 @@
   border: 0;
   border-radius: 40px;
   cursor: pointer;
+
+  &:hover {
+    color: white;
+  }
 }
 
 .primary {
@@ -21,5 +25,16 @@
     color: var(--complementary-color);
     box-shadow: 0 10px 16px rgba(0, 0, 0, 0.15);
     filter: brightness(1.1);
+  }
+}
+
+.secondary {
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 30px;
+
+  &:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.8);
   }
 }

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import styles from "./HeaderMobile.module.scss";
 import { scrollToElement } from "../../common/helpers";
 import Button from "../Button/Button";
+import Context from "../../context/context";
 
 export default function HeaderMobile({ options }) {
+  const { setOpenLogin } = useContext(Context);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const _renderMenuOptions = (options) =>
@@ -72,6 +74,19 @@ export default function HeaderMobile({ options }) {
         <nav className={styles.mainMenu}>
           <ul className={styles.list}>
             {_renderMenuOptions(options)}
+            <li>
+              <a
+                className={styles.item}
+                href="#registration"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setOpenLogin(true);
+                  setMenuOpen(!isMenuOpen);
+                }}
+              >
+                Ya tengo cuenta
+              </a>
+            </li>
             <li className="p-3">
               <Button
                 href="#registration"

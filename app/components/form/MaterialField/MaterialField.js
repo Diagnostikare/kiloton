@@ -9,6 +9,7 @@ const MaterialField = ({
   label,
   placeholder,
   tooltip,
+  helper,
   className,
   children,
   validate,
@@ -26,8 +27,6 @@ const MaterialField = ({
         setFilled(meta.value.length > 0);
       }
     }
-
-    () => (isMounted = false);
   }, [meta, props]);
 
   return (
@@ -65,9 +64,9 @@ const MaterialField = ({
 
         {/* Field */}
         <Field
-          className={`${styles.field} ${type === "date" && styles.fieldDate} ${
-            meta.touched && meta.error && styles.error
-          }`}
+          className={`${styles.field} ${type === "date" && styles.dateField} ${
+            type === "file" && styles.fileField
+          } ${meta.touched && meta.error && styles.error}`}
           name={name}
           id={name}
           type={type}
@@ -76,6 +75,7 @@ const MaterialField = ({
         >
           {children && props.as === "select" && children}
         </Field>
+        {helper && <small className={styles.helper}>{helper}</small>}
       </div>
       {/* Errormessage */}
       {meta.touched && meta.error && validate !== false && (

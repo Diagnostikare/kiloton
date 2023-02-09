@@ -1,0 +1,323 @@
+{
+  "questions": [
+    {
+      "type": "registration"
+    },
+    {
+      "type": "info",
+      "title": "Antes de comenzar, ten a la mano:"
+    },
+    {
+      "type": "fields",
+      "title": "Queremos conocer tus hábitos",
+      "question": "Esta información nos ayudará a evaluar tu progreso",
+      "fields": [
+        {
+          "label": "Peso al día de hoy",
+          "type": "text",
+          "right": "kg",
+          "placeholder": "00",
+          "required": "true",
+          "validation": {
+            "type": "number",
+            "min": 0,
+            "max": 300
+          },
+          "error": "Ingresa un número válido",
+          "name": "data.weight",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "Sexo",
+      "answers": [
+        {
+          "label": "Femenino",
+          "name": "data.sex",
+          "value": "female"
+        },
+        {
+          "label": "Masculino",
+          "name": "data.sex",
+          "value": "male"
+        }
+      ]
+    },
+    {
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Haces ejercicio?",
+      "answers": [
+        {
+          "label": "No realizo actividad física",
+          "name": "data.questions.exercise_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "Menos de 1 hora por semana",
+          "name": "data.questions.exercise_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "1 a 2 horas por semana",
+          "name": "data.questions.exercise_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "3 a 5 horas por semana",
+          "name": "data.questions.exercise_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "Más de 6 horas por semana",
+          "name": "data.questions.exercise_answer_id",
+          "value": "5"
+        },
+        {
+          "label": "Soy atleta",
+          "name": "data.questions.exercise_answer_id",
+          "value": "6"
+        }
+      ]
+    },
+    {
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Fumas?",
+      "answers": [
+        {
+          "label": "No fumo",
+          "name": "data.questions.smoke_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "Exfumador",
+          "name": "data.questions.smoke_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "Ocasionalmente",
+          "name": "data.questions.smoke_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "Fumador pasivo",
+          "name": "data.questions.smoke_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "Suspendido recientemente",
+          "name": "data.questions.smoke_answer_id",
+          "value": "5"
+        },
+        {
+          "label": "Algunos cigarrillos al día",
+          "name": "data.questions.smoke_answer_id",
+          "value": "6"
+        },
+        {
+          "label": "Menos de 1 cajetilla al día",
+          "name": "data.questions.smoke_answer_id",
+          "value": "7"
+        },
+        {
+          "label": "Más de 1 cajetilla al día",
+          "name": "data.questions.smoke_answer_id",
+          "value": "8"
+        }
+      ]
+    },
+    {
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Cuántas horas duermes en promedio cada noche?",
+      "answers": [
+        {
+          "label": "6 o menos horas",
+          "name": "data.questions.avrg_sleep_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "De 7 a 8 horas",
+          "name": "data.questions.avrg_sleep_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "9 o más horas",
+          "name": "data.questions.avrg_sleep_answer_id",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "type": "mosaic",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Cuántos litros de agua bebes al día?",
+      "answers": [
+        {
+          "icon": "/assets/icons/landing/health-form/soda-1-icon.svg",
+          "label": "Menos de 1 litro por día",
+          "name": "data.questions.water_intake_answer_id",
+          "value": "1"
+        },
+        {
+          "icon": "/assets/icons/landing/health-form/soda-2-icon.svg",
+          "label": "1 a 1.5 litros por día",
+          "name": "data.questions.water_intake_answer_id",
+          "value": "2"
+        },
+        {
+          "icon": "/assets/icons/landing/health-form/soda-3-icon.svg",
+          "label": "1.5 a 2.5 litros por día",
+          "name": "data.questions.water_intake_answer_id",
+          "value": "3"
+        },
+        {
+          "icon": "/assets/icons/landing/health-form/soda-4-icon.svg",
+          "label": "Más de 2.5 litros al día",
+          "name": "data.questions.water_intake_answer_id",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Bebes alcohol?",
+      "answers": [
+        {
+          "label": "No tomo",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "Ya no tomo",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "Ocasionalmente",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "Todos los fines de semana",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "1 a 2 copas diarias",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "5"
+        },
+        {
+          "label": "3 o más copas diario",
+          "name": "data.questions.alcohol_intake_answer_id",
+          "value": "6"
+        }
+      ]
+    },
+    {
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "En las últimas 2 semanas, ¿qué tan satisfecho te has sentido contigo mismo?",
+      "answers": [
+        {
+          "label": "😞",
+          "name": "data.questions.self_eval_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "😣",
+          "name": "data.questions.self_eval_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "😕",
+          "name": "data.questions.self_eval_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "😊",
+          "name": "data.questions.self_eval_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "🤩",
+          "name": "data.questions.self_eval_answer_id",
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Te sientes con mal estado de salud o sin energía?",
+      "answers": [
+        {
+          "label": "Nunca",
+          "name": "data.questions.health_state_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "A veces",
+          "name": "data.questions.health_state_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "Muy seguido",
+          "name": "data.questions.health_state_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "Casi siempre",
+          "name": "data.questions.health_state_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "Siempre",
+          "name": "data.questions.health_state_answer_id",
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "type": "multiple",
+      "title": "Queremos conocer tus hábitos",
+      "question": "¿Qué tipo de alimentación sigues?",
+      "answers": [
+        {
+          "label": "Sin restricciones de alimentos ",
+          "name": "data.questions.nourish_type_answer_id",
+          "value": "1"
+        },
+        {
+          "label": "Sin lácteos",
+          "name": "data.questions.nourish_type_answer_id",
+          "value": "2"
+        },
+        {
+          "label": "Antiinflamatoria",
+          "name": "data.questions.nourish_type_answer_id",
+          "value": "3"
+        },
+        {
+          "label": "Vegetariana o vegana ",
+          "name": "data.questions.nourish_type_answer_id",
+          "value": "4"
+        },
+        {
+          "label": "Baja en carbohidratos/Alta en proteína",
+          "name": "data.questions.nourish_type_answer_id",
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "type": "results"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "instructions": [
+    {
+      "icon": "/assets/icons/landing/health-form/picture-icon.png",
+      "text": "Foto de la báscula o ticket con tu peso (el pesaje debe ser en kilogramos, no libras)"
+    },
+    {
+      "icon": "/assets/icons/landing/health-form/body-icon.png",
+      "text": "Foto de cuerpo completo"
+    },
+    {
+      "icon": "/assets/icons/landing/health-form/clothes-icon.png",
+      "text": "Con ropa ajustada. No ropa floja"
+    },
+    {
+      "icon": "/assets/icons/landing/health-form/unavailable-icon.png",
+      "text": "Sin chamarras, sin chalecos, sin sudaderas, ni fajas"
+    },
+    {
+      "icon": "/assets/icons/landing/health-form/length-icon.png",
+      "text": "Medida de tu circunferencia abdominal (necesitarás una cinta métrica)"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./RegistrationForm.module.scss";
 import componentData from "./registrationForm.json";
 import MaterialField from "../form/MaterialField/MaterialField";
@@ -10,16 +10,17 @@ import UseFetch from "../../api/UseFetch";
 import IconRadio from "../form/IconRadio/IconRadio";
 import UseFetchGetUser from "../../api/useFetchGetUser";
 import Image from "next/image";
-import Chart from "../Chart/Chart";
+import ChartBMI from "../ChartBMI/ChartBMI";
 import { formatDate, replaceSpecialCharacters } from "../../common/helpers";
 import Loader from "../Loader/Loader";
+import Context from "../../context/context";
 
 export default function RegistrationForm({ children, ...props }) {
+  const { user, setUser, setStep } = useContext(Context);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [searcherLoading, setSearcherLoading] = useState(false);
-  const [fetchData, setFetchData] = useState(null);
   const [success, setSuccess] = useState(false);
   const [statusDisabled, setstatusDisabled] = useState(false);
 
@@ -146,7 +147,6 @@ export default function RegistrationForm({ children, ...props }) {
       setError(true);
       setLoading(false);
       setSuccess(false);
-      setFetchData(null);
       return;
     }
 
@@ -158,7 +158,6 @@ export default function RegistrationForm({ children, ...props }) {
       setError(true);
       setLoading(false);
       setSuccess(false);
-      setFetchData(null);
       return;
     }
 
@@ -168,14 +167,12 @@ export default function RegistrationForm({ children, ...props }) {
       setError(true);
       setLoading(false);
       setSuccess(false);
-      setFetchData(null);
       return;
     }
 
     // If response is not ok, show error
     if (data.status !== 200 && data.status !== 201) {
       actions.setSubmitting(false);
-      setFetchData(null);
       setError(true);
       setLoading(false);
       setSuccess(false);
@@ -184,7 +181,7 @@ export default function RegistrationForm({ children, ...props }) {
 
     // if response is ok, update lead data
     actions.setSubmitting(false);
-    setFetchData(data.data.lead);
+    setUser({ ...user, ...data.data.lead.data });
     setError(false);
     setLoading(false);
     setSuccess(true);
@@ -228,6 +225,7 @@ export default function RegistrationForm({ children, ...props }) {
   if (success) {
     return (
       <div className={styles.message}>
+        {JSON.stringify(user)}
         <Image
           className={styles.messageImage}
           src="/assets/images/landing/form/success-message.jpg"
@@ -235,6 +233,18 @@ export default function RegistrationForm({ children, ...props }) {
           height={2000}
           alt="Registro completado"
         />
+        <div className={styles.testButton}>
+          <span>Responde tu kilotest para completar tu registro.</span>
+          <Button
+            variant="primary"
+            className={styles.messageButton}
+            onClick={() => {
+              setStep(1);
+            }}
+          >
+            Entra aquí
+          </Button>
+        </div>
       </div>
     );
   }
@@ -387,7 +397,7 @@ export default function RegistrationForm({ children, ...props }) {
                 />
               </div>
               <div className="col-12 col-md-6">
-                <Chart
+                <ChartBMI
                   height={formik.values.height}
                   weight={formik.values.weight}
                 />
@@ -408,7 +418,7 @@ export default function RegistrationForm({ children, ...props }) {
               <div className="col-12 d-flex justify-content-center">
                 <Button
                   as="button"
-                  variant={loading ? "secondary" : "primary"}
+                  variant={loading ? "" : "primary"}
                   type="submit"
                   disabled={formik.isSubmitting || loading}
                 >

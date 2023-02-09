@@ -58,7 +58,7 @@ export default function Results(props) {
             tu progreso
           </span>
           <small>
-            A partir del 3 de marzo podrás entrar al kilotón para empezar a
+            A partir del 6 de marzo podrás entrar al kilotón para empezar a
             obtener puntos.
           </small>
         </div>

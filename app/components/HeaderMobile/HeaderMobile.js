@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import Image from "next/image";
 import styles from "./HeaderMobile.module.scss";
+import buttonStyles from "../Button/Button.module.scss";
 import { scrollToElement } from "../../common/helpers";
 import Button from "../Button/Button";
 import Context from "../../context/context";
+import Link from "next/link";
 
 export default function HeaderMobile({ options }) {
   const { setOpenLogin } = useContext(Context);
@@ -74,29 +76,23 @@ export default function HeaderMobile({ options }) {
         <nav className={styles.mainMenu}>
           <ul className={styles.list}>
             {_renderMenuOptions(options)}
-            <li>
-              <a
-                className={styles.item}
-                href="#registration"
-                onClick={(event) => {
-                  event.preventDefault();
-                  setOpenLogin(true);
-                  setMenuOpen(!isMenuOpen);
-                }}
+            <li className="p-3">
+              <Link
+                className={`${buttonStyles.button} ${buttonStyles.secondary}`}
+                rel="noreferrer"
+                href="https://reto.kilotontotal.com/login"
               >
-                Ya tengo cuenta
-              </a>
+                Iniciar sesión
+              </Link>
             </li>
             <li className="p-3">
-              <Button
-                href="#registration"
-                variant="primary"
-                onClick={(event) => {
-                  setMenuOpen(!isMenuOpen), scrollToElement(event, 57);
-                }}
+              <Link
+                className={`${buttonStyles.button} ${buttonStyles.primary}`}
+                rel="noreferrer"
+                href="https://reto.kilotontotal.com/registro"
               >
                 Quiero participar
-              </Button>
+              </Link>
             </li>
           </ul>
         </nav>

@@ -1,12 +1,14 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./Header.module.scss";
+import buttonStyles from "../Button/Button.module.scss";
 import componentData from "./Header.json";
 import Button from "../Button/Button";
 import Image from "next/image";
 import HeaderMobile from "../HeaderMobile/HeaderMobile";
 import { scrollToElement } from "../../common/helpers";
 import Context from "../../context/context";
+import Link from "next/link";
 
 export default function Header() {
   const { setStep, setOpenLogin } = useContext(Context);
@@ -65,28 +67,22 @@ export default function Header() {
         <ul className={styles.list}>
           {_renderMenuOptions(componentData.menuOptions)}
           <li>
-            <a
-              className={styles.item}
-              href="#registration"
-              onClick={(e) => {
-                e.preventDefault(e);
-                setOpenLogin(true);
-              }}
+            <Link
+              className={`${buttonStyles.button} ${buttonStyles.secondary}`}
+              rel="noreferrer"
+              href="https://reto.kilotontotal.com/login"
             >
-              Ya tengo cuenta
-            </a>
+              Iniciar sesión
+            </Link>
           </li>
           <li>
-            <Button
-              href="#registration"
-              variant="primary"
-              onClick={(e) => {
-                scrollToElement(e);
-                setStep(0);
-              }}
+            <Link
+              className={`${buttonStyles.button} ${buttonStyles.primary}`}
+              rel="noreferrer"
+              href="https://reto.kilotontotal.com/registro"
             >
               Quiero participar
-            </Button>
+            </Link>
           </li>
         </ul>
       </div>

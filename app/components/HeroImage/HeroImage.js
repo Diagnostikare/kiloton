@@ -1,11 +1,12 @@
 "use client";
 import React, { useContext, useState } from "react";
 import styles from "./HeroImage.module.scss";
+import buttonStyles from "../Button/Button.module.scss";
 import Button from "../Button/Button";
 import Image from "next/image";
-import { scrollToElement } from "../../common/helpers";
 import UserValidationModal from "../UserValidationModal/UserValidationModal";
 import Context from "../../context/context";
+import Link from "next/link";
 
 export default function HeroImage(props) {
   const { setStep, setOpenLogin } = useContext(Context);
@@ -37,21 +38,23 @@ export default function HeroImage(props) {
                 increíbles
               </p>
               <div className={styles.buttons}>
-                <Button
-                  as="button"
-                  href="#registration"
+                <Link
+                  className={`${buttonStyles.button} ${buttonStyles.primary}`}
+                  href="https://reto.kilotontotal.com/registro"
                   variant="primary"
-                  onClick={(event) => {
-                    scrollToElement(event);
-                    setStep(0);
-                  }}
+                  rel="noreferrer"
                 >
                   Quiero inscribirme
-                </Button>
-                <Button variant="secondary" onClick={() => setOpenLogin(true)}>
+                </Link>
+                <Link
+                  className={`${buttonStyles.button} ${buttonStyles.secondary}`}
+                  variant="secondary"
+                  href="https://reto.kilotontotal.com/login"
+                  rel="noreferrer"
+                >
                   <span>Quiero hacer mi &nbsp;</span>
                   <b>kilotest</b>
-                </Button>
+                </Link>
               </div>
             </div>
           </div>

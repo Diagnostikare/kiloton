@@ -13,7 +13,7 @@ export default function Page() {
   return (
     <>
       <HeroImage />
-      <FormSection />
+      {/* <FormSection /> */}
       <NumberSection />
       <LinkSection />
       <GridSection />

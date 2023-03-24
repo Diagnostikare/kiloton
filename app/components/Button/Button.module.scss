@@ -38,3 +38,21 @@
     background-color: rgba(0, 0, 0, 0.8);
   }
 }
+
+.buttonLink {
+  display: flex;
+  width: 35%;
+  border-radius: 50px;
+  height: auto;
+  padding: 1rem;
+  justify-content: center;
+  outline: invert;
+  border: solid 2px var(--primary-color);
+  text-decoration: none;
+  color: var(--primary-color);
+  background: #000000;
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}

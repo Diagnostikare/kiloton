@@ -69,14 +69,18 @@
 
 .signUpButton{
   &:before {
-    content: '';
+    content:'Quiero inscribirme';
   }
 }
 
 .loginButton{
   &:before{
-    content: 'Iniciar Sesión';
+    
   }
+}
+
+.divText{
+  display: flex;
 }
 
 // Desktop
@@ -103,4 +107,25 @@
   .buttons {
     flex-direction: row;
   }
+  
+}
+
+@media (max-width: 460px) {
+
+    .divText{
+      display: none;
+    }
+
+    .signUpButton{
+      &:before {
+        content:'Quiero inscribirme';
+      }
+    }
+    
+    .loginButton{
+      &:before{
+        content:'Iniciar Sesión';
+      }
+    }
+  
 }

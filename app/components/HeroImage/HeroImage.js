@@ -51,9 +51,10 @@ export default function HeroImage(props) {
                   href="https://reto.kilotontotal.com/login"
                   rel="noreferrer"
                 >
-                  {/* <span>Quiero hacer mi &nbsp;</span>
-                  <b>kilotest</b> */}
-                  
+                  <div className={`${styles.divText}`}>
+                    <span>Quiero hacer mi &nbsp;</span>
+                    <b>kilotest</b>
+                  </div>
                 </Link>
               </div>
             </div>

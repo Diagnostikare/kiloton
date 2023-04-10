@@ -39,21 +39,21 @@ export default function HeroImage(props) {
               </p>
               <div className={styles.buttons}>
                 <Link
-                  className={`${buttonStyles.button} ${buttonStyles.primary}`}
+                  className={`${buttonStyles.button} ${buttonStyles.primary} ${styles.signUpButton}`}
                   href="https://reto.kilotontotal.com/registro"
                   variant="primary"
                   rel="noreferrer"
                 >
-                  Quiero inscribirme
                 </Link>
                 <Link
-                  className={`${buttonStyles.button} ${buttonStyles.secondary}`}
+                  className={`${buttonStyles.button} ${buttonStyles.secondary} ${styles.loginButton}`}
                   variant="secondary"
                   href="https://reto.kilotontotal.com/login"
                   rel="noreferrer"
                 >
-                  <span>Quiero hacer mi &nbsp;</span>
-                  <b>kilotest</b>
+                  {/* <span>Quiero hacer mi &nbsp;</span>
+                  <b>kilotest</b> */}
+                  
                 </Link>
               </div>
             </div>

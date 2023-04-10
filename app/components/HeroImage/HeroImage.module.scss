@@ -67,6 +67,18 @@
   gap: 1rem;
 }
 
+.signUpButton{
+  &:before {
+    content: '';
+  }
+}
+
+.loginButton{
+  &:before{
+    content: 'Iniciar Sesión';
+  }
+}
+
 // Desktop
 @media (min-width: 768px) {
   .hero {

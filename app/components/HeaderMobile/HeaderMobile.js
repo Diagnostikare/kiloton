@@ -82,7 +82,8 @@ export default function HeaderMobile({ options }) {
                 rel="noreferrer"
                 href="https://reto.kilotontotal.com/login"
               >
-                Iniciar sesión
+                <span>Quiero hacer mi &nbsp;</span>
+                <b>kilotest</b>
               </Link>
             </li>
             <li className="p-3">
@@ -91,7 +92,7 @@ export default function HeaderMobile({ options }) {
                 rel="noreferrer"
                 href="https://reto.kilotontotal.com/registro"
               >
-                Quiero participar
+                Quiero inscribirme
               </Link>
             </li>
           </ul>

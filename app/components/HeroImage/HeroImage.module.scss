@@ -5,7 +5,7 @@
   min-height: 446px;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  // align-items: center;
   background-color: var(--complementary-color);
 }
 
@@ -14,7 +14,7 @@
   top: 0;
   left: 0;
   z-index: 1;
-  display: block;
+  display: flex;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -25,7 +25,7 @@
 .heroContent {
   position: relative;
   z-index: 2;
-  margin: auto 0 0 0;
+  // margin: auto 0 0 0;
   padding-bottom: 2rem;
 }
 
@@ -45,6 +45,7 @@
 .uderline {
   position: relative;
   display: inline-block;
+  color: var(--primary-color);
   &:after {
     position: absolute;
     left: 0;
@@ -96,8 +97,9 @@
   }
 
   .heroContent {
-    margin: auto;
+    // margin: auto;
     padding-bottom: initial;
+    padding-top: 5rem;
   }
 
   .title {
@@ -126,6 +128,10 @@
       &:before{
         content:'Iniciar Sesión';
       }
+    }
+
+    .image {
+      object-position: center;
     }
   
 }

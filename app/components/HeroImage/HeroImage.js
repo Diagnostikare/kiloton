@@ -22,20 +22,19 @@ export default function HeroImage(props) {
           alt="kilotón"
           width={1440}
           height={792}
-          src="/assets/images/landing/hero/hero-image.jpg"
+          src="/assets/images/landing/hero/kiloton2024.png"
         />
         <div className={`container ${styles.heroContent}`}>
-          <div className="row">
+          <div className="row d-flex flex-column-reverse flex-md-row">
             <div className="col-12 col-sm-10 col-lg-6">
+              <h1 className={`title bold ${styles.title}`}>
+                Con kilotón
+              </h1>
               <h1 className={`title bold ${styles.title} mb-4`}>
-                Con el nuevo kilotón, <br />
-                todos ganan.
-                <br />
-                <span className={styles.uderline}>¡Regístrate!</span>
+                <span className={styles.uderline}>¡gana todo el año!</span>
               </h1>
               <p className={styles.content}>
-                Participas todo el año, acumulas puntos y ganas premios
-                increíbles
+                Participa a tu ritmo, gana puntos y canjéalos por increíbles premios
               </p>
               <div className={styles.buttons}>
                 <Link
@@ -56,6 +55,19 @@ export default function HeroImage(props) {
                     <b>kilotest</b>
                   </div>
                 </Link>
+              </div>
+            </div>
+            <div className="col-12 col-sm-10 col-lg-6 d-flex">
+              <div className="d-flex justify-content-end w-100">
+                <Image
+                  priority
+                  className={'d-flex'}
+                  raw="true"
+                  alt="kilotón"
+                  width={135}
+                  height={96}
+                  src="/assets/images/landing/hero/GrupoSalinas.svg"
+                />
               </div>
             </div>
           </div>

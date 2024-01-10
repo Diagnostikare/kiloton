@@ -20,7 +20,7 @@ export default function SuccessStoriesSection({ children, ...props }) {
             />
             <h3 className={styles.title}>Casos de éxito con el programa</h3>
             <p className={styles.content}>
-              Más de 13,718 Socios se han inscrito a kilotón.
+              Más de 13,718 socios se han inscrito a kilotón.
             </p>
           </div>
           <div className="col-12 col-md-8 d-flex justify-content-end">

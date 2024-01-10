@@ -35,7 +35,8 @@
 }
 
 .title {
-  font-size: 24px;
+  // font-size: 24px;
+  font-size: clamp(1.875rem, -0.1563rem + 6.5vw, 3.5rem);
 }
 
 .content {
@@ -103,7 +104,7 @@
   }
 
   .title {
-    font-size: 56px;
+    // font-size: 56px;
   }
 
   .buttons {

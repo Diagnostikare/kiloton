@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-kiloton-dev-4acfb-authRole",
+      "UnauthRoleArn": "arn:aws:iam::391433050861:role/amplify-kiloton-dev-4acfb-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::391433050861:role/amplify-kiloton-dev-4acfb-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-kiloton-dev-4acfb-deployment",
+      "UnauthRoleName": "amplify-kiloton-dev-4acfb-unauthRole",
+      "StackName": "amplify-kiloton-dev-4acfb",
+      "StackId": "arn:aws:cloudformation:us-east-2:391433050861:stack/amplify-kiloton-dev-4acfb/ef849310-7f7c-11ef-9e1b-0adb99c42045",
+      "AmplifyAppId": "d2edv1wjmgae4m"
+    }
+  }
+}

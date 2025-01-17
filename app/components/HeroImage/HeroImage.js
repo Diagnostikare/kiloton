@@ -45,7 +45,7 @@ export default function HeroImage(props) {
                 >
                 </Link>
                 <Link
-                  className={`${buttonStyles.button} ${buttonStyles.secondary} ${styles.loginButton}`}
+                  className={`${buttonStyles.button} ${buttonStyles.primary} ${styles.loginButton}`}
                   variant="secondary"
                   href="https://reto.kilotontotal.com/login"
                   rel="noreferrer"

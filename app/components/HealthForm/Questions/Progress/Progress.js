@@ -6,11 +6,6 @@ import { useFormikContext, useField } from "formik";
 export default function Progress() {
   const { setFieldValue } = useFormikContext();
 
-  const getFieldValue = (name) => {
-    const field = useField(name);
-    return field.value;
-  };
-
   return (
     <>
       <div className="row">

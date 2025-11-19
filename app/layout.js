@@ -1,7 +1,7 @@
 "use client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.scss";
-import { Plus_Jakarta_Sans } from "@next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import Header from "./components/Header/Header";
 import Head from "./head";
 import Footer from "./components/Footer/Footer";

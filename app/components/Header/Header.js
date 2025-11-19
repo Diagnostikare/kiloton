@@ -14,11 +14,9 @@ export default function Header() {
   const { setStep, setOpenLogin } = useContext(Context);
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-  let windowWidth;
 
   const handleResize = () => {
-    windowWidth = window.innerWidth;
-    setIsMobile(windowWidth < 768);
+    setIsMobile(window.innerWidth < 768);
   };
 
   const _renderMenuOptions = (options) =>
@@ -31,15 +29,10 @@ export default function Header() {
     ));
 
   useEffect(() => {
-    let isMounted = true;
-
-    if (isMounted) {
-      windowWidth = window.innerWidth;
-      handleResize();
-      setIsLoading(false);
-      // Add resize listener
-      window.addEventListener("resize", handleResize);
-    }
+    handleResize();
+    setIsLoading(false);
+    // Add resize listener
+    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);

@@ -7,7 +7,6 @@ import Image from "next/image";
 export default function QuoteCarousel({ children, ...props }) {
   const swiperRef = useRef();
   const [isMobile, setIsMobile] = useState(false);
-  let windowWidth;
 
   const _renderAuthorPicture = (image) => (
     <div className={styles.quotePicture}>
@@ -29,7 +28,7 @@ export default function QuoteCarousel({ children, ...props }) {
         <div key={index} className={styles.quote}>
           {!isMobile && _renderAuthorPicture(slide.image)}
           <div className={styles.quoteText}>
-            <p className={styles.quoteContent}>"{slide.content}"</p>
+            <p className={styles.quoteContent}>&ldquo;{slide.content}&rdquo;</p>
             {/* Author data */}
             <div className={styles.quoteAuthorData}>
               {isMobile && _renderAuthorPicture(slide.image)}
@@ -48,19 +47,13 @@ export default function QuoteCarousel({ children, ...props }) {
     ));
 
   const handleResize = () => {
-    windowWidth = window.innerWidth;
-    setIsMobile(windowWidth < 768);
+    setIsMobile(window.innerWidth < 768);
   };
 
   useEffect(() => {
-    let isMounted = true;
-
-    if (isMounted) {
-      windowWidth = window.innerWidth;
-      handleResize();
-      // Add resize listener
-      window.addEventListener("resize", handleResize);
-    }
+    handleResize();
+    // Add resize listener
+    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);

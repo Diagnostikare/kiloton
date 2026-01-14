@@ -72,19 +72,19 @@ export default function Footer(props) {
         <div className="row mt-5">
           <div className={`${styles.footerText} col-12`}>
             <small>
-            Diagnostikare © {year}. 
+            Diagnostikare © {year}.
             </small>
             <br></br>
             <small>
             Diagnostikare es una marca registrada
             propiedad de Servicios Clínicos Inteligentes DXKARE, S.A.P.I. de
-            C.V. 
+            C.V.
             </small>
             <br></br>
             <small>
             El programa kilotón Total y la plataforma Salud GS son
             propiedad de Grupo Salinas y empresas afiliadas, para uso exclusivo
-            de sus respectivos colaboradores.
+            de sus respectivos Colaboradores.
             </small>
           </div>
         </div>

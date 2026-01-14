@@ -3,22 +3,22 @@
     {
       "id": "1",
       "title": "Regístrate",
-      "subtitle": "Realiza tu registro para comenzar"
+      "subtitle": "Comparte tus datos y arranca"
     },
     {
       "id": "2",
       "title": "Responde tu kilotest ",
-      "subtitle": "Contéstalo para iniciar el reto"
+      "subtitle": "Conoce tu punto de partida"
     },
     {
       "id": "3",
       "title": "Obtén puntos",
-      "subtitle": "Cada 15 días, registra avances y suma puntos"
+      "subtitle": "Registra tus avances cada 15 días"
     },
     {
       "id": "4",
       "title": "Gana premios",
-      "subtitle": "Canjea tus puntos por distintos regalos"
+      "subtitle": "Canjéalos por recompensas"
     }
   ]
 }

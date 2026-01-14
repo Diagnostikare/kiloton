@@ -20,22 +20,20 @@ export default function HeroImage(props) {
           className={styles.image}
           raw="true"
           alt="kilotón"
-          width={1440}
-          height={792}
-          src="/assets/images/landing/hero/kiloton2025.png"
+          width={1920}
+          height={1080}
+          src="/assets/images/landing/hero/kiloton2026.png"
         />
         <div className={`container ${styles.heroContent}`}>
           <div className="row d-flex flex-column-reverse flex-md-row">
             <div className="col-12 col-sm-10 col-lg-6">
-              <h1 className={`title bold ${styles.title} opacity-0`}>
-                Con kilotón
+              <h1 className={`title bold ${styles.title}`}>
+                ¡Activa tu mejor versión!
               </h1>
-              <h1 className={`title bold ${styles.title} mb-4 opacity-0`}>
-                <span className={styles.uderline}>¡gana todo el año!</span>
-              </h1>
-              <p className={`${styles.content} opacity-0`}>
-                Participa a tu ritmo, gana puntos y canjéalos por increíbles premios
-              </p>
+              <h3>
+                Con <strong>kilotón total,</strong> cada cambio cuenta.<br></br>
+                Acumula puntos y <strong>gana premios</strong> <br></br> durante todo el año
+              </h3>
               <div className={styles.buttons}>
                 <Link
                   className={`${buttonStyles.button} ${buttonStyles.primary} ${styles.signUpButton}`}

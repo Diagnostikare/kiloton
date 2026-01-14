@@ -6,7 +6,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: var(--complementary-color);
+  /* background-color: var(--complementary-color); */
+  background-color: white;
 }
 
 .headerContainer {
@@ -37,7 +38,7 @@
 
 .item {
   text-decoration: none;
-  color: white;
+  color: black;
 
   &:hover {
     color: var(--primary-color);

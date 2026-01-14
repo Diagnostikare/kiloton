@@ -29,7 +29,7 @@
           ]
         }
       ],
-      "footer": "Importante: el <b>kilotest</b> es requisito indispensable para poder participar en el kilotón <br> Con esta información nuestros especialistas podrán darte dietas personalizadas y recomendaciones de ejercicio para que logres tu objetivo."
+      "footer": "Importante: el <b>kilotest</b> es requisito indispensable para poder participar en el kilotón <br><br> Con esta información nuestros especialistas podrán darte dietas personalizadas y recomendaciones de ejercicio para que logres tu objetivo."
     },
     {
       "title": "Puntos",
@@ -46,7 +46,7 @@
             },
             {
               "id": "2",
-              "content": "Reduciendo cm"
+              "content": "Reduciendo centímetros"
             },
             {
               "id": "3",
@@ -61,7 +61,7 @@
         },
         {
           "id": "3",
-          "content": "Cada 3 meses desbloqueas un nuevo reto y puedes medir que tanto te vas acercando a tu meta/objetivo.",
+          "content": "Cada 3 meses desbloqueas un nuevo reto y puedes medir qué tanto te vas acercando a tu meta/objetivo.",
           "anotherChild": false
         },
         {
@@ -93,12 +93,12 @@
         },
         {
           "id": "4",
-          "content": "Tienes hasta el <b>&nbsp15 de diciembre de 2025.</b> para canjear tus puntos por premios.",
+          "content": "Tienes hasta el <b>&nbsp15 de diciembre de 2026</b> para canjear tus puntos por premios.",
           "anotherChild": false
         },
         {
           "id": "5",
-          "content": "Una vez que canjees tus puntos, <b>el área de Bienestar te contactará</b> para hacerte llegar tu premio.",
+          "content": "Una vez que canjees tus puntos, <b>el área de BCI te contactará</b> para hacerte llegar tu premio.",
           "anotherChild": false
         },
         {

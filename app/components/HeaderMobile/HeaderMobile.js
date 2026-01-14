@@ -92,7 +92,7 @@ export default function HeaderMobile({ options }) {
                 rel="noreferrer"
                 href="https://reto.kilotontotal.com/registro"
               >
-                Quiero inscribirme
+                Inscríbete ya
               </Link>
             </li>
           </ul>

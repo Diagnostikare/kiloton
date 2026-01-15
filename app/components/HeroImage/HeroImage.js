@@ -30,8 +30,8 @@ export default function HeroImage(props) {
               <h1 className={`title bold ${styles.title}`}>
                 ¡Activa tu mejor versión!
               </h1>
-              <h3>
-                Con <strong>kilotón total,</strong> cada cambio cuenta.<br></br>
+              <h3 className="text-white">
+                Con <strong className="bold">kilotón total,</strong> cada cambio cuenta.<br></br>
                 Acumula puntos y <strong>gana premios</strong> <br></br> durante todo el año
               </h3>
               <div className={styles.buttons}>

@@ -53,7 +53,7 @@ export default function Header() {
             alt="kilotón"
             width={344}
             height={134}
-            src="/assets/brand/logo-default.png"
+            src="/assets/brand/logo-gray.png"
           />
         </a>
 

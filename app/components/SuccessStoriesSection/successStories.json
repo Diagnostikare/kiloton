@@ -1,46 +1,39 @@
 {
   "quotes": [
     {
-      "author": "Lilia Oliva Sosa",
-      "location": "Azteca Estacionamientos",
-      "data": "61 años, <b>29 kg menos</b>",
-      "content": "Soy hipertensa, tenía que bajar 20 kg sí o sí y con el kilotón lo logré en 1 año",
-      "image": "/assets/images/landing/successStories/lilia-oliva-sosa.jpg"
+      "author": "Maria Maricela López Rayón Guzman",
+      "location": "Planes y beneficios BO",
+      "data": "29 años, <b>7.8 kg menos</b>",
+      "content": "Kilotón me ayudó a valorar lo que puedo realizar todos los días con mi cuerpo.",
+      "image": "/assets/images/landing/success-stories/2026/MARIA_MARICELA_LÓPEZ_RAYÓN_GUZMÁN.jpg"
     },
     {
-      "author": "Verónica Amigón",
-      "location": "Bienestar GS",
-      "data": "40 años, <b>5 kg menos</b>",
-      "content": "Después de mi embarazo subí varios kilogramos y decidí meterme al kilotón para recuperar mi peso",
-      "image": "/assets/images/landing/successStories/veronica-amigon.jpg"
+      "author": "Salvador Valdez Meza",
+      "location": "Contraloría BO",
+      "data": "50 años, <b>5 kg menos</b>",
+      "content": "Gracias a Kilotón he logrado mantener mi peso deseado, porque puedo ver mis avances.",
+      "image": "/assets/images/landing/success-stories/2026/SALVADOR_VALDEZ_MEZA.jpg"
     },
     {
-      "author": "Juan Pablo Gutiérrez",
-      "location": "Diseño Bienestar GS",
-      "data": "38 años, <b>5 kg menos</b>",
-      "content": "Desde que inicié el kilotón, pienso dos veces lo que me llevo a la boca. Lo natural es lo principal, hay que evitar lo procesado",
-      "image": "/assets/images/landing/successStories/juan-pablo-gutierrez.jpg"
+      "author": "Ivonn Belmont Perez",
+      "location": "Transformación digital compras BO",
+      "data": "40 años, <b>10 kg menos</b>",
+      "content": "Kilotón me dio las herramientas para lograr una mejor calidad de vida.",
+      "image": "/assets/images/landing/success-stories/2026/IVONN_BELMONT_PEREZ.jpg"
     },
     {
-      "author": "Martha Gutiérrez López",
-      "location": "Prosperidad Incluyente",
-      "data": "52 años, <b>6 kg menos</b>",
-      "content": "Con el kilotón tomas conciencia de lo que estás comiendo. Además, ganas por todos lados, en premios y en salud",
-      "image": "/assets/images/landing/successStories/martha-gutierrez-lopez.jpg"
+      "author": "Abelardo Gutierrez Lopez",
+      "location": "Sistemas de beneficios financieros BO",
+      "data": "27 años, <b>5 kg menos</b>",
+      "content": "Desde que sigo los tips de Kilotón me siento mejor y mi estilo de vida se ha renovado.",
+      "image": "/assets/images/landing/success-stories/2026/ABELARDO_GUTIÉRREZ_LÓPEZ.jpg"
     },
     {
-      "author": "Rodrigo Ventura",
-      "location": "Comunicación Bienestar GS",
-      "data": "40 años, <b>6 kg menos</b>",
-      "content": "El kilotón me ayudó muchísimo, porque además de bajar de peso, gane músculo, tonalidad y hubo cambios muy visibles en mi cara",
-      "image": "/assets/images/landing/successStories/rodrigo-ventura.jpg"
-    },
-    {
-      "author": "Alejandra Fernández Ramírez",
-      "location": "Italika",
-      "data": "44 años, <b>12 kg menos</b>",
-      "content": "El kilotón cambió mi vida. Perder peso te hace ver más joven, te da otro aspecto y te hace sentir mejor contigo mismo",
-      "image": "/assets/images/landing/successStories/alejandra-fernandez-ramirez.jpg"
+      "author": "Christell Eliza Solis Ponce",
+      "location": "Baz entrega abastos",
+      "data": "45 años, <b>4 kg menos</b>",
+      "content": "Kilotón me ayudó a recuperar mi seguridad y ahora soy una inspiración para mis compañeros.",
+      "image": "/assets/images/landing/success-stories/2026/CHRISTELL_ELIZA_SOLIS_PONCE.jpg"
     }
   ]
 }

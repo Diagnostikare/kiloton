@@ -1,0 +1,61 @@
+# Dependencies
+node_modules
+npm-debug.log
+pnpm-debug.log
+yarn-error.log
+
+# Next.js
+.next
+out
+build
+dist
+
+# Testing
+.cypress
+cypress/videos
+cypress/screenshots
+.storybook-static
+coverage
+.nyc_output
+
+# Development
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.*
+!.env.local
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
+
+# Documentation
+*.md
+!README.md
+docs
+
+# Misc
+.DS_Store
+.prettierrc
+.editorconfig
+.eslintrc
+eslint.config.mjs
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# Semantic release
+.releaserc

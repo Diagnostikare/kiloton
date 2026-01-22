@@ -10,14 +10,14 @@ export const AwardsSection = ({ children, ...props }) => {
         raw="true"
         alt="kilotón"
         width={1440}
-        height={792}
-        src="/assets/images/landing/award/awards.png"
+        height={800}
+        src="/assets/images/landing/award/awards2026.webp"
       />
 
       <div className="container">
         <div className={`${styles.rowContainer} row`}>
           <div className={`${styles.bodyContainer} col-12`}>
-            <div className={`${styles.imageContainer}`}>
+            {/* <div className={`${styles.imageContainer}`}>
               <Image
                 priority
                 className={styles.imageStar}
@@ -48,7 +48,7 @@ export const AwardsSection = ({ children, ...props }) => {
             </div>
             <h1 className={`bold ${styles.title}`}>
               kilotón Total premia tu esfuerzo
-            </h1>
+            </h1>*/}
           </div>
 
           <div className={`${styles.termsContainer} col-12`}>

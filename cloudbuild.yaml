@@ -42,7 +42,7 @@ images:
 
 substitutions:
   _REGION: 'us-central1'
-  _REPOSITORY: 'kiloton'
+  _REPOSITORY: 'cloud-run-source-deploy'
   _SERVICE_NAME: 'kiloton'
   _NEXT_PUBLIC_API_BASE_URL: ''
   _NEXT_PUBLIC_TOKEN: ''

@@ -1,14 +1,13 @@
-import React, { useContext, useState } from "react";
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import styles from "./HeaderMobile.module.scss";
 import buttonStyles from "../Button/Button.module.scss";
 import { scrollToElement } from "../../common/helpers";
-import Button from "../Button/Button";
-import Context from "../../context/context";
 import Link from "next/link";
 
 export default function HeaderMobile({ options }) {
-  const { setOpenLogin } = useContext(Context);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const _renderMenuOptions = (options) =>
@@ -34,7 +33,6 @@ export default function HeaderMobile({ options }) {
           <a href="#heroImage" className={styles.logo}>
             <Image
               className={styles.logo}
-              raw="true"
               alt="kilotón"
               width={344}
               height={134}
@@ -58,7 +56,6 @@ export default function HeaderMobile({ options }) {
         <div className={styles.menuHeader}>
           <Image
             className={styles.logoWhite}
-            raw="true"
             src="/assets/brand/logo-white.png"
             width={216}
             height={124}
@@ -80,6 +77,7 @@ export default function HeaderMobile({ options }) {
               <Link
                 className={`${buttonStyles.button} ${buttonStyles.secondary}`}
                 rel="noreferrer"
+                target="_blank"
                 href="https://reto.kilotontotal.com/login"
               >
                 <span>Quiero hacer mi &nbsp;</span>
@@ -90,6 +88,7 @@ export default function HeaderMobile({ options }) {
               <Link
                 className={`${buttonStyles.button} ${buttonStyles.primary}`}
                 rel="noreferrer"
+                target="_blank"
                 href="https://reto.kilotontotal.com/registro"
               >
                 Inscríbete ya
@@ -99,7 +98,6 @@ export default function HeaderMobile({ options }) {
         </nav>
         <div className={styles.menuFooter}>
           <Image
-            raw="true"
             src="/assets/brand/salud-gs-white.png"
             width={73}
             height={40}

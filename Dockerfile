@@ -1,40 +1,28 @@
 # syntax=docker/dockerfile:1
 
-# ---- Base ----
-FROM node:22-alpine AS base
-RUN corepack enable
+FROM node:22.20.0-alpine3.22 AS base
+ENV NEXT_TELEMETRY_DISABLED=1
 WORKDIR /app
+RUN corepack enable
 
-# ---- Dependencies ----
-FROM base AS deps
-COPY package.json pnpm-lock.yaml .npmrc ./
+FROM base AS dependencies
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
-# ---- Build ----
 FROM base AS builder
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
-
-# NEXT_PUBLIC_* se inyectan en el bundle del cliente durante el build
-ARG NEXT_PUBLIC_API_BASE_URL
-ARG NEXT_PUBLIC_TOKEN
-ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
-ENV NEXT_PUBLIC_TOKEN=$NEXT_PUBLIC_TOKEN
-ENV NEXT_TELEMETRY_DISABLED=1
-
 RUN pnpm build
 
-# ---- Runtime ----
-FROM node:22-alpine AS runner
+FROM node:22.20.0-alpine3.22 AS runner
+ENV HOSTNAME=0.0.0.0 \
+    NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1 \
+    PORT=8080
 WORKDIR /app
 
-ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
-ENV HOSTNAME=0.0.0.0
-ENV PORT=8080
-
 RUN addgroup --system --gid 1001 nodejs \
-  && adduser --system --uid 1001 nextjs
+  && adduser --system --uid 1001 --ingroup nodejs nextjs
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static

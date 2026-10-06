@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Kilotón Total
 
-## Getting Started
+Landing pública de Kilotón Total. La aplicación muestra información del programa y dirige el inicio de sesión y el registro a `reto.kilotontotal.com`. No contiene formularios, credenciales ni integración con el API legado.
 
-First, run the development server:
+## Requisitos
+
+- Node.js 22 LTS
+- pnpm 10.14.0 mediante Corepack
+- Docker, solo para validar la imagen de producción
+
+## Desarrollo local
 
 ```bash
-npm run dev
-# or
-yarn dev
+corepack enable
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La aplicación queda disponible en `http://localhost:3000` y el health check en `http://localhost:3000/api/health`.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Calidad y producción
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```bash
+pnpm lint
+pnpm build
+pnpm start
+BASE_URL=http://localhost:3000 pnpm smoke
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Para probar el contenedor:
 
-## Learn More
+```bash
+docker build -t kiloton:prod .
+docker run --rm -p 8080:8080 kiloton:prod
+BASE_URL=http://localhost:8080 pnpm smoke
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Arquitectura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js App Router con salida `standalone`.
+- Imagen multi-stage sobre Node.js 22, ejecutada sin privilegios en el puerto 8080.
+- Cloud Build publica una imagen inmutable por `$COMMIT_SHA`.
+- Cloud Run recibe una revisión candidata sin tráfico; health y smoke tests deben pasar antes de promoverla al 100%.
+- La identidad de runtime no requiere roles de proyecto. La identidad de build/deploy es independiente y tiene permisos mínimos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+La preparación de GCP, despliegue, monitoreo y rollback están documentados en [docs/production-deployment.md](docs/production-deployment.md).

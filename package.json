@@ -8,21 +8,23 @@
   },
   "packageManager": "pnpm@10.14.0",
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --max-warnings=0",
+    "smoke": "node scripts/smoke-test.mjs"
   },
   "dependencies": {
-    "bootstrap": "^5.2.3",
-    "eslint": "8.57.0",
-    "eslint-config-next": "14.2.0",
-    "formik": "^2.2.9",
-    "next": "14.2.35",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "sass": "^1.77.0",
-    "swiper": "^11.0.0",
-    "yup": "^1.4.0"
+    "bootstrap": "5.3.8",
+    "next": "15.5.27",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "swiper": "11.2.10"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "3.3.7",
+    "eslint": "9.39.5",
+    "eslint-config-next": "15.5.27",
+    "sass": "1.94.1"
   }
 }

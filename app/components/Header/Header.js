@@ -1,17 +1,14 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import buttonStyles from "../Button/Button.module.scss";
 import componentData from "./Header.json";
-import Button from "../Button/Button";
 import Image from "next/image";
 import HeaderMobile from "../HeaderMobile/HeaderMobile";
 import { scrollToElement } from "../../common/helpers";
-import Context from "../../context/context";
 import Link from "next/link";
 
 export default function Header() {
-  const { setStep, setOpenLogin } = useContext(Context);
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -49,7 +46,6 @@ export default function Header() {
         <a href="#heroImage" className={styles.logo}>
           <Image
             className={styles.logo}
-            raw="true"
             alt="kilotón"
             width={344}
             height={134}
@@ -63,6 +59,7 @@ export default function Header() {
             <Link
               className={`${buttonStyles.button} ${buttonStyles.secondary}`}
               rel="noreferrer"
+              target="_blank"
               href="https://reto.kilotontotal.com/login"
             >
               Iniciar sesión
@@ -72,6 +69,7 @@ export default function Header() {
             <Link
               className={`${buttonStyles.button} ${buttonStyles.primary}`}
               rel="noreferrer"
+              target="_blank"
               href="https://reto.kilotontotal.com/registro"
             >
               Quiero participar
